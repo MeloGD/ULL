@@ -68,9 +68,9 @@ rational_t::value() const
 bool
 rational_t::is_equal(const rational_t& r, const double precision) const
 {
-  /*if (fabs(value() - r.value()) < precision) return true;           --> Como lo pensé al principio
+  /*if (fabs(value() - r.value()) < precision) return true;             --> Como lo pensé al principio
   else return false; */
-  return bool((fabs(value() - r.value()) < precision) ? true : false);    // igual que lo anterior pero en una sola línea
+  return bool((fabs(value() - r.value()) < precision) ? true : false); // igual que lo anterior pero en una sola línea
 
 }
 
