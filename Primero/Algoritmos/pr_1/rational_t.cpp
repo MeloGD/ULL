@@ -90,34 +90,48 @@ rational_t::is_less(const rational_t& r, const double precision) const
 
 
 // operaciones
-//rational_t
-//rational_t::add(const rational_t& r)
-//{
-//}
-
-
-
-//rational_t
-//rational_t::substract(const rational_t& r)
-//{
-//}
-
-
-
-rational_t //tipo rational_t, por lo tanto, debe retornar dos valores --> return (1ero,2nd)
-rational_t::multiply(const rational_t& r)
+rational_t
+rational_t::add(const rational_t& r)
 {
-  int f_num = get_num() * r.get_num();
+  int f_num = (get_num() * r.get_den()) + (get_den() * r.get_num());
   int f_den = get_den() * r.get_den();
+
   return rational_t(f_num , f_den);
 }
 
 
 
-//rational_t
-//rational_t::divide(const rational_t& r)
-//{
-//}
+rational_t
+rational_t::substract(const rational_t& r)
+{
+  int f_num = (get_num() * r.get_den()) - (get_den() * r.get_num());
+  int f_den = get_den() * r.get_den();
+
+  return rational_t(f_num , f_den);
+}
+
+
+
+rational_t //tipo rational_t, por lo tanto, debe retornar dos valores --> return (1ero,2nd)
+rational_t::multiply(const rational_t& r) // seria lo mismo hacer &r,
+                                          // crea una nueva posición de memoria, si quitamos el &, machacaría el valor
+{
+  int f_num = get_num() * r.get_num();
+  int f_den = get_den() * r.get_den();
+
+  return rational_t(f_num , f_den);
+}
+
+
+
+rational_t
+rational_t::divide(const rational_t& r)
+{
+  int f_num = get_num() * r.get_den();
+  int f_den = get_den() * r.get_num();
+
+  return rational_t(f_num , f_den);
+}
 
 
 
