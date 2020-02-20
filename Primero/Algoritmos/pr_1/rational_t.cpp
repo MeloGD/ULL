@@ -63,6 +63,8 @@ rational_t::value() const
 
 
 // comparaciones
+// Respecto a la referencia,
+// sería lo mismo hacer &r crea una nueva posición de memoria, si quitamos el &, machacaría el valor.
 bool
 rational_t::is_equal(const rational_t& r, const double precision) const
 {
@@ -112,9 +114,8 @@ rational_t::substract(const rational_t& r)
 
 
 
-rational_t //tipo rational_t, por lo tanto, debe retornar dos valores --> return (1ero,2nd)
-rational_t::multiply(const rational_t& r) // seria lo mismo hacer &r,
-                                          // crea una nueva posición de memoria, si quitamos el &, machacaría el valor
+rational_t //tipo rational_t, por lo tanto, debe retornar dos valores tipo rational_t--> return rational_t(1ero,2nd)
+rational_t::multiply(const rational_t& r)
 {
   int f_num = get_num() * r.get_num();
   int f_den = get_den() * r.get_den();
