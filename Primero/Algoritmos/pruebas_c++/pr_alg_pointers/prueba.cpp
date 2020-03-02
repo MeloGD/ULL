@@ -21,7 +21,7 @@ int main(void)
 
   for(int i = 0; i < MAXIMO; i++) {
     cout << setw(5) << a[i] << setw(5) << *(a_ptr + i) << endl;
-    cout << setw(5) << b[i] << setw(5) << (b_ptr + i) << endl;
+    cout << setw(5) << b[i] << setw(5) << (*b_ptr + i) << endl;
   }
   return 0;
 }
