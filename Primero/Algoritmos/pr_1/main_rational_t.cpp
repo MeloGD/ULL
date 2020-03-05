@@ -57,5 +57,9 @@ int main()
   cout << "a / b: ";
   a.divide(b).write();
 
+  //Modificación opuesto de un número
+
+  c.oppositte().write();
+
   return 0;
 }

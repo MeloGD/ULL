@@ -134,8 +134,12 @@ rational_t::divide(const rational_t& r)
   return rational_t(f_num , f_den);
 }
 
-
-
+//Modificación
+rational_t
+rational_t::oppositte()
+{
+  return rational_t((-1)*get_num() , get_den());
+}
 // E/S
 void
 rational_t::write(ostream& os) const

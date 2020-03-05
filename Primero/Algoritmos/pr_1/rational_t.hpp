@@ -51,6 +51,9 @@ public:
   rational_t multiply(const rational_t&);
   rational_t divide(const rational_t&);
 
+  //Modificación número opuesto
+  rational_t oppositte();
+
   void write(ostream& = cout) const;
   void read(istream& = cin);
 
