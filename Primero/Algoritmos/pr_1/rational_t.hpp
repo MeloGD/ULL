@@ -52,7 +52,7 @@ public:
   rational_t divide(const rational_t&);
 
   //Modificación número opuesto
-  rational_t oppositte();
+  rational_t oppositte(void);
 
   void write(ostream& = cout) const;
   void read(istream& = cin);
