@@ -99,5 +99,29 @@ int main(void) {
   cout << "Valor de la suma de impares de C: " << sumimp << endl;
   cout << "Producto escalar de C x A: " << prodes << endl;
 
+  //
+  //
+  // Implementación de matriz sobre vector
+  const int ro = 2 , co = 3; //filas y columnas
+  int *M = new int [ro * co];
+
+  for (int i = 0; i < ro * co; i++) {
+    M[i] = (i + 1) * 10;
+  }
+
+  cout << endl;
+  cout << "La matriz M es: " ;
+  for (int i = 0; i < ro * co; i++) {
+    cout << M[i] << " ";  // si lo dejamos aquí, muestra solo 10 20 30 40 50 60
+  }
+    // Indexación --> pos = (i-1) * co + (j-1);
+    cout << endl;
+    int i = 1, j = 2, pos = (i-1) * co + (j-1);
+    cout << "M[" << i << "," << j << "]=M[" << pos << "]=" << M[pos] << endl;
+    i = 2, j = 3, pos = (i-1) * co + (j-1);
+    cout << "M[" << i << "," << j << "]=M[" << pos << "]=" << M[pos] << endl;
+    cout << endl;
+    delete[] M;
+
   return 0;
 }
