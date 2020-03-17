@@ -121,7 +121,7 @@ matrix_t<T>::operator()(const int i, const int j)
 
 template<class T>
 const T&
-matrix_t<T>::at(const int i, const int j) const
+matrix_t<T>::at(const int i, const int j) const //nos devuelve el valor en una coordenada
 {
   assert(i > 0 && i <= get_m());
   assert(j > 0 && j <= get_n());
@@ -183,5 +183,16 @@ template<class T>
 void
 matrix_t<T>::multiply(const matrix_t<T>& A, const matrix_t<T>& B)
 {
-  // rellenar código
+  assert (A.get_n() == B.get_m()); // A(mxn) x B(mxn) --> A(n) = B(m) para poder realizar la operación
+  resize (A.get_m() , B.get_n()); // redimensión para matriz final --> C = A.m x B.n
+
+  for (int i = 1; i <= m_; i++){
+    for (int j = 1; j <= n_; j++){
+      T C = 0; // creamos un objeto C de tipo T. DEBE DE ESTAR A 0, si no, será el resultado final acumulado
+      for (int k = 1; k <= A.get_n(); k++){
+        C = C + (A.at(i,k) * B.at(k,j)); // utilizamos "at" para acceder a los valores en las posiciones
+        at(i,j) = C; // a at le pasamos los valores de C
+      }
+    }
+  }
 }

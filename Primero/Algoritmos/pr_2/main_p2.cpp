@@ -1,6 +1,6 @@
-// AUTOR: 
-// FECHA: 
-// EMAIL: 
+// AUTOR:
+// FECHA:
+// EMAIL:
 // VERSION: 1.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
 // PRÁCTICA Nº: 2
@@ -36,34 +36,34 @@ int main()
 
   cout << "a * b: ";
   (a*b).write();
-  
+
   cout << "a / b: ";
   (a/b).write();
-  
+
   cout << endl;
-  
+
   // FASE II
   vector_t<double> v, w;
   v.read(), v.write();
   w.read(), w.write();
-  
+
   cout << "Producto escalar de vector_t<double>: " << scal_prod(v, w) << endl << endl;
-  
+
   vector_t<rational_t> x, y;
   x.read(), x.write();
   y.read(), y.write();
-  
+
   cout << "Producto escalar de vector_t<rational_t>: " << scal_prod(x, y) << endl << endl;
-  
-  
+
+
   // FASE III
   matrix_t<double> A, B, C;
   A.read(), A.write();
   B.read(), B.write();
-  
+
   C.multiply(A, B);
   cout << "Multiplicación de matrices A y B: " << endl;
   C.write();
-  
+
   return 0;
 }

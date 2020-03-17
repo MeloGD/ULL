@@ -136,7 +136,7 @@ vector_t<T>::set_val(const int i, const T d)
 
 template<class T>
 T&
-vector_t<T>::at(const int i)
+vector_t<T>::at(const int i) //valor en una coordenada
 {
   assert(i >= 0 && i < get_size());
   return v_[i];
@@ -201,10 +201,12 @@ T
 scal_prod(const vector_t<T>& v, const vector_t<T>& w)
 {
   assert (v.get_size() == w.get_size()); // tenemos que comprobar que sean de mismo tamaño para poder realizar el p.escalar de vectores.
-  double prod_s = 0;
+  T prod_s = 0; // prod_s de tipo T
+
   for (int i = 0 ; i < v.get_size(); i++){
     prod_s = prod_s + v[i] * w[i];
   }
+  return prod_s;
 }
 
 
@@ -213,8 +215,10 @@ double
 scal_prod(const vector_t<rational_t>& v, const vector_t<rational_t>& w)
 {
   assert (v.get_size() == w.get_size());
-  double prod_s = 0;
+  double prod_s = 0; //prod_s de tipo double
+
   for (int i = 0 ; i < v.get_size(); i++){
-    prod_s = prod_s + v[i].value() * w[i].value();  // tenemos que usar el .value para obtner un double de cada rational_t
+    prod_s = prod_s + v[i].value() * w[i].value();  // tenemos que usar el .value para obtener un double de cada rational_t
   }
+  return prod_s;
 }
