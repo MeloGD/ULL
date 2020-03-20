@@ -197,7 +197,7 @@ vector_t<T>::read(istream& is)
 
 // FASE II: producto escalar
 template<class T>
-T
+T //retorna valor tipo T
 scal_prod(const vector_t<T>& v, const vector_t<T>& w)
 {
   assert (v.get_size() == w.get_size()); // tenemos que comprobar que sean de mismo tamaño para poder realizar el p.escalar de vectores.

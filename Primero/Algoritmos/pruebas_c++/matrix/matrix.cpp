@@ -91,6 +91,17 @@ int main(void){
     cout << endl;
       }
 
+
+      /*prueba para sobrecarga en práctica II
+      template<class T>
+      matrix_t<T>
+      operator*(const matrix_t<T>& A, const matrix_t<T>& B){
+        matrix_t<T> aux;
+        (aux.multiply(A,B));
+        return aux;
+      }
+  */
+
   //
   //
   // Multiplicación

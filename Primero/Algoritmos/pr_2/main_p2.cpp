@@ -65,5 +65,9 @@ int main()
   cout << "Multiplicación de matrices A y B: " << endl;
   C.write();
 
+
+  // Modificación:
+  cout << "El resultado de realizar la sobrecarga para el operador *, para hacer A*B, es:" << endl;
+  (A*B).write();
   return 0;
 }
