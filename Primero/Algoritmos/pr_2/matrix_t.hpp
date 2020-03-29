@@ -1,6 +1,6 @@
-// AUTOR:
-// FECHA:
-// EMAIL:
+// AUTOR: Carmelo González Domínguez
+// FECHA: 17/03/20
+// EMAIL: alu0101267760@ull.edu.es
 // VERSION: 1.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
 // PRÁCTICA Nº: 2
@@ -202,6 +202,6 @@ template<class T>
 matrix_t<T>
 operator*(const matrix_t<T>& A, const matrix_t<T>& B){
   matrix_t<T> aux; //creamos una variable auxilar para poder luego aplicar el metodo multiply y retorna el valor
-  (aux.multiply(A,B));
+  aux.multiply(A,B);
   return aux;
 }

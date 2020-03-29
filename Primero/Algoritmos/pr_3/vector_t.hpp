@@ -1,9 +1,9 @@
-// AUTOR: Carmelo González Domínguez
-// FECHA: 17/03/20
-// EMAIL: alu0101267760@ull.edu.es
-// VERSION: 1.0
+// AUTOR: 
+// FECHA: 
+// EMAIL: 
+// VERSION: 2.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
-// PRÁCTICA Nº: 2
+// PRÁCTICA Nº: 3
 // COMENTARIOS: se indican entre [] las pautas de estilo aplicadas de
 //              "C++ Programming Style Guidelines"
 //              https://geosoft.no/development/cppstyle.html
@@ -20,32 +20,34 @@ class vector_t
 {
 public:
   vector_t(const int = 0);
+  vector_t(const vector_t&); // constructor de copia
+  vector_t<T>& operator=(const vector_t<T>&); // operador de asignación
   ~vector_t();
-
+  
   void resize(const int);
-
+  
   // getters
-  T get_val(const int) const; //valor de tipo T
-  int get_size(void) const; //tamaño del vector
-
+  T get_val(const int) const;
+  int get_size(void) const;
+  
   // setters
-  void set_val(const int, const T); // el primer valor es nº de celda y el segundo el valor en si
-
+  void set_val(const int, const T);
+  
   // getters-setters
   T& at(const int);
   T& operator[](const int);
-
+  
   // getters constantes
   const T& at(const int) const;
   const T& operator[](const int) const;
-
+  
   void write(ostream& = cout) const;
   void read(istream& = cin);
 
 private:
   T *v_;
   int sz_;
-
+  
   void build(void);
   void destroy(void);
 };
@@ -53,9 +55,34 @@ private:
 
 
 template<class T>
-vector_t<T>::vector_t(const int n)
-{ sz_ = n;
+vector_t<T>::vector_t(const int n):
+v_(NULL),
+sz_(n)
+{
   build();
+}
+
+
+
+// constructor de copia
+template<class T>
+vector_t<T>::vector_t(const vector_t<T>& w)
+{
+  *this = w;
+}
+
+
+
+// operador de asignación
+template<class T>
+vector_t<T>&
+vector_t<T>::operator=(const vector_t<T>& w)
+{
+  resize(w.get_size());
+  for (int i = 0; i < get_size(); ++i)
+    at(i) = w.at(i);
+  
+  return *this;
 }
 
 
@@ -136,7 +163,7 @@ vector_t<T>::set_val(const int i, const T d)
 
 template<class T>
 T&
-vector_t<T>::at(const int i) //valor en una coordenada
+vector_t<T>::at(const int i)
 {
   assert(i >= 0 && i < get_size());
   return v_[i];
@@ -165,7 +192,7 @@ vector_t<T>::at(const int i) const
 
 template<class T>
 const T&
-vector_t<T>::operator[](const int i) const // con esta sobrecarga hacemos que cuando pongamos [] lo interpetre como una posición
+vector_t<T>::operator[](const int i) const
 {
   return at(i);
 }
@@ -175,11 +202,11 @@ vector_t<T>::operator[](const int i) const // con esta sobrecarga hacemos que cu
 template<class T>
 void
 vector_t<T>::write(ostream& os) const
-{
-  os << get_size() << ":\t";
+{ 
+  os << get_size() << ": [ ";
   for (int i = 0; i < get_size(); i++)
-    os << at(i) << "\t";
-  os << endl;
+    os << at(i) << (i != get_size() - 1 ? "\t" : "");
+  os << " ]" << endl;
 }
 
 
@@ -195,30 +222,19 @@ vector_t<T>::read(istream& is)
 }
 
 
-// FASE II: producto escalar
 template<class T>
-T //retorna valor tipo T
-scal_prod(const vector_t<T>& v, const vector_t<T>& w)
+ostream&
+operator<<(ostream& os, const vector_t<T>& v)
 {
-  assert (v.get_size() == w.get_size()); // tenemos que comprobar que sean de mismo tamaño para poder realizar el p.escalar de vectores.
-  T prod_s = 0; // prod_s de tipo T
-
-  for (int i = 0 ; i < v.get_size(); i++){
-    prod_s = prod_s + v[i] * w[i];
-  }
-  return prod_s;
+  v.write(os);
+  return os;
 }
 
 
-
-double
-scal_prod(const vector_t<rational_t>& v, const vector_t<rational_t>& w)
+template<class T>
+istream&
+operator>>(istream& is, vector_t<T>& v)
 {
-  assert (v.get_size() == w.get_size());
-  double prod_s = 0; //prod_s de tipo double
-
-  for (int i = 0 ; i < v.get_size(); i++){
-    prod_s = prod_s + v[i].value() * w[i].value();  // tenemos que usar el .value para obtener un double de cada rational_t
-  }
-  return prod_s;
+  v.read(is);
+  return is;
 }

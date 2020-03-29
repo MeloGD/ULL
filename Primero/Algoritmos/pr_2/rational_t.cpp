@@ -1,6 +1,6 @@
-// AUTOR:
-// FECHA:
-// EMAIL:
+// AUTOR: Carmelo González Domínguez
+// FECHA: 17/03/20
+// EMAIL: alu0101267760@ull.edu.es
 // VERSION: 1.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
 // PRÁCTICA Nº: 2
