@@ -1,7 +1,7 @@
-// AUTOR: 
-// FECHA: 
-// EMAIL: 
-// VERSION: 1.0
+// AUTOR: Jesús Carmelo González Dominguez
+// FECHA: 30/03/2020
+// EMAIL: alu0101267760@ull.edu.es
+// VERSION: 3.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
 // PRÁCTICA Nº: 3
 // COMENTARIOS: se indican entre [] las pautas de estilo aplicadas de
@@ -20,7 +20,7 @@ class pair_t
 {
 public:
   // constructores
-	pair_t(void); 
+	pair_t(void);
 	pair_t(T, int);
 
   // destructor
@@ -46,7 +46,7 @@ template<class T>
 pair_t<T>::pair_t():
 val_(),
 inx_(-1)
-{} 
+{}
 
 
 

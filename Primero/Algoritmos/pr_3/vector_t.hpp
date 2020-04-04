@@ -1,7 +1,7 @@
-// AUTOR: 
-// FECHA: 
-// EMAIL: 
-// VERSION: 2.0
+// AUTOR: Jesús Carmelo González Dominguez
+// FECHA: 30/03/2020
+// EMAIL: alu0101267760@ull.edu.es
+// VERSION: 3.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
 // PRÁCTICA Nº: 3
 // COMENTARIOS: se indican entre [] las pautas de estilo aplicadas de
@@ -23,31 +23,31 @@ public:
   vector_t(const vector_t&); // constructor de copia
   vector_t<T>& operator=(const vector_t<T>&); // operador de asignación
   ~vector_t();
-  
+
   void resize(const int);
-  
+
   // getters
   T get_val(const int) const;
   int get_size(void) const;
-  
+
   // setters
   void set_val(const int, const T);
-  
+
   // getters-setters
   T& at(const int);
   T& operator[](const int);
-  
+
   // getters constantes
   const T& at(const int) const;
   const T& operator[](const int) const;
-  
+
   void write(ostream& = cout) const;
   void read(istream& = cin);
 
 private:
   T *v_;
   int sz_;
-  
+
   void build(void);
   void destroy(void);
 };
@@ -81,7 +81,7 @@ vector_t<T>::operator=(const vector_t<T>& w)
   resize(w.get_size());
   for (int i = 0; i < get_size(); ++i)
     at(i) = w.at(i);
-  
+
   return *this;
 }
 
@@ -202,7 +202,7 @@ vector_t<T>::operator[](const int i) const
 template<class T>
 void
 vector_t<T>::write(ostream& os) const
-{ 
+{
   os << get_size() << ": [ ";
   for (int i = 0; i < get_size(); i++)
     os << at(i) << (i != get_size() - 1 ? "\t" : "");
