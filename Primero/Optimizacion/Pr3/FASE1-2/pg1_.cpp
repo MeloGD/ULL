@@ -20,7 +20,7 @@ void menu (unsigned dirigido, char &opcion)
 {
    
        //Cumplimentar por alumnado según pantallas de opciones en el guión u otras equivalentes
-    
+        //prueba
     };
 
 
