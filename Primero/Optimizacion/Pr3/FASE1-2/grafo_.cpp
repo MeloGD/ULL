@@ -14,6 +14,7 @@ GRAFO::~GRAFO()
 
 void GRAFO:: actualizar (char nombrefichero[85], int &errorapertura)
 {
+    s
 }
 
 void GRAFO::Info_Grafo()
