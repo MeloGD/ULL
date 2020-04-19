@@ -11,7 +11,8 @@
 
 GRAFO::~GRAFO()
 {
-    /*for (int z = 0; z < n; z++)
+    /*
+    for (int z = 0; z < n; z++)
     {
         LS[z].clear();
         LP[z].clear();
@@ -170,11 +171,11 @@ void GRAFO::ComponentesConexas()
     dfs (cconex, visit);
     cout << endl;
 
-    for (unsigned i = 0; i < visit.size(); i++){
-         if (visit[i] == false){   //si aun así, hay algún nodo que esta en "false"
-            cconex++; // indicamos que ya no es conexo
+    for (unsigned i = 1; i < visit.size(); i++){
+         if (visit[i] == false){
+            cconex++;
             cout << "Componente conexa " << cconex+1 << ": ";
-            dfs (i, visit); //dfs de este subgrafo
+            dfs (i, visit);
             cout << endl;
         }
     }
@@ -187,7 +188,7 @@ void GRAFO::ComponentesConexas()
         cout << "\n El grafo no es conexo " << endl;
     }
     
- 
+    
 }
 
 void GRAFO::ListaPredecesores() 
@@ -213,23 +214,22 @@ GRAFO::GRAFO(char nombrefichero[85], int &errorapertura)
         
         for (int l = 0; l < m; l++)
         {
-            if(dirigido == 1){
+            //if(dirigido == 1){
             textfile >> (unsigned &) i >> (unsigned &) j; 
             aux.j = j-1; //en ElementoLista, colocamos el valor del nodo-1
             LS [i-1].push_back(aux);
 
             aux.j = i-1;
             LP [j-1].push_back(aux);
-            }
-            else{
-            textfile >> (unsigned &) i >> (unsigned &) j;    
+            //}
+            //else{
+            if (dirigido == 0)
+            {  
                 if (i != j)
-                {   aux.j = j-1;
-                    LS [i-1].push_back(aux);
-
+                {   
                     aux.j = i-1;
                     LS [j-1].push_back(aux);
-                                        
+                                       
                 }
                 else{
                     //No hacemos nada, i=j 1-1 sería un bucle
