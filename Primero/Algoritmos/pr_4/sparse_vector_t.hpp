@@ -19,9 +19,9 @@
 
 using namespace std;
 
-typedef AED::pair_t<double>             pair_double_t;
-typedef AED::dll_node_t<pair_double_t>  dll_node_pair_t;
-typedef AED::dll_t<pair_double_t>       dll_pair_t;
+typedef AED::pair_t<double>             pair_double_t;  //pareja indice valor
+typedef AED::dll_node_t<pair_double_t>  dll_node_pair_t; //nodo que contine indice valor
+typedef AED::dll_t<pair_double_t>       dll_pair_t; //lista con los nodos de indice valor
 
 bool is_not_zero(double v, double eps = 1e-6)
 {
@@ -171,11 +171,12 @@ sparse_vector_t::scal_prod(const sparse_vector_t& sv)
 
 // FASE II
 double
-sparse_vector_t::scal_prod(const matrix_t<double>& M, int j)
+sparse_vector_t::scal_prod(const matrix_t<double>& M, int j) //sv1 x columna(j) de una matriz densa
 {
   assert(get_n() == M.get_m());
   double s = 0;
   // código aquí
+  s = scal_prod(M.get_col(j));   //llamamos al scal_prod desarollado arriba y le pasamos la columna de la matriz densa
   return s;
 }
 
