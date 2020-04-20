@@ -11,11 +11,11 @@
 
 GRAFO::~GRAFO()
 {
-    /*for (int z = 0; z < n; z++)
+    for (int z = 0; z < n; z++)
     {
         LS[z].clear();
         LP[z].clear();
-    }*/
+    }
     LS.clear();
     LP.clear();
 }
@@ -164,11 +164,11 @@ void GRAFO::ComponentesConexas()
     vector<bool> visit;
     visit.resize(n,false);
 
-
+    /*
     cout << endl;
     cout << "Componente conexa " << cconex+1 << ": ";
     dfs (cconex, visit);
-    cout << endl;
+    cout << endl; */
 
     for (unsigned i = 0; i < visit.size(); i++){
          if (visit[i] == false){   //si aun así, hay algún nodo que esta en "false"
@@ -178,7 +178,7 @@ void GRAFO::ComponentesConexas()
             cout << endl;
         }
     }
-    if (cconex == 0)
+    if (cconex == 1)
     {
         cout << "\n El grafo es conexo " << endl;
     }
