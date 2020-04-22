@@ -11,22 +11,22 @@
 
 GRAFO::~GRAFO()
 {
-    for (int z = 0; z < n; z++)
+    for (int i = 0; i < n; i++)
     {
-        LS[z].clear();
-        LP[z].clear();
+        LS[i].clear();
+        LP[i].clear();
     }
     LS.clear();
     LP.clear();
 }
 
-void GRAFO:: actualizar (char nombrefichero[85], int &errorapertura) //corregir 
+void GRAFO:: actualizar (char nombrefichero[85], int &errorapertura)  
 {
-    LS.clear();
+    LS.clear();  // al ser una actualización, hay que limpiar ambas listas antes de proceder a la actualización
     LP.clear();
 
     unsigned i, j;
-    ElementoLista aux;
+    ElementoLista aux;  //creacion del nodo contenedor de tipo elemento lista para crear las listas pertinentes
 
     cout << "Introduzca el nombre del nuevo fichero: " << endl;
     cin >> nombrefichero;
@@ -34,9 +34,9 @@ void GRAFO:: actualizar (char nombrefichero[85], int &errorapertura) //corregir
     ifstream textfile;
     textfile.open(nombrefichero);
 
-    if (textfile.is_open())
+    if (textfile.is_open())  // si el fichero esta abierto, entonces
     {
-        textfile >> (unsigned &) n >> (unsigned &) m >> (unsigned &) dirigido;
+        textfile >> (unsigned &) n >> (unsigned &) m >> (unsigned &) dirigido;  //cargamos los valores del fichero en las variables
         
         LS.resize(n);
         LP.resize(n);
@@ -45,13 +45,13 @@ void GRAFO:: actualizar (char nombrefichero[85], int &errorapertura) //corregir
         {
             if(dirigido == 1){
             textfile >> (unsigned &) i >> (unsigned &) j; 
-            aux.j = j-1; //en ElementoLista, colocamos el valor del nodo-1
-            LS [i-1].push_back(aux);
+            aux.j = j-1; //Lo que hacemos en estas lineas: Accedemos al valor en aux (de tipo ElementoLista), y asignamos el valor del nodo - 1
+            LS [i-1].push_back(aux); //Montamos la lista, colocando uno a uno detras del otro
 
             aux.j = i-1;
             LP [j-1].push_back(aux);
             }
-            else{
+            else{  //No es dirigido, montamos lista de adyacencia
             textfile >> (unsigned &) i >> (unsigned &) j;    
                 if (i != j)
                 { 
@@ -71,7 +71,7 @@ void GRAFO:: actualizar (char nombrefichero[85], int &errorapertura) //corregir
     }
     else
     {
-        errorapertura = 1;
+        errorapertura = 1;  //para poder controlar si escribimos mal el documento
     }
 }
 
@@ -111,12 +111,12 @@ void GRAFO :: Mostrar_Listas (int l)
     if (l == 2)
     {
         cout << "Ha selecionado lista de adyacencias.";
-        for (int z = 0; z < n; z++)
+        for (int i = 0; i < n; i++)
         {
-            cout << "\nLos adyacentes del nodo " << z+1 << " son:";
-            for (int y = 0; y < LS[z].size(); y++)
-            {
-                cout << " " << (LS[z][y].j) + 1; 
+            cout << "\nLos adyacentes del nodo " << i+1 << " son:";
+            for (int j = 0; j < LS[i].size(); j++)
+            {   
+                cout << " " << (LS[i][j].j) + 1; // +1 para obtener el valor del nodo correcto
             }
             
         }
@@ -126,11 +126,11 @@ void GRAFO :: Mostrar_Listas (int l)
     if (l == 1)
     {
         cout << "Ha seleccionado lista de sucesores." ;
-        for (int z = 0; z < n; z++){
-            cout << "\nEl nodo " << z+1 << " tiene como sucesores a: " ;
-            for (int y = 0; y < LS[z].size(); y++)
+        for (int i = 0; i < n; i++){
+            cout << "\nEl nodo " << i+1 << " tiene como sucesores a: " ;
+            for (int j = 0; j < LS[i].size(); j++)
             {
-                cout << " " << LS[z][y].j + 1 ;
+                cout << " " << LS[i][j].j + 1 ;
             }
             
         }
@@ -138,11 +138,11 @@ void GRAFO :: Mostrar_Listas (int l)
     }
     if (l == 0){
     cout << "Ha seleccionado lista de predecesores." ;
-    for (int z= 0; z < n; z++){
-        cout << "\nEl nodo" << z+1 << " tiene como predecesores a: " ;
-        for (int y = 0; y < LP[z].size(); y++)
+    for (int i = 0; i < n; i++){
+        cout << "\nEl nodo" << i+1 << " tiene como predecesores a: " ;
+        for (int j = 0; j < LP[i].size(); j++)
         {
-            cout << " " << LP[z][y].j + 1 ;
+            cout << " " << LP[i][j].j + 1 ;
         }
     }
     cout << endl;
@@ -163,12 +163,6 @@ void GRAFO::ComponentesConexas()
     int cconex = 0;
     vector<bool> visit;
     visit.resize(n,false);
-
-    /*
-    cout << endl;
-    cout << "Componente conexa " << cconex+1 << ": ";
-    dfs (cconex, visit);
-    cout << endl; */
 
     for (unsigned i = 0; i < visit.size(); i++){
          if (visit[i] == false){   //si aun así, hay algún nodo que esta en "false"
@@ -196,7 +190,7 @@ void GRAFO::ListaPredecesores()
 }
 
 
-GRAFO::GRAFO(char nombrefichero[85], int &errorapertura)
+GRAFO::GRAFO(char nombrefichero[85], int &errorapertura) // en actualizar tengo los comentarios explicando como funcionan los metodos de actualizar y de este constructor
 {
     unsigned i, j;
     ElementoLista aux;
