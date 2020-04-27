@@ -25,7 +25,7 @@ using namespace std;
 
 int main()
 {
-  AED::vector_t<double> v1;
+  AED::vector_t<double> v1,B;
   cin >> v1;
   cout << "v1= " << v1;
   cout << endl;
@@ -34,7 +34,7 @@ int main()
   cout << "sv1= " << sv1;
   cout << endl;
   
-  AED::matrix_t<double> M1, M2, M3;
+  AED::matrix_t<double> M1, M2, M3, M4; //borrar m4
   cin >> M1 >> M2;
   cout << "M1= " << M1;
   cout << "M2= " << M2;
@@ -56,7 +56,12 @@ int main()
   // FASE III
   SM2.multiply(M1, M3);
   cout << "M3 = SM2 * M1" << endl;
-  cout << M3;
+  cout << M3 << endl;
   
-  return 0;
+
+  //Pruebas
+  SM2.add(M1, M4);
+  cout << "M4 =  SM2 * SM1" << endl;
+  cout << M4 << endl;
+
 }

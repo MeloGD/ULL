@@ -167,7 +167,7 @@ void GRAFO::ComponentesConexas()
     for (unsigned i = 0; i < visit.size(); i++){
          if (visit[i] == false){   //si aun así, hay algún nodo que esta en "false"
             cconex++; // indicamos que ya no es conexo
-            cout << "Componente conexa " << cconex+1 << ": ";
+            cout << "Componente conexa " << cconex << ": ";
             dfs (i, visit); //dfs de este subgrafo
             cout << endl;
         }

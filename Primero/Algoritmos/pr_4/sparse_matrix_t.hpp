@@ -42,6 +42,10 @@ public:
   // operaciones
   void multiply(const matrix_t<double>&, matrix_t<double>&);
 
+
+  // Modificacion
+  void add(const matrix_t<double>&, matrix_t<double>&);
+  
   // E/S
   void write(ostream& = cout) const;
 
@@ -52,7 +56,6 @@ private:
   bool by_rows_;              // indica si la matriz se ha creado 
                               // por filas (true) o por columnas (false)
 };
-
 
 
 sparse_matrix_t::sparse_matrix_t(const matrix_t<double>& M, bool conf):
@@ -99,6 +102,8 @@ sparse_matrix_t::operator=(const sparse_matrix_t& SM)
   sm_ = SM.sm_;
 
   return *this;
+
+  
 }
 
 
@@ -140,17 +145,30 @@ sparse_matrix_t::multiply(const matrix_t<double>& A, matrix_t<double>& B)
     {
       for (int j = 1; j <= A.get_n(); j++)
      {
-        B(i,j) = sm_.get_val(i-1).scal_prod(A.get_col(j));
+        B(i,j) = sm_[i-1].scal_prod(A,j);
      }
     }
     
   }
-  
-  
-  
-  
-  
+}
 
+
+//Modificacion
+void sparse_matrix_t::add(const matrix_t<double>& A, matrix_t<double>& B)
+{
+  
+  
+  B.resize(get_m(), A.get_n());
+     for (int i = 1; i <= sm_.get_size() ; i++)
+    {
+      dll_node_pair_t* aux = sm_[i].get_lp().get_head();
+      aux->get_data().get_val();
+      for (int j = 1; j <= A.get_n(); j++)
+     {
+        B(aux->get_data().get_inx()) = sm_[i-1];
+     }
+    }
+    
 }
 
 

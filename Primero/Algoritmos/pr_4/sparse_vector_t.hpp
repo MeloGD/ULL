@@ -17,6 +17,7 @@
 #include "dll_node_t.hpp"
 #include "dll_t.hpp"
 
+
 using namespace std;
 
 typedef AED::pair_t<double>             pair_double_t;  //pareja indice valor
@@ -50,6 +51,10 @@ public:
    double scal_prod(const sparse_vector_t&);
    double scal_prod(const matrix_t<double>&, int);
    
+
+   //Mod
+   dll_pair_t get_lp(void) const;
+   
    // E/S
    void write(ostream& = cout) const;
 
@@ -59,6 +64,10 @@ private:
   int     n_;     // tamaño del vector original
 };
 
+dll_pair_t
+sparse_vector_t::get_lp() const{
+  return lp_;
+}
 
 
 sparse_vector_t::sparse_vector_t(const vector_t<double>& v):
@@ -78,6 +87,7 @@ n_(0)
       nz_++;
     }
 }
+
 
 
 
@@ -179,6 +189,7 @@ sparse_vector_t::scal_prod(const matrix_t<double>& M, int j) //sv1 x columna(j) 
   s = scal_prod(M.get_col(j));   //llamamos al scal_prod desarollado arriba y le pasamos la columna de la matriz densa
   return s;
 }
+
 
 
 
