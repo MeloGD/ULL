@@ -25,7 +25,7 @@ using namespace std;
 
 int main()
 {
-  AED::vector_t<double> v1,B;
+  AED::vector_t<double> v1,B,C; //borrar b y c
   cin >> v1;
   cout << "v1= " << v1;
   cout << endl;
@@ -59,9 +59,10 @@ int main()
   cout << M3 << endl;
   
 
-  //Pruebas
-  SM2.add(M1, M4);
-  cout << "M4 =  SM2 * SM1" << endl;
+
+  //Modificacion
+  SM2.add(M2,M4);
+  cout << "M4 =  SM2 + SM2" << endl;
   cout << M4 << endl;
 
 }

@@ -54,6 +54,7 @@ public:
 
    //Mod
    dll_pair_t get_lp(void) const;
+
    
    // E/S
    void write(ostream& = cout) const;
@@ -64,8 +65,10 @@ private:
   int     n_;     // tamaño del vector original
 };
 
-dll_pair_t
-sparse_vector_t::get_lp() const{
+
+dll_pair_t //lo que intenté hacer en la modificación
+sparse_vector_t::get_lp() const
+{
   return lp_;
 }
 
@@ -213,6 +216,5 @@ operator<<(ostream& os, const sparse_vector_t& sv)
   sv.write(os);
   return os;
 }
-
 
 } // namespace

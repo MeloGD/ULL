@@ -1,5 +1,5 @@
-﻿ /*
- *  GRAFO.CPP - Implementación de la clase GRAFOS
+ /*
+ *  GRAFO.CPP - Implementaci�n de la clase GRAFOS
  *
  *
  *  Autor : Antonio Sedeno Noda, Sergio Alonso
@@ -20,12 +20,13 @@ GRAFO::~GRAFO()
     LP.clear();
 }
 
-void GRAFO:: actualizar (char nombrefichero[85], int &errorapertura)  
+void GRAFO:: actualizar (char nombrefichero[85], int &errorapertura)
 {
     LS.clear();  // al ser una actualización, hay que limpiar ambas listas antes de proceder a la actualización
     LP.clear();
 
-    unsigned i, j;
+    unsigned i, j; 
+    int k;
     ElementoLista aux;  //creacion del nodo contenedor de tipo elemento lista para crear las listas pertinentes
 
     cout << "Introduzca el nombre del nuevo fichero: " << endl;
@@ -44,27 +45,32 @@ void GRAFO:: actualizar (char nombrefichero[85], int &errorapertura)
         for (int l = 0; l < m; l++)
         {
             if(dirigido == 1){
-            textfile >> (unsigned &) i >> (unsigned &) j; 
+            textfile >> (unsigned &) i >> (unsigned &) j >> (int &) k; 
             aux.j = j-1; //Lo que hacemos en estas lineas: Accedemos al valor en aux (de tipo ElementoLista), y asignamos el valor del nodo - 1
+            aux.c = k;
             LS [i-1].push_back(aux); //Montamos la lista, colocando uno a uno detras del otro
 
             aux.j = i-1;
+            aux.c = k;
             LP [j-1].push_back(aux);
             }
             else{  //No es dirigido, montamos lista de adyacencia
-            textfile >> (unsigned &) i >> (unsigned &) j;    
+            textfile >> (unsigned &) i >> (unsigned &) j >> (int &) k;    
                 if (i != j)
                 { 
                     aux.j = j-1;
+                    aux.c = k;
                     LS [i-1].push_back(aux);
 
                     aux.j = i-1;
+                    aux.c= k;
                     LS [j-1].push_back(aux);
                     
                 }
                 else{
                     //No hacemos nada, i=j 1-1 sería un bucle
                     aux.j = j-1;
+                    aux.c = k;
                     LS [i-1].push_back(aux);
                 }
             }
@@ -75,6 +81,11 @@ void GRAFO:: actualizar (char nombrefichero[85], int &errorapertura)
     {
         errorapertura = 1;  //para poder controlar si escribimos mal el documento
     }
+}
+
+unsigned GRAFO::Es_dirigido()
+{
+    return dirigido;
 }
 
 void GRAFO::Info_Grafo()
@@ -99,17 +110,9 @@ void GRAFO::Info_Grafo()
     cout << m << " " << endl;
 }
 
-unsigned GRAFO::Es_dirigido()
-{
-	return dirigido;
-}
 
-void Mostrar_Lista(vector<LA_nodo> L)
-{
-       // Metodo opcional
-};
 void GRAFO :: Mostrar_Listas (int l)
-{   
+{
     if (l == 2)
     {
         cout << "Ha selecionado lista de adyacencias.";
@@ -118,7 +121,8 @@ void GRAFO :: Mostrar_Listas (int l)
             cout << "\nLos adyacentes del nodo " << i+1 << " son:";
             for (int j = 0; j < LS[i].size(); j++)
             {   
-                cout << " " << (LS[i][j].j) + 1; // +1 para obtener el valor del nodo correcto
+                cout << " (" << (LS[i][j].j) + 1; // +1 para obtener el valor del nodo correcto
+                cout << ":" << LS[i][j].c << ")";
             }
             
         }
@@ -132,7 +136,8 @@ void GRAFO :: Mostrar_Listas (int l)
             cout << "\nEl nodo " << i+1 << " tiene como sucesores a: " ;
             for (int j = 0; j < LS[i].size(); j++)
             {
-                cout << " " << LS[i][j].j + 1 ;
+                cout << " (" << (LS[i][j].j) + 1; // +1 para obtener el valor del nodo correcto
+                cout << ":" << LS[i][j].c << ")";
             }
             
         }
@@ -145,6 +150,7 @@ void GRAFO :: Mostrar_Listas (int l)
         for (int j = 0; j < LP[i].size(); j++)
         {
             cout << " " << LP[i][j].j + 1 ;
+            cout << " " << LP[i][j].c;
         }
     }
     cout << endl;
@@ -153,8 +159,8 @@ void GRAFO :: Mostrar_Listas (int l)
 
 void GRAFO::dfs(unsigned i, vector<bool> &visitado)
 {
-	visitado[i] = true;
-    cout << i+1 << ", ";
+    visitado[i] = true;
+    cout << i+1 << " ";
 	for (unsigned j=0;j<LS[i].size();j++)
              if (visitado[LS[i][j].j] == false)
                  dfs(LS[i][j].j, visitado);
@@ -182,19 +188,134 @@ void GRAFO::ComponentesConexas()
     {
         cout << "\n El grafo no es conexo " << endl;
     }
-    
- 
 }
 
-void GRAFO::ListaPredecesores() 
+void GRAFO::Kruskal()
 {
-    // Metodo opcional
+    vector <AristaPesada> Aristas;
+
+    /*Usaremos la busqueda del menor en cada momento, pues es el mejor para Kruskal que no exige tener todas las aristas ordenadas*/
+    /*Cargamos todas las aristas de la lista de adyacencia*/
+
+    Aristas.resize(m);
+    
+    unsigned k = 0;
+    for (unsigned i = 0; i<n; i++){
+        for (unsigned j=0; j<LS[i].size();j++){
+            if (i < LS[i][j].j) {
+                Aristas[k].extremo1 = i;
+                Aristas[k].extremo2 = LS[i][j].j;
+                Aristas[k++].peso = LS[i][j].c;
+                }
+        }
+    };
+    /*Inicializamos el indice a la cabeza del vector*/
+    unsigned head = 0;
+    AristaPesada AristaDummy; //Para los intercambios en la ordenacion parcial
+    
+    for (int i = 0; i < m-1; i++)
+    {
+        for (int j = 0; j < m-1; j++)
+        {
+            if (Aristas[j].peso > Aristas[j+1].peso)
+            {
+                AristaDummy = Aristas[j];
+                Aristas[j] = Aristas[j+1];
+                Aristas[j+1] = AristaDummy;
+                
+                head++;  //esto no es realmente necesario de momento
+            } 
+        }
+    }
+   
+
+    
+
+
+    /*Inicializamos el contador de aristas en la soluci�n*/
+    unsigned a = 0;
+
+    
+    
+
+    /*Inicializamos el peso de la solucion*/
+    unsigned pesoMST = 0;
+
+    /*Inicializamos el registro de componentes conexas: cada nodo est� en su compomente conexa*/
+    vector <unsigned> Raiz;
+    Raiz.resize(n);
+    for (unsigned q = 0;q < n; q++){
+        Raiz[q]=q;
+    };
+
+    /*
+    cout << "Vector Aristas ordenadas:" << endl;
+    for (int i = 0; i < m; i++)
+    {
+        cout << Aristas[i].extremo1 + 1 << " " << Aristas[i].extremo2 + 1 << " " << Aristas[i].peso << endl;
+    }
+    
+    cout << "\n Vector raiz" << endl;
+    for (int i = 0; i < n; i++)
+    {
+        cout << Raiz[i] << " " << endl;
+    }
+    */
+    
+    /*Comenzamos Kruskal*/
+    int aux, peso_aris;
+    unsigned l,j = 0;
+    for (int i = 0; i < m; i++)
+    {
+        j = Aristas[i].extremo1;
+        l = Aristas[i].extremo2;
+            if (Raiz[j] != Raiz[l])
+            {
+                aux = Raiz[j];
+                for (int k = 0; k < n; k++)
+                {
+                    if (aux == Raiz[k])
+                    {
+                        Raiz[k] = Raiz[l];
+                    }
+                    
+                }
+                peso_aris = Aristas[i].peso;
+                cout << "Arista " << i+1 << " (" << Aristas[i].extremo1 + 1 << "," << Aristas[i].extremo2 + 1 << ") incoporada con peso " << peso_aris << endl;
+                pesoMST += Aristas[i].peso;
+                a++;
+                
+            }
+            
+    }
+    /*
+    do 
+    {
+         Implementamos el algoritmo de Kruskal 
+        
+    } while ((a < (n-1)) && (head < m));
+
+    */
+    if (a == (n - 1)){
+        cout << "El peso del arbol generador de minimo coste es " << pesoMST << endl;
+    }
+    else {
+        cout << "El grafo no es conexo y el bosque generador de minimo coste tiene peso " << pesoMST  << endl;
+    }; 
+
+
+    cout << "\n Vector raiz" << endl;
+    for (int i = 0; i < n; i++)
+    {
+        cout << Raiz[i] << " " << endl;
+    }
 }
 
 
-GRAFO::GRAFO(char nombrefichero[85], int &errorapertura) // en actualizar tengo los comentarios explicando como funcionan los metodos de actualizar y de este constructor
+GRAFO::GRAFO(char nombrefichero[85], int &errorapertura)
 {
     unsigned i, j;
+    int k;
     ElementoLista aux;
 
     ifstream textfile;
@@ -210,26 +331,30 @@ GRAFO::GRAFO(char nombrefichero[85], int &errorapertura) // en actualizar tengo 
         for (int l = 0; l < m; l++)
         {
             if(dirigido == 1){
-            textfile >> (unsigned &) i >> (unsigned &) j; 
+            textfile >> (unsigned &) i >> (unsigned &) j >> (int &) k; 
             aux.j = j-1; //en ElementoLista, colocamos el valor del nodo-1
+            aux.c = k;
             LS [i-1].push_back(aux);
 
             aux.j = i-1;
+            aux.c = k;
             LP [j-1].push_back(aux);
             }
             else{
-            textfile >> (unsigned &) i >> (unsigned &) j;    
+            textfile >> (unsigned &) i >> (unsigned &) j >> (int &) k;    
                 if (i != j)
                 {   aux.j = j-1;
+                    aux.c = k;
                     LS [i-1].push_back(aux);
 
                     aux.j = i-1;
+                    aux.c = k;
                     LS [j-1].push_back(aux);
                                         
                 }
                 else{
-                    //No hacemos nada, i=j 1-1 sería un bucle
                     aux.j = j-1;
+                    aux.c = k;
                     LS [i-1].push_back(aux);
                 }
             }
@@ -240,8 +365,8 @@ GRAFO::GRAFO(char nombrefichero[85], int &errorapertura) // en actualizar tengo 
     {
         errorapertura = 1;
     }
-    
 }
+
 
 
 

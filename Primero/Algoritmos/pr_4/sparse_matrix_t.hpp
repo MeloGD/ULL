@@ -45,7 +45,7 @@ public:
 
   // Modificacion
   void add(const matrix_t<double>&, matrix_t<double>&);
-  
+
   // E/S
   void write(ostream& = cout) const;
 
@@ -153,26 +153,6 @@ sparse_matrix_t::multiply(const matrix_t<double>& A, matrix_t<double>& B)
 }
 
 
-//Modificacion
-void sparse_matrix_t::add(const matrix_t<double>& A, matrix_t<double>& B)
-{
-  
-  
-  B.resize(get_m(), A.get_n());
-     for (int i = 1; i <= sm_.get_size() ; i++)
-    {
-      dll_node_pair_t* aux = sm_[i].get_lp().get_head();
-      aux->get_data().get_val();
-      for (int j = 1; j <= A.get_n(); j++)
-     {
-        B(aux->get_data().get_inx()) = sm_[i-1];
-     }
-    }
-    
-}
-
-
-
 void
 sparse_matrix_t::write(ostream& os) const
 {
@@ -192,4 +172,29 @@ operator<<(ostream& os, const sparse_matrix_t& SM)
   return os;
 }
 
-}
+
+//Modificacion
+
+void sparse_matrix_t::add(const matrix_t<double>& A, matrix_t<double>& B)
+{
+  
+  B.resize(get_m(), get_n());
+  
+  for (int i = 1; i < get_m(); i++)
+  {
+
+      for (int k = 1; k <= get_n(); k++)
+      {
+          B(i,j) = sm_[i].get_lp();
+          /*
+          Lo único que se me ocurrior fue traer a lp_ a sparse_matrix para poder
+          operar con los valores almacenados en cada pareja, pero al parecer no se puede 
+          acceder a un atributo privado desde otro fichero, no da una copia exacta del tipo de dato.*/
+    
+      }
+
+  }
+
+}  
+
+}//namespace

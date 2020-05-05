@@ -1,0 +1,81 @@
+  /*
+  sv1.add_s(sv1,C);
+  cout << "Suma" << endl;
+  cout << C << endl;
+  */
+
+    //Pruebas
+  /*
+  SM2.add(M1, M4);
+  cout << "M4 =  SM2 * SM1" << endl;
+  cout << M4 << endl;*/
+
+  /*
+  sv1.add(M2,1,B);
+  cout << "B = SV1 * M2(row:1)= " << endl;
+  cout << B << endl;*/
+
+   //void add_s(const sparse_vector_t& , vector_t<double>& B);
+  /*
+void
+sparse_vector_t::add_s(const sparse_vector_t& A, vector_t<double>& C){
+  assert(A.get_n() == get_n());
+  C.resize(get_n());
+  
+  dll_node_pair_t* aux1 = lp_.get_head();
+  dll_node_pair_t* aux2 = A.lp_.get_head();
+  while (aux1 != NULL && aux2 != NULL)
+  {
+    if (aux1->get_data().get_inx() == aux2->get_data().get_inx())
+    {
+      C[aux1->get_data().get_inx()]= aux1->get_data().get_val() + aux2->get_data().get_val();
+      aux1 = aux1->get_next();
+      aux2 = aux2->get_next();
+    }
+    else if (aux1->get_data().get_inx() < aux2->get_data().get_inx())
+    {
+      C[aux1->get_data().get_inx()]= aux1->get_data().get_val() ;
+      aux1 = aux1->get_next();
+    }
+    else
+    {
+      C[aux2->get_data().get_inx()]= aux2->get_data().get_val() ;
+      aux2 = aux2->get_next();
+    }
+  }
+  
+}*/
+   void add(const matrix_t<double>& , int i, vector_t<double>& B);
+//Modificación
+
+void
+sparse_vector_t::add(const matrix_t<double>& A, int i, vector_t<double>& B){
+  assert(A.get_row(i).get_size() == get_n());
+  B.resize(get_n());
+  
+  dll_node_pair_t* aux = lp_.get_head();
+  while (aux != NULL)
+  {
+  for (int j = 0; j < get_n(); j++)
+  {
+    if (aux->get_data().get_inx() == j) {
+      B[aux->get_data().get_inx()]= aux->get_data().get_val() + A.get_row(i)[aux->get_data().get_inx()];
+      aux = aux->get_next();
+    }
+    else if (aux->get_data().get_inx() < j)
+    {
+      B[aux->get_data().get_inx()]=  aux->get_data().get_val();
+      aux = aux->get_next();
+    }
+    else
+    {
+      B[j]=  A.get_row(i)[j];
+    }
+    
+    
+  }
+  }
+
+}
+
+
