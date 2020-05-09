@@ -1,0 +1,104 @@
+main
+int prueba = 0;
+	prueba = cola.get_sum_pair();
+	cout << "La suma de los numeros pares de la cola es " << prueba << endl; 
+
+
+rpn_t.hpp
+//Modif private:
+	int opera_(const char c, int a, int b = 0);    
+
+//Modif
+template<class T>
+int rpn_t<T>::opera_(const char c, int a, int b ){
+	
+  int result = 0;
+  stack_.pop();
+  if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^')
+  {
+	  b = stack_.top(); stack_.pop();
+  }
+  
+
+  switch (c)
+	{
+	case '+': result = b + a;
+	            break;
+	case '-': result = b - a;
+              break;
+    case '*': result = b * a;
+              break;
+    case '/': result = b / a;
+              break;
+    case '^': result = pow(b,a);
+              break;
+    case 'r': result = sqrt(a);
+              break;
+    case 'l': result = log2(a);
+              break;
+    case 'c': result = exp2(a);
+              break;
+	}
+	stack_.push(result);
+	//float res = stack_.top();
+	cout << "El resultado para opera_ es: " << result << endl;
+}   
+
+// llamada opera_(c,stack_.top()); 
+
+//stack_l_t.hpp
+template<class T>
+int
+stack_l_t<T>::sum_pair_() {
+	dll_node_t<T>* aux = l_.get_head();
+	int sump = 0;
+	while (aux != NULL)
+	{
+		
+		if (aux->get_data() % 2 == 0)
+		{
+			sump += aux->get_data();
+		}
+		aux = aux->get_next();
+	}
+	return sump;
+	
+};
+template<class T>
+int
+stack_l_t<T>::get_sum_pair(void) {
+	return sum_pair_();
+}
+
+
+//queue_l_t.hpp
+
+//Mod
+template<class T>
+int queue_l_t<T>::sum_pair(void) const{
+	
+	dll_node_t<T>* aux = l_.get_head();
+	int sump = 0;
+	
+	while (aux != NULL)
+	{
+		char v = aux->get_data();
+		if (isdigit(v))
+		{
+			if (aux->get_data() % 2 == 0)
+			{
+			v = aux->get_data() - '0';
+			sump += v;
+			}
+		
+		}	
+	aux = aux->get_next();
+	}
+	return sump;
+}
+
+
+template<class T>
+int queue_l_t<T>::get_sum_pair(void){
+	return sum_pair();
+}

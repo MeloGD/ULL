@@ -1,6 +1,6 @@
-// AUTOR: 
-// FECHA: 
-// EMAIL: 
+// AUTOR: Jesús Carmelo González Domínguez
+// FECHA: 09/05/2020
+// EMAIL: alu0101267760@ull.edu.es
 // VERSION: 1.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
 // PRÁCTICA Nº: 5
@@ -34,13 +34,40 @@ public:
 
 	bool empty(void) const;
 
+	//Modificación, getter para comprobación
+	int get_count_imp(void);
+
   // E/S	
 	void write(ostream& os = cout);
 
 private:
 	dll_t<T> l_;
+	//Mod
+	int count_odd_(void) const;
+	
+};
+//Modifiación-->contar numero de valores impares en la pila
+template<class T> 
+int stack_l_t<T>::count_odd_(void) const{
+	
+	dll_node_t<T>* aux = l_.get_head();
+	int count = 0;
+	while (aux != NULL)
+	{
+		
+		if (aux->get_data() % 2 != 0)
+		{
+			count++;
+		}
+		aux = aux->get_next();
+	}
+	return count;
 };
 
+template<class T> //para comprobar
+int stack_l_t<T>::get_count_imp(void){
+	return count_odd_();
+}
 
 
 template<class T>

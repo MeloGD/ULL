@@ -1,6 +1,6 @@
-// AUTOR: 
-// FECHA: 
-// EMAIL: 
+// AUTOR: Jesús Carmelo González Domínguez
+// FECHA: 09/05/2020
+// EMAIL: alu0101267760@ull.edu.es
 // VERSION: 1.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
 // PRÁCTICA Nº: 5
@@ -34,12 +34,15 @@ int main(void)
 			cola.push(c);
 		}
 	}
-
-  cout << "Expresión a evaluar: ";	
+	
+    cout << "Expresión a evaluar: ";	
 	cola.write();
 
-  int r = calculadora.evaluate(cola);
-	cout << "Resultado: " << r << endl;
+    int r = calculadora.evaluate(cola);
+	cout << "Resultado : " << r << endl;
+	
+	/* La practica trabaja con numeros enteros. Si se quisiera obtener decimales con 5 r, por ejemplo, sería solo cambiar el tipo de dato 
+	del programa de int a float, pero para evitar problemas, lo dejo como se ha entregado originalmente*/
 
 	return 0;
 }

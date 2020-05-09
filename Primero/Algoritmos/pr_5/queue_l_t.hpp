@@ -1,6 +1,6 @@
-// AUTOR: 
-// FECHA: 
-// EMAIL: 
+// AUTOR: Jesús Carmelo González Domínguez
+// FECHA: 09/05/2020
+// EMAIL: alu0101267760@ull.edu.es
 // VERSION: 1.0
 // ASIGNATURA: Algoritmos y Estructuras de Datos
 // PRÁCTICA Nº: 5
@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <cassert>
+
 
 #include "dll_t.hpp"
 
@@ -22,7 +23,6 @@ class queue_l_t
 {
 private:
 	dll_t<T>    l_;
-
 public:
 	// constructor y destructor
 	queue_l_t(void);
@@ -37,10 +37,9 @@ public:
 	const T& front(void) const;
 	const T& back(void) const;
 
+
 	void write(ostream& os = cout) const;
 };
-
-
 
 template<class T>
 queue_l_t<T>::queue_l_t(void):
