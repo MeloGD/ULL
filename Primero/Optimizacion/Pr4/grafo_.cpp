@@ -160,7 +160,7 @@ void GRAFO :: Mostrar_Listas (int l)
 void GRAFO::dfs(unsigned i, vector<bool> &visitado)
 {
     visitado[i] = true;
-    cout << i+1 << " ";
+    cout << " (" << i+1 << ") ";
 	for (unsigned j=0;j<LS[i].size();j++)
              if (visitado[LS[i][j].j] == false)
                  dfs(LS[i][j].j, visitado);
@@ -213,6 +213,7 @@ void GRAFO::Kruskal()
     unsigned head = 0;
     AristaPesada AristaDummy; //Para los intercambios en la ordenacion parcial
     
+    //Ordenacion usando el metodo burbuja
     for (int i = 0; i < m-1; i++)
     {
         for (int j = 0; j < m-1; j++)
@@ -222,21 +223,14 @@ void GRAFO::Kruskal()
                 AristaDummy = Aristas[j];
                 Aristas[j] = Aristas[j+1];
                 Aristas[j+1] = AristaDummy;
-                
-                head++;  //esto no es realmente necesario de momento
             } 
         }
-    }
-   
+    } 
 
     
-
-
     /*Inicializamos el contador de aristas en la soluci�n*/
     unsigned a = 0;
-
-    
-    
+       
 
     /*Inicializamos el peso de la solucion*/
     unsigned pesoMST = 0;
@@ -248,19 +242,6 @@ void GRAFO::Kruskal()
         Raiz[q]=q;
     };
 
-    /*
-    cout << "Vector Aristas ordenadas:" << endl;
-    for (int i = 0; i < m; i++)
-    {
-        cout << Aristas[i].extremo1 + 1 << " " << Aristas[i].extremo2 + 1 << " " << Aristas[i].peso << endl;
-    }
-    
-    cout << "\n Vector raiz" << endl;
-    for (int i = 0; i < n; i++)
-    {
-        cout << Raiz[i] << " " << endl;
-    }
-    */
     
     /*Comenzamos Kruskal*/
     int aux, peso_aris;
@@ -278,37 +259,20 @@ void GRAFO::Kruskal()
                     {
                         Raiz[k] = Raiz[l];
                     }
-                    
                 }
                 peso_aris = Aristas[i].peso;
                 cout << "Arista " << i+1 << " (" << Aristas[i].extremo1 + 1 << "," << Aristas[i].extremo2 + 1 << ") incoporada con peso " << peso_aris << endl;
                 pesoMST += Aristas[i].peso;
                 a++;
-                
             }
-            
     }
-    /*
-    do 
-    {
-         Implementamos el algoritmo de Kruskal 
-        
-    } while ((a < (n-1)) && (head < m));
 
-    */
     if (a == (n - 1)){
         cout << "El peso del arbol generador de minimo coste es " << pesoMST << endl;
     }
     else {
         cout << "El grafo no es conexo y el bosque generador de minimo coste tiene peso " << pesoMST  << endl;
     }; 
-
-
-    cout << "\n Vector raiz" << endl;
-    for (int i = 0; i < n; i++)
-    {
-        cout << Raiz[i] << " " << endl;
-    }
 }
 
 
