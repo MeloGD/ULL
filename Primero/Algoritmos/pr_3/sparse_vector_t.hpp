@@ -207,6 +207,20 @@ sparse_vector_t::max(){
  return max;
 }
 
+double
+sparse_vector_t::max(){
+  double max = pv_[0].get_val();
+
+  for (int i = 0 ; i < nz_; i++){
+    if (max > pv_[i].get_val()){
+            max = pv_[i].get_val();
+    }
+}
+ return max;
+}
+
+
+
 
   //curiosidad: solo valores de indices pares de un vector disperso
   pair_vector_t

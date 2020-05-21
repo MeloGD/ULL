@@ -49,6 +49,8 @@ class GRAFO
      void ComponentesConexas();
      void dfs(unsigned i, vector<bool> &visitado);
      void Kruskal();
+     void Dijkstra();
+     void MostrarCamino(unsigned s, unsigned i, vector<unsigned> pred);
      ~GRAFO();
 };
 

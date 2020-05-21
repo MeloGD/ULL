@@ -331,6 +331,86 @@ GRAFO::GRAFO(char nombrefichero[85], int &errorapertura)
     }
 }
 
+//Metodo para recorrer el vector pred y mostrar los caminos mininos que almacena
+void GRAFO::MostrarCamino(unsigned s, unsigned i, vector<unsigned> pred){
+    if (i != s)
+    {
+        MostrarCamino(s, pred[i], pred);
+        cout << pred[i]+1 << " -> ";
+    }  
+}
+
+void GRAFO::Dijkstra(){
+    vector<bool> PermaEtiquetado;
+    vector<int> d;
+    vector<unsigned> pred;
+    int min;
+    unsigned s, candidato;
+
+    //Resizes de los vectores e inicializacion de valores
+    PermaEtiquetado.resize(n,false);
+    d.resize(n,maxint);
+    pred.resize(n, UERROR);
+
+    //Solicitamos el nodo origien al usuario
+    cout << endl;
+    cout << "Caminos minimos: Dijkstra" << endl;
+    cout << "¿Nodo de partida?  [1-" << n << "]: ";
+    cin >> (unsigned&) s;
+    d[--s]=0; //distancia del nodo origen es 0
+    pred[s]=s; //el predecesor es él mismo --> pred de 1, es 1, por ejemplo
+
+    do
+    {
+        min = maxint; //asignamos a min el coste mayor posible
+        for (int i = 0; i < n; i++)
+        {
+            if ((PermaEtiquetado[i] == false) && (d[i] < min)) //si no se ha etiquetado y el coste es menor
+            {
+                candidato = i;
+                min = d[i];
+            }
+        }
+        if (candidato != UERROR) //si existe un candidato
+        {
+            PermaEtiquetado[candidato] = true; //etiquetamos
+            for (unsigned j = 0; j < LS[candidato].size(); j++)
+            {
+                if (PermaEtiquetado[LS[candidato][j].j] == false) //si el nodo esta en el almacen
+                {
+                    if ((d[LS[candidato][j].j]) > (d[candidato] + LS[candidato][j].c)) //a partir de aqui, implementamos las operaciones de las diapositivas, actualizando d y pred
+                    {
+                        d[LS[candidato][j].j] = (d[candidato] + LS[candidato][j].c);
+                        pred[LS[candidato][j].j] = candidato;
+                    }
+                }
+            }
+        } 
+    } while (min < maxint);  
+
+    cout << "\nSoluciones: " << endl;
+    for (unsigned i = 0; i < n; i++)
+    {
+        if (i != s)
+        {
+            if (PermaEtiquetado[i] == true)
+            {
+                cout << "El camino desde " << s+1 << " al nodo  " << i+1 << " es: ";
+                MostrarCamino(s,i,pred); //llamamos a mostrar camino para que monte la solucion en pantalla
+                cout << i+1 << " de longitud " << d[i] << endl;
+            }
+            else
+            {
+                cout << "No hay camino desde " << s+1 << " al nodo " << i+1 << endl;
+            }
+            
+            
+        }
+        
+    }
+    
+    
+}
 
 
 

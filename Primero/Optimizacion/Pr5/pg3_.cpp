@@ -1,5 +1,5 @@
  /*
- *  PG2.CPP - Actividad II de Optimiza!cion.
+ *  PG3.CPP - Actividad III de Optimiza!cion.
  *
  *
  *               Autores : Antonio Sedeno Noda, Sergio Alonso.
@@ -24,18 +24,19 @@ void menu (unsigned dirigido, char &opcion)
 {
 
        if(dirigido == 1){
-           cout << "\nActividad 2, Optimización: Carga del grafo, conectividad y MST(Kruskal)" << endl;
+           cout << "\nActividad 3, Optimización: Caminos minimos --> Dijkstra" << endl;
            cout << "a. Cargar el grafo desde fichero" << endl;
            cout << "b. Mostrar informacion basica del grafo" << endl;
            cout << "c. Mostrar la lista de sucesores del grafo" << endl;
            cout << "d. Mostrar la lista de predecesores del grafo" << endl;
+           cout << "i. Mostrar caminos minimos --> Dijkstra" << endl;
            cout << "e. Finalizar el programa" << endl;
            cout << "Introduzca la letra de la opcion a escoger:" << endl;
            cin >> opcion;   
        }
        if (dirigido == 0)       
        {
-           cout << "\nActividad 2, Optimización: Carga del grafo, conectividad y MST(Kruskal)" << endl;
+           cout << "\nActividad 3, Optimización: Caminos minimos --> Dijkstra" << endl;
            cout << "a. Cargar el grafo desde fichero" << endl;
            cout << "b. Mostrar informacion basica del grafo" << endl;
            cout << "f. Mostrar la lista de adyacencia del grafo" << endl;
@@ -116,7 +117,11 @@ int main(int argc, char *argv[])
                         case 'h':
                             clrscr();
                             G.Kruskal();
-                            break;    
+                            break;
+                        case 'i':
+                            clrscr();
+                            G.Dijkstra();
+                            break;            
                         case 'e': cout << "Ha escogido finalizar el programam, saludos." << endl;
                     }                    
         }while (opcion != 'e' && error_apertura != 1);
