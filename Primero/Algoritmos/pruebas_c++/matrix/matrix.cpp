@@ -17,7 +17,7 @@ int main(void){
       cout << A[i][j] << " ";
     }
   cout << endl;
-  }
+  } 
 
   //
   //
