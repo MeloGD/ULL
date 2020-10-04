@@ -1,37 +1,84 @@
-/*Vamos a crear una clase llamada Persona. Sus atributos son: nombre, edad y DNI. Construye los siguientes métodos para la clase:
 
-    Un constructor, donde los datos pueden estar vacíos.
-    Los setters y getters para cada uno de los atributos. Hay que validar las entradas de datos.
-    mostrar(): Muestra los datos de la persona.
-    esMayorDeEdad(): Devuelve un valor lógico indicando si es mayor de edad.
-*/
+#include "ejer_1.hpp"
 
-class Persona
-{
-private:
-    char nombre;
-    int edad;
-    char dni;
+Persona::Persona(string nom, int ed, string dni){
+    nombre_ = nom;
+    edad_ = ed;
+    dni_ = dni;
+}
 
-public:
-    Persona(char nombre , int edad, char dni); //constructor
+
+
+string
+Persona::get_nombre(void){
+    return nombre_;
+}
+
+
+
+int
+Persona::get_edad(void){
+    return edad_;
+}
+
+
+
+string
+Persona::get_dni(void){
+    return dni_;
+}
+
+
+
+void
+Persona::set_nombre(char nom){
+    nombre_ =  nom;
+}
+
+
+
+void
+Persona::set_edad(int ed){
+    edad_ =  ed;
+}
+
+
+
+void
+Persona::set_dni(char dni){
+    dni_ =  dni;
+}
+
+
+void
+Persona::mostrar(void){
+    cout << "Nombre: " << get_nombre() << endl;
+    cout << "Edad: " << get_edad() << endl;
+    cout << "DNI: " << get_dni() << endl;
     
-    ~Persona() {}; //destructor
+    if (esMayorDeEdad(get_edad()))
+    {
+        cout << "Es mayor de edad" << endl;
+    }
+    else
+    {
+        cout << "No es mayor de edad" << endl;
+    }
+    
+    
+}
 
-    //getters
-    char    get_nombre(); //probar a ver si se puede poner un const
-    int     get_edad();
-    char    get_dni(); 
 
-    //setters
-    void     set_nombre(char);
-    void     set_edad(int);
-    void     set_dni(char);
 
-    //metodos
-    Persona mostrar();
-    bool esMayorDeEdad(int);
-};
-
- 
- 
+bool
+Persona::esMayorDeEdad(int ed){
+    if (ed < 18)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+        
+}
