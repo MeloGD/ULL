@@ -3,7 +3,7 @@
 
 
 int main(void){
-    Persona C("Melo",17,"43379857V");
+    Persona C("Melo",24,"4337985755");
     
     
     C.mostrar();
