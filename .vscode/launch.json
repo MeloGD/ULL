@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/melo/GitHub/ULL/Primero/Algoritmos/pr_4/main_sparse_matrix_t",
+            "program": "/home/melo/Github/ULL/Segundo/CYA/fibonacci_test/test",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

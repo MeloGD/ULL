@@ -1,30 +1,34 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <string>
 
 using namespace std;
 
-#define MAX 35
-
 class Fibonacci {
 private:
-  string Fibonacciword;
   vector<string> fibonaccisequence_;
   vector<string> candidates_;
+
+  int size_;
 public:
-  Fibonacci(vector<string>, vector<string>);
+  Fibonacci(const int);
   ~Fibonacci();
   // Getters
-  vector<string> get_fibonaccisequence();
-  vector<string> get_candidates();
+  string get_fibonaccisequence(int);
+  string get_candidates(int);
+  int get_size(void);
+  int get_index(string);
   // Setters
-  void set_fibonaccisequence();
-  void set_candidates();
+  void set_fibonaccisequence(int, string);
+  void set_candidates(int, string);
+  void set_size(int);
   // Metodos
-  void BuildFibonacci();
-  void Check();
-  void ReadFile();
-  void WriteFile();
-
+  string WordFibonacci(int);
+  void BuildFibonacciSequence(void);
+  bool Check(string);
+  void ReadFile(string); // es esta
+  void WriteFile(string);
 };
 
 

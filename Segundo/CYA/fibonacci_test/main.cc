@@ -36,6 +36,7 @@ void Check(string str) {
 int main(int argc, char const *argv[]) {
   string test = argv[1];
   build();
-  Check(test);    
+  Check(test); 
+     
   return 0;
 }
