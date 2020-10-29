@@ -5,10 +5,13 @@ using namespace std;
 
 class Set {
 private:
-  int size_;
   vector<long> set_vector_;
+
+  string       data_;
+  int          size_;
+  unsigned     subset_;
 public:
-  Set();  // size_ = sizeof(long);
+  Set();  
   Set(int);
   ~Set();
   // Getters
@@ -17,6 +20,8 @@ public:
   void set_value(string);
   // Methods
   void Print(void);
+  void ReadString(string);
+  void WritetoSet(void);
 };
 
 
