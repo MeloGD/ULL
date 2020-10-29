@@ -3,10 +3,10 @@
 
 // int argc, char const *argv[]
 int main() {
-    Set A;
-    A.ReadString("1");
-    A.ReadString("4");
-    A.WritetoSet();
+  Set A;
+  A.ReadString("1");
+  A.ReadString("4");
+  A.WritetoSet();
     
-    return 0;
+  return 0;
 }

@@ -16,20 +16,7 @@ Set::Set(int size) {
 Set::~Set() {}
 
 void Set::Print(void) {
-  /*
-  cout << "Tamaño del size_" << endl;
-  cout << size_ << endl;
-  cout << "Tamaño del set_vector_" << endl;
-  cout << set_vector_.size() << endl;
 
-  cout << endl;
-  cout << "data_" << endl;
-  cout << data_ << endl;
-  
-  cout << "set_vector contiene: " << endl;
-  for (int i = 0; i < set_vector_.size(); i++) {
-  cout << set_vector_[i] << " ";
-  }*/
 }
 
 void Set::ReadString(string number) {
@@ -39,6 +26,8 @@ void Set::ReadString(string number) {
   data_.insert(8-position,"1"); 
 }
 
+// De momento hago couts aqui para comprobar como estan
+// ejecutandose los valores
 void Set::WritetoSet(void) {
   cout << "data_ es: " << endl;
   cout << data_ << endl;
