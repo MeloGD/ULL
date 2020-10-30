@@ -24,6 +24,7 @@ public:
   void Print(void);
   void ReadString(string);
   void WritetoSet(string);
+  void WriteFile(void);
 };
 
 

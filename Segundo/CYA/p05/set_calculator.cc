@@ -19,7 +19,6 @@ void Set::Print(void) {
 
 }
 
-// Hay que hacer un reverse() de data_ cuando vaya a trabajar con el
 void Set::ReadString(string element) {
   int number = stoi(element);
   if (isdigit(element[0]) && number <= 8) {
@@ -35,24 +34,32 @@ void Set::ReadString(string element) {
   }
 }
 
-// De momento hago couts aqui para comprobar como estan
-// ejecutandose los valores
 void Set::WritetoSet(string element) {
   ReadString(element);
   int number = stoi(element);
-  cout << "Number vale: " << number << endl;
-  int position = ((number / 9));
-  if (position == 0) {
-    cout << "Position vale: " << position << endl;
-    set_vector_[position] += data_;
+  // Dividimos entre 9 porque entre 8 no los coloca correctamente en su posicion
+  int position = ((number / 8));
+  if (position == 0 ) {
+    set_vector_[position] = set_vector_[position] | data_;
+  } 
+  if (number % 8 == 0) {
+    set_vector_[position-1] = set_vector_[position - 1] | data_;
   } else {
-    cout << "Position vale: " << position << endl;
-    set_vector_[position] += data_;
+    set_vector_[position] = set_vector_[position] | data_;
   }
+}
 
-  cout << "El vector de sets queda asi: "  << endl;
+void Set::WriteFile(void) {
+  string d;
+  int count = 0;
   for (int i = 0; i < set_vector_.size(); i++) {
-    cout << set_vector_[i] << endl;
+    d = std::bitset<8>(set_vector_[i]).to_string();
+    reverse(d.begin(), d.end());
+    for (int j = 0; j < d.size(); j++) {
+      count++;
+      if(d[j] == '1') {
+        cout << "De la posicion del vector " << i << " sale el numero: " << count << endl;
+      }
+    }
   }
-  
 }
