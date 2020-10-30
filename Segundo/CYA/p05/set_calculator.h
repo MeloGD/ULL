@@ -1,15 +1,17 @@
-#include "iostream"
-#include "vector"
+#include <iostream>
+#include <vector>
+#include <bits/stdc++.h> 
+
 
 using namespace std;
 
+
 class Set {
 private:
-  vector<long> set_vector_;
+  vector<unsigned long> set_vector_;
 
-  string       data_;
-  int          size_;
-  unsigned     subset_;
+  unsigned long         data_;
+  int                   size_;
 public:
   Set();  
   Set(int);
@@ -21,7 +23,7 @@ public:
   // Methods
   void Print(void);
   void ReadString(string);
-  void WritetoSet(void);
+  void WritetoSet(string);
 };
 
 
