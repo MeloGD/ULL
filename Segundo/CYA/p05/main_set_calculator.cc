@@ -21,8 +21,10 @@ int main() {
   A.WritetoSet("65");
   A.WritetoSet("85");
   A.WritetoSet("89");
+  A.set_lastvalue(89);
+  
 
-  A.WriteFile();
+  A.WriteSettoFile();
 
   
 

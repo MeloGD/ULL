@@ -5,18 +5,23 @@ Set::Set() {
   size_ = sizeof(long);
   set_vector_.resize(size_);
   data_ = 0;
+  max_ = 0;
 }
 
 Set::Set(int size) {
   size_ = size;
   set_vector_.resize(size_);
   data_ = 0;
+  max_ = 0;
 }
 
 Set::~Set() {}
 
-void Set::Print(void) {
 
+void Set::set_lastvalue(int n) {
+  if (n > max_) {
+    max_ = n;
+  }  
 }
 
 void Set::ReadString(string element) {
@@ -49,8 +54,12 @@ void Set::WritetoSet(string element) {
   }
 }
 
-void Set::WriteFile(void) {
-  string d;
+void Set::WriteSettoFile(void) {
+  ofstream file;
+  string d; // cambiar d por algo descriptivo
+  string setsolution;
+  file.open("output.txt");
+  file << "{";
   int count = 0;
   for (int i = 0; i < set_vector_.size(); i++) {
     d = std::bitset<8>(set_vector_[i]).to_string();
@@ -58,8 +67,16 @@ void Set::WriteFile(void) {
     for (int j = 0; j < d.size(); j++) {
       count++;
       if(d[j] == '1') {
-        cout << "De la posicion del vector " << i << " sale el numero: " << count << endl;
+        file << count;
+        if (count  != max_) {
+          file << ",";
+        }
+        
+        // cout << "De la posicion del vector " << i << " sale el numero: " << count << endl;
       }
     }
   }
+  file << "}" << endl;
+  file.close();
 }
+
