@@ -28,7 +28,7 @@ public:
   void set_value(string);
   void set_lastvalue(int);
   // Methods
-  void Print(void);
+  string ReadFile(string);
   void ReadString(string);
   void WritetoSet(string); // ADD to set
   void WriteSettoFile(void); // recorre el conjunto en el fichero
