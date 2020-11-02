@@ -2,16 +2,16 @@
 #include <vector>
 #include <fstream>
 #include <bits/stdc++.h> 
-
+#include <math.h>
 
 using namespace std;
 
 
 class Set {
 private:
-  vector<unsigned long> set_vector_;
+  vector<unsigned long long int> set_vector_;
 
-  unsigned long         data_;
+  unsigned long long int         data_;
   int                   size_;
   int                   max_;
   // Esto de aqui es para realizar operaciones 

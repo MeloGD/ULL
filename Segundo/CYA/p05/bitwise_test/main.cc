@@ -1,6 +1,7 @@
 #include <iostream>
 #include <bitset>
 #include <bits/stdc++.h> 
+#include <math.h>
   
 using namespace std;
 
@@ -21,4 +22,27 @@ int main(void){
     if (d[i] == '1') {
       cout << "EL numero es " << i + 1 << endl;
     } 
+  }
+// long f = (1<<63);
+
+string hoa = "1000000000000000000000000000000000000000000000000000000000000000";
+bitset<128> bset1(hoa);
+cout << bset1 << endl;
+unsigned long long int f = bset1.to_ullong();
+unsigned long long int hehehe = pow(2 , 64);
+unsigned long long int container = hehehe | 1;
+
+cout << f << endl;
+cout << container << endl;
+
+/* ESTO NO SIRVE
+string hoa = "100000000000000000000000000000000000000000000000000000000000000";
+unsigned long long int f = stoll(hoa,nullptr,2);
+cout << f << endl;
+*/
+
+unsigned long long int test = ;
+
 }
+
+
