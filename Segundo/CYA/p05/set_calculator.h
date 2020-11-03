@@ -10,29 +10,41 @@ using namespace std;
 class Set {
 private:
   vector<unsigned long long int> set_vector_;
+  vector<unsigned long long int> set_vector_copy_;
 
   unsigned long long int         data_;
-  int                   size_;
-  int                   max_;
+  int                            size_;
+  char                           operator_;
   // Esto de aqui es para realizar operaciones 
   // vector<unsigned long> set_vector2_;
   // bool isunary_;
   // char operator_;
 public:
   Set();  
-  Set(int);
+  Set(float);
   ~Set();
   // Getters
-  string get_value(void);
+  char Get_Operator(void);
+  int get_maxvalue(void);
+  int Get_SetVectorSize(void);
+  // hacer un getter para el size del set_vector_
   // Setters 
-  void set_value(string);
-  void set_lastvalue(int);
+  void Set_Operator(char);
   // Methods
-  string ReadFile(string);
-  void ReadString(string);
+  void ReadFile(string);    // lee el fichero y me da los valores que me interesan
+  void ReadString(string);  // me escribe el data_
   void WritetoSet(string); // ADD to set
   void WriteSettoFile(void); // recorre el conjunto en el fichero
-  // void WriteFile(int n); // escribe output.txt
+  void Solve(void);
+  void CopyMainSet(void);
+  bool isOperator(char);
+  bool isUnary(char);
+  // Operations
+  void Union(void);
+  void RelativeComplement(void);
+  void Intersection(void);
+  void Complementation(void);
+  void Asignation(void);
 };
 
 
