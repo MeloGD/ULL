@@ -29,6 +29,11 @@ int Set::get_maxvalue(void) {
 int Set::Get_SetVectorSize(void) {
   return set_vector_.size();
 }
+
+int Set::Get_Size(void) {
+  return size_;
+}
+
 // Setters
 void Set::Set_Operator(char sign) {
   operator_ = sign;
@@ -42,35 +47,91 @@ void Set::ReadFile(string filename) {
   int digits;
   bool next_set = false;
   bool set_erased = false;
-  file.open("input.txt");
-  while (getline(file, information)) {
+  if (elementsoverload_.empty()) {
+    file.open("input.txt");
+    while (getline(file, information)) {
+      next_set = false;
+      set_erased = false;
+      fill(set_vector_.begin(), set_vector_.end(), 0);
+      // vaciar el operator_
+      operator_ = '0';
+      for (int i = 0; i < information.size(); i++) {
+        candidates.clear();
+        digits = 0;
+        if (information[i] != '{') {  //aqui es posible que tenga que añadir != " " para poder poner espacios
+          for (int j = i; j < information.size(); j++) { 
+            if (information[j] != ',' && information[j] != '}' && !isOperator(information[j])) {
+              candidates.push_back(information[j]);
+              digits++;
+            } else {
+              i += digits;
+              if (information[j] == '}') {
+                //i++; 
+              }
+              if (isOperator(information[j])) {
+                Set_Operator(information[j]);
+                //i = information.size();
+                i++; // esto puede crear problemas
+                if (!isUnary(information[j])) {
+                  next_set = true;
+                }             
+              }
+              j = information.size();
+            }
+          }
+          if (!candidates.empty()) {
+            if (!next_set) { //esto de aqui es lo nuevo, borrar el if si da problemas
+              WritetoSet(candidates);
+            } else {
+              if (!set_erased) {
+                CopyMainSet();
+                fill(set_vector_.begin(), set_vector_.end(), 0);
+                set_erased = true; 
+              }
+              WritetoSet(candidates);
+            }
+            
+            /*
+            WritetoSet(candidates);
+            cout << candidates << endl;
+            */
+          }   
+        }
+      }
+      if (isOperator(operator_)) {
+        Solve();
+      } else {
+        WriteSettoFile();
+      }
+    }
+  } else {
     next_set = false;
     set_erased = false;
     fill(set_vector_.begin(), set_vector_.end(), 0);
     // vaciar el operator_
     operator_ = '0';
-    for (int i = 0; i < information.size(); i++) {
+    for (int i = 0; i < elementsoverload_.size(); i++) {
       candidates.clear();
       digits = 0;
-      if (information[i] != '{') {  //aqui es posible que tenga que añadir != " " para poder poner espacios
-        for (int j = i; j < information.size(); j++) { 
-          if (information[j] != ',' && information[j] != '}' && !isOperator(information[j])) {
-            candidates.push_back(information[j]);
+      if (elementsoverload_[i] != '{') {  //aqui es posible que tenga que añadir != " " para poder poner espacios
+        for (int j = i; j < elementsoverload_.size(); j++) { 
+          if (elementsoverload_[j] != ',' && elementsoverload_[j] != '}' && !isOperator(elementsoverload_[j])) {
+            candidates.push_back(elementsoverload_[j]);
             digits++;
           } else {
             i += digits;
-            if (information[j] == '}') {
+            if (elementsoverload_[j] == '}') {
               //i++; 
             }
-            if (isOperator(information[j])) {
-              Set_Operator(information[j]);
-              //i = information.size();
+            if (isOperator(elementsoverload_[j])) {
+              Set_Operator(elementsoverload_[j]);
+              //i = elementsoverload_.size();
               i++; // esto puede crear problemas
-              if (!isUnary(information[j])) {
+              if (!isUnary(elementsoverload_[j])) {
                 next_set = true;
               }             
             }
-            j = information.size();
+            j = elementsoverload_.size();
           }
         }
         if (!candidates.empty()) {
@@ -83,12 +144,7 @@ void Set::ReadFile(string filename) {
               set_erased = true; 
             }
             WritetoSet(candidates);
-          }
-          
-          /*
-          WritetoSet(candidates);
-          cout << candidates << endl;
-          */
+          }           
         }   
       }
     }
@@ -97,7 +153,11 @@ void Set::ReadFile(string filename) {
     } else {
       WriteSettoFile();
     }
+    
   }
+  
+  
+
 }
 
 void Set::ReadString(string element) {
@@ -297,8 +357,8 @@ void Set::Complementation(void) {
 
 // Overloads
 
-/*
-ostream & operator << (ostream &out, Set &subset) {
-  out << "Hola xd";
-  return out;
-}*/
+istream& operator>>(istream& in, Set& subset) {
+  cin >> subset.elementsoverload_;
+  subset.ReadFile(subset.elementsoverload_);
+  return in;
+}

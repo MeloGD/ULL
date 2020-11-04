@@ -9,7 +9,7 @@ int main() {
   A.WritetoSet("64"); // da problemas
   */
   
-  A.ReadFile("input.txt");
+  //A.ReadFile("input.txt");
   //A.Solve();
   //A.WriteSettoFile();
   /*
@@ -21,6 +21,12 @@ int main() {
   A.WriteSettoFile();
   cout << A << endl;
   */
+ // cout << A.Get_Size() << endl;
+ cin >> A;
+ cout << A << endl;
+ //cout << A << endl;
+ //cout << A.Get_Size() << endl;
+ 
  /*
   uint64_t prueba = pow(2,64);
   unsigned long int prueba2 = pow(2,64);

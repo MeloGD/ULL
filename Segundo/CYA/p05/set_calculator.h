@@ -9,12 +9,13 @@ using namespace std;
 
 class Set {
 private:
-  vector<unsigned long long int> set_vector_;
-  vector<unsigned long long int> set_vector_copy_;
+  vector<unsigned long long int>  set_vector_;
+  vector<unsigned long long int>  set_vector_copy_;
 
-  unsigned long long int         data_;
-  int                            size_;
-  char                           operator_;
+  unsigned long long int          data_;
+  int                             size_;
+  char                            operator_;
+  string                          elementsoverload_;                         
   // Esto de aqui es para realizar operaciones 
   // vector<unsigned long> set_vector2_;
   // bool isunary_;
@@ -27,6 +28,7 @@ public:
   char Get_Operator(void);
   int get_maxvalue(void);
   int Get_SetVectorSize(void);
+  int Get_Size(void);
   // hacer un getter para el size del set_vector_
   // Setters 
   void Set_Operator(char);
@@ -61,7 +63,7 @@ public:
     
     solution.push_back('{');
     for (int i = 0; i < set.set_vector_.size(); i++) {
-      subset = std::bitset<63>(set.set_vector_[i]).to_string();
+      subset = std::bitset<64>(set.set_vector_[i]).to_string();
       reverse(subset.begin(), subset.end());
       for (int j = 0; j < subset.size(); j++) {
         element++;
@@ -83,7 +85,10 @@ public:
     out << solution;
     return out;
   }
-};
-
+  friend istream& operator>>(istream&, Set&);
+  friend bool operator==(const Set&, const Set&);
+  
+  
+};      
 
 
