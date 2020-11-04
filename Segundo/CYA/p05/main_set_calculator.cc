@@ -3,7 +3,7 @@
 
 // int argc, char const *argv[]
 int main() {
-   Set A(128);
+   Set A, B;
     
   /*
   A.WritetoSet("64"); // da problemas
@@ -23,30 +23,19 @@ int main() {
   */
  // cout << A.Get_Size() << endl;
  cin >> A;
- cout << A << endl;
+ cin >> B;
+ if (A==B) {
+   cout << "Son iguales!!!" << endl;
+ } else
+ {
+   cout << "No son iguales :(" << endl;
+ }
+ 
+ 
  //cout << A << endl;
  //cout << A.Get_Size() << endl;
  
- /*
-  uint64_t prueba = pow(2,64);
-  unsigned long int prueba2 = pow(2,64);
-  cout << "Valor mas alto: " << endl;
-  cout << prueba << endl;
-  cout << prueba2 << endl;
-  string subset;
-  subset = bitset<128>(prueba).to_string();
-  cout << subset << endl;
-  */
   return 0;
 }
 
 
-
- /*
-  ifstream file;
-  while(file !eof) {
-    Read();
-    Solve();
-    Write();
-  }
-  */

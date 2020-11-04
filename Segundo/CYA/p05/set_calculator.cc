@@ -362,3 +362,19 @@ istream& operator>>(istream& in, Set& subset) {
   subset.ReadFile(subset.elementsoverload_);
   return in;
 }
+
+bool operator==(const Set& set1, const Set& set2) {
+  int notequals = 0;
+  bool equal;
+  for (int i = 0; i < set1.set_vector_.size(); i++) {
+    if (set1.set_vector_[i] == set2.set_vector_[i]) {
+      if (notequals == 0) {
+        equal = true;
+      }   
+    } else {
+        notequals++;
+        equal = false;
+    }
+  }
+  return equal;
+}
