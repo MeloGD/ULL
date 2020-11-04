@@ -10,7 +10,7 @@ Set::Set() {
 
 Set::Set(float size) { 
   size_ = size;
-  set_vector_.resize(ceil(size/(sizeof(long) * 8))); // corregir para 63 elementos
+  set_vector_.resize(ceil(size/(sizeof(long) * 8))); // corregir para 64 elementos
   set_vector_copy_.resize(ceil(size/(sizeof(long) * 8)));
   data_ = 0;
 }
@@ -44,10 +44,15 @@ void Set::ReadFile(string filename) {
   bool set_erased = false;
   file.open("input.txt");
   while (getline(file, information)) {
+    next_set = false;
+    set_erased = false;
+    fill(set_vector_.begin(), set_vector_.end(), 0);
+    // vaciar el operator_
+    operator_ = '0';
     for (int i = 0; i < information.size(); i++) {
       candidates.clear();
       digits = 0;
-      if (information[i] != '{') {
+      if (information[i] != '{') {  //aqui es posible que tenga que añadir != " " para poder poner espacios
         for (int j = i; j < information.size(); j++) { 
           if (information[j] != ',' && information[j] != '}' && !isOperator(information[j])) {
             candidates.push_back(information[j]);
@@ -87,25 +92,26 @@ void Set::ReadFile(string filename) {
         }   
       }
     }
-    /*
-    next_set = false;
-    set_erased = false;
-    fill(set_vector_.begin(), set_vector_.end(), 0);*/
+    if (isOperator(operator_)) {
+      Solve();
+    } else {
+      WriteSettoFile();
+    }
   }
 }
 
 void Set::ReadString(string element) {
   int number = stoi(element) - 1;
-  if (isdigit(element[0]) && number < 63) {
+  if (isdigit(element[0]) && number < 64) {
     data_ = pow (2 , number);
   }
-  if (isdigit(element[0]) && number > 63) {
-    while (number > 63) {
-      number -= 63;
+  if (isdigit(element[0]) && number > 64) {
+    while (number > 64) {
+      number -= 64;
     }
     data_ = pow (2 , number);
   }
-  if (number == 63) {
+  if (number == 64) {
     data_ = pow(2, 0);
   }
 }
@@ -114,60 +120,94 @@ void Set::WritetoSet(string element) {
   int number = stoi(element);
   if (number <= get_maxvalue()) {
     ReadString(element);
-    int position = (number / 63);
+    int position = (number / 64);
     if (position == 0 ) {
       set_vector_[position] = set_vector_[position] | data_;
     } 
-    if (number % 63 == 0) {
+    if (number % 64 == 0) {
       set_vector_[position-1] = set_vector_[position - 1] | data_;
     } else {
       set_vector_[position] = set_vector_[position] | data_;
-    } 
+    }
   }
 }
 
 void Set::WriteSettoFile(void) {
   ofstream file;
-  string d; // cambiar d por algo descriptivo
-  string setsolution;
-  file.open("output.txt");
-  file << "{";
-  int count = 0;
+  file.open("output.txt", ofstream::out | ofstream::app);
+  int element = 0;
+  int iterator = 0;
+  string swap;
+  string solution;
+  string subset;  
+  solution.push_back('{');
   for (int i = 0; i < set_vector_.size(); i++) {
-    d = std::bitset<63>(set_vector_[i]).to_string();
-    reverse(d.begin(), d.end());
-    for (int j = 0; j < d.size(); j++) {
-      count++;
-      if(d[j] == '1') {
-        file << count;
-        if (count  != get_maxvalue()) {
-          file << ",";
+    subset = std::bitset<64>(set_vector_[i]).to_string();
+    reverse(subset.begin(), subset.end());
+    for (int j = 0; j < subset.size(); j++) {
+      element++;
+      if(subset[j] == '1') {
+        swap = to_string(element);
+        iterator = 0;
+        while (swap.size() > iterator) {
+          solution.push_back(swap[iterator]);
+          iterator++;
         }
+        solution.push_back(',');
+        solution.push_back(' ');
       }
     }
   }
-  file << "}" << endl;
+  solution.erase(solution.size() - 1);
+  solution.erase(solution.size() - 1);
+  solution.push_back('}');
+  solution.push_back('\n');
+  file << solution;
   file.close();
-  for (int i = 0; i < set_vector_.size(); i++) {
-    cout << set_vector_[i] << endl;
+}
+
+void Set::RemoveElement(string element) {
+  int number = stoi(element);
+  if (number <= get_maxvalue()) {
+    ReadString(element);
+    int position = (number / 64);
+    if (position >= 0 ) {
+      cout << "Data_" << data_ << endl;
+      set_vector_[position] = set_vector_[position] ^ data_;
+    } 
+    if (number % 64 == 0) {
+      cout << "Entre en el segundo if" << endl;
+      set_vector_[position-1] = set_vector_[position - 1] ^ data_;
+    }
   }
+}
+
+void Set::WipeSet(void) {
+  for (int i = 0; i < Get_SetVectorSize(); i++) {
+    fill(set_vector_.begin(), set_vector_.end(), 0);
+  }
+  
 }
 
 void Set::Solve(void) {
   if (Get_Operator() == '+') {
     Union();
+    WriteSettoFile();
   }
   if (Get_Operator() == '-') {
-    /* code */
+    RelativeComplement();
+    WriteSettoFile();
   }
   if (Get_Operator() == '*') {
-    /* code */
+    Intersection();
+    WriteSettoFile();
   }
   if (Get_Operator() == '!') {
     Complementation();
+    WriteSettoFile();
   }
   if (Get_Operator() == '=') {
-    /* code */
+    WriteSettoFile();
   }
 }
 
@@ -177,6 +217,39 @@ void Set::CopyMainSet(void) {
     set_vector_copy_[i] = set_vector_[i];
     cout << set_vector_copy_[i] << endl;
   }
+}
+
+bool Set::isInSet(string element) {
+  bool isinset = false;
+  int number = stoi(element);
+  int position = (number / 64);
+  string subset;
+
+  while (number > 64) {
+    number -= 64;
+  }
+  subset = std::bitset<64>(set_vector_[position]).to_string();
+  reverse(subset.begin(), subset.end());
+  if(subset[number - 1] == '1') {
+        isinset = true;
+  }
+  return isinset;
+}
+
+bool Set::isEmpty(void) {
+  bool empty = false;
+  int countnonzeros = 0;
+  for (int i = 0; i < Get_SetVectorSize(); i++) {
+    if (set_vector_[i] != 0) {
+      countnonzeros++;
+      empty = false;
+    } else {
+      if (countnonzeros == 0) {
+        empty = true;
+      }
+    }
+  }
+  return empty;
 }
 
 bool Set::isOperator(char symbol) {
@@ -197,15 +270,35 @@ bool Set::isUnary(char symbol) {
   
 }
 
+// Operations
+void Set::Union(void) { 
+  for (int i = 0; i < Get_SetVectorSize(); i++) {
+    set_vector_[i] = set_vector_[i] | set_vector_copy_[i];
+  }
+}
+
+void Set::RelativeComplement(void) {
+  for (int i = 0; i < Get_SetVectorSize(); i++) {
+    set_vector_[i] = set_vector_[i] ^ set_vector_copy_[i] ;
+  }
+}
+
+void Set::Intersection(void) {
+  for (int i = 0; i < Get_SetVectorSize(); i++) {
+    set_vector_[i] = set_vector_[i] & set_vector_copy_[i] ;
+  }  
+}
+
 void Set::Complementation(void) {
   for (int i = 0; i < Get_SetVectorSize(); i++) {
     set_vector_[i] = ~set_vector_[i] ;
   }
 }
 
-void Set::Union(void) { 
-  cout << "Entre aquí" << endl;
-  for (int i = 0; i < Get_SetVectorSize(); i++) {
-    set_vector_[i] = set_vector_[i] | set_vector_copy_[i];
-  }
-}
+// Overloads
+
+/*
+ostream & operator << (ostream &out, Set &subset) {
+  out << "Hola xd";
+  return out;
+}*/

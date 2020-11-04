@@ -3,18 +3,35 @@
 
 // int argc, char const *argv[]
 int main() {
-   Set A;
+   Set A(128);
     
   /*
   A.WritetoSet("64"); // da problemas
   */
   
   A.ReadFile("input.txt");
-  A.Solve();
+  //A.Solve();
+  //A.WriteSettoFile();
+  /*
+  A.WritetoSet("1");
+  A.WritetoSet("2");
+  A.WritetoSet("3");
+  A.WritetoSet("64");
+  A.WritetoSet("100");
   A.WriteSettoFile();
-  
-
-   return 0;
+  cout << A << endl;
+  */
+ /*
+  uint64_t prueba = pow(2,64);
+  unsigned long int prueba2 = pow(2,64);
+  cout << "Valor mas alto: " << endl;
+  cout << prueba << endl;
+  cout << prueba2 << endl;
+  string subset;
+  subset = bitset<128>(prueba).to_string();
+  cout << subset << endl;
+  */
+  return 0;
 }
 
 
