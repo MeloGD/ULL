@@ -1,16 +1,17 @@
 #include "set_calculator.h"
 
+#define kNum_Bits 64
 
 Set::Set() {
-  size_ = sizeof(long) * 8;
+  max_element_ = sizeof(long) * 8;
   set_vector_.resize(1);
   set_vector_copy_.resize(1);
   data_ = 0;
 }
 
 Set::Set(float size) { 
-  size_ = size;
-  set_vector_.resize(ceil(size/(sizeof(long) * 8))); // corregir para 64 elementos
+  max_element_ = size;
+  set_vector_.resize(ceil(size/(sizeof(long) * 8))); 
   set_vector_copy_.resize(ceil(size/(sizeof(long) * 8)));
   data_ = 0;
 }
@@ -18,199 +19,164 @@ Set::Set(float size) {
 Set::~Set() {}
 
 // Getters
+unsigned long int Set::Get_Data(void) {
+  return data_;
+}
+
+unsigned long int Set::Get_SetVectorValue(int position) {
+  return set_vector_[position];
+}
+
 char Set::Get_Operator(void) {
   return operator_;
 }
 
-int Set::get_maxvalue(void) {
-  return size_;
+int Set::Get_MaxValue(void) {
+  return max_element_;
 }
 
 int Set::Get_SetVectorSize(void) {
   return set_vector_.size();
 }
 
-int Set::Get_Size(void) {
-  return size_;
+string Set::Get_ElementsOverload(void) {
+  return elementsoverload_;
 }
 
 // Setters
+void Set::Set_Data(unsigned long int data) {
+  data_ = data;
+}
+
+void Set::Set_SetVectorValue(int position, unsigned long int value) {
+  set_vector_[position] = value;
+}
 void Set::Set_Operator(char sign) {
   operator_ = sign;
 }
 
-// Methods
-void Set::ReadFile(string filename) {
-  ifstream file;
-  string information;
-  string candidates;
-  int digits;
-  bool next_set = false;
-  bool set_erased = false;
-  if (elementsoverload_.empty()) {
-    file.open("input.txt");
-    while (getline(file, information)) {
-      next_set = false;
-      set_erased = false;
-      fill(set_vector_.begin(), set_vector_.end(), 0);
-      // vaciar el operator_
-      operator_ = '0';
-      for (int i = 0; i < information.size(); i++) {
-        candidates.clear();
-        digits = 0;
-        if (information[i] != '{') {  //aqui es posible que tenga que añadir != " " para poder poner espacios
-          for (int j = i; j < information.size(); j++) { 
-            if (information[j] != ',' && information[j] != '}' && !isOperator(information[j])) {
-              candidates.push_back(information[j]);
-              digits++;
-            } else {
-              i += digits;
-              if (information[j] == '}') {
-                //i++; 
-              }
-              if (isOperator(information[j])) {
-                Set_Operator(information[j]);
-                //i = information.size();
-                i++; // esto puede crear problemas
-                if (!isUnary(information[j])) {
-                  next_set = true;
-                }             
-              }
-              j = information.size();
-            }
-          }
-          if (!candidates.empty()) {
-            if (!next_set) { //esto de aqui es lo nuevo, borrar el if si da problemas
-              WritetoSet(candidates);
-            } else {
-              if (!set_erased) {
-                CopyMainSet();
-                fill(set_vector_.begin(), set_vector_.end(), 0);
-                set_erased = true; 
-              }
-              WritetoSet(candidates);
-            }
-            
-            /*
-            WritetoSet(candidates);
-            cout << candidates << endl;
-            */
-          }   
-        }
-      }
-      if (isOperator(operator_)) {
-        Solve();
-      } else {
-        WriteSettoFile();
-      }
-    }
-  } else {
-    next_set = false;
-    set_erased = false;
-    fill(set_vector_.begin(), set_vector_.end(), 0);
-    // vaciar el operator_
-    operator_ = '0';
-    for (int i = 0; i < elementsoverload_.size(); i++) {
-      candidates.clear();
-      digits = 0;
-      if (elementsoverload_[i] != '{') {  //aqui es posible que tenga que añadir != " " para poder poner espacios
-        for (int j = i; j < elementsoverload_.size(); j++) { 
-          if (elementsoverload_[j] != ',' && elementsoverload_[j] != '}' && !isOperator(elementsoverload_[j])) {
-            candidates.push_back(elementsoverload_[j]);
-            digits++;
-          } else {
-            i += digits;
-            if (elementsoverload_[j] == '}') {
-              //i++; 
-            }
-            if (isOperator(elementsoverload_[j])) {
-              Set_Operator(elementsoverload_[j]);
-              //i = elementsoverload_.size();
-              i++; // esto puede crear problemas
-              if (!isUnary(elementsoverload_[j])) {
-                next_set = true;
-              }             
-            }
-            j = elementsoverload_.size();
-          }
-        }
-        if (!candidates.empty()) {
-          if (!next_set) { //esto de aqui es lo nuevo, borrar el if si da problemas
-            WritetoSet(candidates);
-          } else {
-            if (!set_erased) {
-              CopyMainSet();
-              fill(set_vector_.begin(), set_vector_.end(), 0);
-              set_erased = true; 
-            }
-            WritetoSet(candidates);
-          }           
-        }   
-      }
-    }
-    if (isOperator(operator_)) {
-      Solve();
-    } else {
-      WriteSettoFile();
-    }
-    
-  }
-  
-  
+void Set::Set_ElementsOverload(string elemments) {
+  elementsoverload_ = elemments;
+}
 
+
+// Methods
+void Set::ReadFile(string filename, string outputfile) {
+  ifstream    file;
+  string      information;
+  file.open("input.txt");
+  while (getline(file, information)) {
+    Filter(information, outputfile);
+  }
+  file.close();
+}
+
+void Set::Filter(string information, string outputfile) {
+  string candidates;
+  bool next_set = false;
+  bool erased = false;
+  int digits = 0;
+  fill(set_vector_.begin(), set_vector_.end(), 0);
+  Set_Operator('0');
+  for (int i = 0; i < information.size(); i++) {
+    candidates.clear();
+    digits = 0;
+    if (information[i] != '{' && information[i] != ' ') {  
+      for (int j = i; j < information.size(); j++) { 
+        if (information[j] != ',' && information[j] != '}' 
+            && information[j] != ' ' && !isOperator(information[j])) {
+          candidates.push_back(information[j]);
+          digits++;
+        } else {
+          i += digits;
+          if (isOperator(information[j])) {
+            Set_Operator(information[j]);
+            i++; 
+            if (!isUnary(information[j])) {
+              next_set = true;
+            }             
+          }
+          j = information.size();
+        }
+      }
+      if (!candidates.empty()) {
+        if (!next_set) { 
+          WritetoSet(candidates);
+        } else {
+          if (!erased) {
+            CopyMainSet();
+            fill(set_vector_.begin(), set_vector_.end(), 0);
+            erased = true; 
+          }
+          WritetoSet(candidates);
+        }
+      }   
+    }
+  }
+  if (isOperator(operator_)) {
+    Solve(outputfile);
+  } else {
+    WriteSettoFile(outputfile);
+  }
 }
 
 void Set::ReadString(string element) {
-  int number = stoi(element) - 1;
-  if (isdigit(element[0]) && number < 64) {
-    data_ = pow (2 , number);
+  int leftshift = stoi(element) - 1;
+  if (isdigit(element[0]) && leftshift < kNum_Bits) {
+    Set_Data(pow (2 , leftshift)); 
   }
-  if (isdigit(element[0]) && number > 64) {
-    while (number > 64) {
-      number -= 64;
+  if (isdigit(element[0]) && leftshift > kNum_Bits) {
+    while (leftshift > kNum_Bits) {
+      leftshift -= kNum_Bits;
     }
-    data_ = pow (2 , number);
+    Set_Data(pow (2 , leftshift));
   }
-  if (number == 64) {
-    data_ = pow(2, 0);
+  if (leftshift == kNum_Bits) {
+    Set_Data(pow(2, 0));
   }
 }
 
 void Set::WritetoSet(string element) {
   int number = stoi(element);
-  if (number <= get_maxvalue()) {
+  int kCorrection = 1;
+  if (number <= Get_MaxValue()) {
     ReadString(element);
-    int position = (number / 64);
+    int position = (number / kNum_Bits);
     if (position == 0 ) {
-      set_vector_[position] = set_vector_[position] | data_;
+      Set_SetVectorValue(position, Get_SetVectorValue(position) | Get_Data());
     } 
-    if (number % 64 == 0) {
-      set_vector_[position-1] = set_vector_[position - 1] | data_;
+    if (number % kNum_Bits == 0) {
+      Set_SetVectorValue(position - kCorrection, 
+      Get_SetVectorValue(position - kCorrection) | Get_Data());
     } else {
-      set_vector_[position] = set_vector_[position] | data_;
+      Set_SetVectorValue(position, Get_SetVectorValue(position) | Get_Data());
     }
   }
 }
 
-void Set::WriteSettoFile(void) {
+void Set::WriteSettoFile(string outputfile) {
   ofstream file;
-  file.open("output.txt", ofstream::out | ofstream::app);
+  file.open(outputfile, ofstream::out | ofstream::app);
+  // Element = Posicion del valor --> Coincide con el valor
   int element = 0;
   int iterator = 0;
-  string swap;
+  // Swap --> Para guardar el número del conjunto como string
+  // y colocarlo en la string de solución
+  string number;  
   string solution;
   string subset;  
+
   solution.push_back('{');
-  for (int i = 0; i < set_vector_.size(); i++) {
-    subset = std::bitset<64>(set_vector_[i]).to_string();
+  for (int i = 0; i < Get_SetVectorSize(); i++) {
+    subset = std::bitset<kNum_Bits>(set_vector_[i]).to_string();
     reverse(subset.begin(), subset.end());
     for (int j = 0; j < subset.size(); j++) {
       element++;
       if(subset[j] == '1') {
-        swap = to_string(element);
+        number = to_string(element);
         iterator = 0;
-        while (swap.size() > iterator) {
-          solution.push_back(swap[iterator]);
+        while (number.size() > iterator) {
+          solution.push_back(number[iterator]);
           iterator++;
         }
         solution.push_back(',');
@@ -228,16 +194,17 @@ void Set::WriteSettoFile(void) {
 
 void Set::RemoveElement(string element) {
   int number = stoi(element);
-  if (number <= get_maxvalue()) {
+  int kCorrection = 1;
+  if (number <= Get_MaxValue()) {
     ReadString(element);
-    int position = (number / 64);
+    int position = (number / kNum_Bits);
     if (position >= 0 ) {
-      cout << "Data_" << data_ << endl;
-      set_vector_[position] = set_vector_[position] ^ data_;
+      Set_SetVectorValue(position, Get_SetVectorValue(position) ^ Get_Data());
+      // set_vector_[position] = set_vector_[position] ^ data_;
     } 
-    if (number % 64 == 0) {
-      cout << "Entre en el segundo if" << endl;
-      set_vector_[position-1] = set_vector_[position - 1] ^ data_;
+    if (number % kNum_Bits == 0) {
+      Set_SetVectorValue(position - kCorrection, Get_SetVectorValue(position - kCorrection) ^ Get_Data());
+      // set_vector_[position-1] = set_vector_[position - 1] ^ data_;
     }
   }
 }
@@ -249,46 +216,44 @@ void Set::WipeSet(void) {
   
 }
 
-void Set::Solve(void) {
+void Set::Solve(string outputfile) {
   if (Get_Operator() == '+') {
     Union();
-    WriteSettoFile();
+    WriteSettoFile(outputfile);
   }
   if (Get_Operator() == '-') {
     RelativeComplement();
-    WriteSettoFile();
+    WriteSettoFile(outputfile);
   }
   if (Get_Operator() == '*') {
     Intersection();
-    WriteSettoFile();
+    WriteSettoFile(outputfile);
   }
   if (Get_Operator() == '!') {
     Complementation();
-    WriteSettoFile();
+    WriteSettoFile(outputfile);
   }
   if (Get_Operator() == '=') {
-    WriteSettoFile();
+    WriteSettoFile(outputfile);
   }
 }
 
 void Set::CopyMainSet(void) {
   for (int i = 0; i < Get_SetVectorSize(); i++) {
-    cout << "Vector copiado: " << endl;
     set_vector_copy_[i] = set_vector_[i];
-    cout << set_vector_copy_[i] << endl;
   }
 }
 
 bool Set::isInSet(string element) {
   bool isinset = false;
   int number = stoi(element);
-  int position = (number / 64);
+  int position = (number / kNum_Bits);
   string subset;
 
-  while (number > 64) {
-    number -= 64;
+  while (number > kNum_Bits) {
+    number -= kNum_Bits;
   }
-  subset = std::bitset<64>(set_vector_[position]).to_string();
+  subset = std::bitset<kNum_Bits>(set_vector_[position]).to_string();
   reverse(subset.begin(), subset.end());
   if(subset[number - 1] == '1') {
         isinset = true;
@@ -356,10 +321,43 @@ void Set::Complementation(void) {
 }
 
 // Overloads
+ostream& operator <<( ostream &out, Set &set) {
+    int element = 0;
+    int iterator = 0;
+    string swap;
+    string solution;
+    string subset;
+    
+    solution.push_back('{');
+    for (int i = 0; i < set.set_vector_.size(); i++) {
+      subset = std::bitset<64>(set.set_vector_[i]).to_string();
+      reverse(subset.begin(), subset.end());
+      for (int j = 0; j < subset.size(); j++) {
+        element++;
+        if(subset[j] == '1') {
+          swap = to_string(element);
+          iterator = 0;
+          while (swap.size() > iterator) {
+            solution.push_back(swap[iterator]);
+            iterator++;
+          }
+          solution.push_back(',');
+          solution.push_back(' ');
+        }
+      }
+    }
+    solution.erase(solution.size() - 1);
+    solution.erase(solution.size() - 1);
+    solution.push_back('}');
+    out << solution;
+    return out;
+  }
 
 istream& operator>>(istream& in, Set& subset) {
-  cin >> subset.elementsoverload_;
-  subset.ReadFile(subset.elementsoverload_);
+  string elements;
+  cin >> elements;
+  subset.Set_ElementsOverload(elements);
+  subset.Filter(subset.Get_ElementsOverload(), "");
   return in;
 }
 
@@ -372,8 +370,8 @@ bool operator==(const Set& set1, const Set& set2) {
         equal = true;
       }   
     } else {
-        notequals++;
-        equal = false;
+      notequals++;
+      equal = false;
     }
   }
   return equal;
