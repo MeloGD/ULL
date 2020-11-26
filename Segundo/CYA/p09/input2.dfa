@@ -1,0 +1,45 @@
+//  Universidad de La Laguna.
+//  Grado en Ingeniería Informática.
+//  Computabilidad y Algoritmia.
+// 
+//  Fichero de representación de un DFA.
+//  Lenguaje reconocido: Cadenas binarias que representan números
+//  enteros divisibles por 3.
+//  ER: (1(01*0)*1|0)+
+//  Sintaxis para este caso:
+//  2 --> Nº de elementos del alfabeto
+//  5 --> Nº de estados
+//  q0 --> Estado inicial
+//  2 --> Nº de estados finales
+//  8 --> Delta transiciones
+////////////////////////////////////////////////////////////////
+3
+R
+P
+S
+7
+Q0
+Q1
+Q2
+Q3
+Q4
+Q5
+Q6
+Q0
+3
+Q4
+Q5
+Q6
+12
+Q0 R Q1
+Q0 P Q2
+Q0 S Q3
+Q1 R Q5
+Q1 P Q6
+Q1 S Q4
+Q2 R Q4
+Q2 P Q5
+Q2 S Q6
+Q3 R Q6
+Q3 P Q4
+Q3 S Q5

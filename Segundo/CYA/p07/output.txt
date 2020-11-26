@@ -1,0 +1,3 @@
+0 --> Sí.
+011 --> Comienza con un cero. Debe quitarlo para ser evaluado.
+11 --> Sí.
