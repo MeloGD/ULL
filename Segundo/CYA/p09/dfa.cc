@@ -14,6 +14,7 @@ Las cadenas son evaluadas desde un input.txt y la solución estára alojada
 en output.txt
 */
 #include "dfa.h"
+#include "grammar.h"
 
 /**
  * @brief Constructor y destructor por defecto .
@@ -328,4 +329,10 @@ void Dfa::ResizeTransitions(int row) {
   for (int i = 0; i < row; i++) {
     transitions_[i].resize(3);
   }
+}
+
+Grammar* Dfa::ConvertToGrammar(void) {
+  
+  
+  return grammar_;
 }

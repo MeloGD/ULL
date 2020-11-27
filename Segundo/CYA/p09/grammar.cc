@@ -1,11 +1,19 @@
 #include "grammar.h"
 
-Grammar::Grammar(string dfafile) {
-  Dfa dfaforgrammar(dfafile);
-  BuildTerminalSymbols(dfaforgrammar);
-  BuildNonTerminalSymbols(dfaforgrammar);
-  start_ = dfaforgrammar.get_initialstate();
-  BuildProductions(dfaforgrammar);
+Grammar::Grammar(){
+  Dfa dfatogrammar("xdsas");
+  BuildTerminalSymbols(dfatogrammar);
+  BuildNonTerminalSymbols(dfatogrammar);
+  start_ = dfatogrammar.get_initialstate();
+  BuildProductions(dfatogrammar);
+}
+
+
+Grammar::Grammar(Dfa &dfatogrammar) {
+  BuildTerminalSymbols(dfatogrammar);
+  BuildNonTerminalSymbols(dfatogrammar);
+  start_ = dfatogrammar.get_initialstate();
+  BuildProductions(dfatogrammar);
 }
 
 Grammar::~Grammar() {

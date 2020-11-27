@@ -13,10 +13,16 @@ sin son números binarios divisibles por 3 (11, que es 3, sería admitido).
 Las cadenas son evaluadas desde un input.txt y la solución estára alojada 
 en output.txt
 */
+#ifndef DFA
+#define DFA
+
+
+
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
+
 
 using namespace std;
 
@@ -27,6 +33,7 @@ typedef vector<vector<string>> matrixofstrings;
  * inicial; Estados finales; Delta, que este caso es una matriz (vector de
  * vectores de string) de transiciones.
  */
+class Grammar;
 class Dfa {
 private:
   vector<char> alphabet_;
@@ -39,6 +46,8 @@ private:
    * input.dfa, para poder construir correctamente cada atributo.
    */
   int linecounter_;
+  Grammar* grammar_;
+   
 
 public:
   // Constructor y destructor por defecto.
@@ -65,6 +74,9 @@ public:
   void BuildInitialState(string dfafile);
   void BuildFinalStates(string dfafile);
   void BuildTrasitions(string dfafile); 
-  void ResizeTransitions(int row); 
+  void ResizeTransitions(int row);
+  // Grammar* ConvertToGrammar(void); 
+  Grammar *ConvertToGrammar(void);
 };
 
+#endif

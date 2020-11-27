@@ -1,6 +1,9 @@
+#ifndef GRAMMAR 
+#define GRAMMAR
+
 #include "dfa.h"
 
-
+// Gramática
 class Grammar {
 private:
   vector<char> terminalsymbols_;
@@ -9,7 +12,8 @@ private:
   string start_;
   
 public:
-  Grammar(string dfafile);
+  Grammar();
+  Grammar(Dfa &dfatogrammar);
   ~Grammar();
 
   // Getters
@@ -23,6 +27,6 @@ public:
   void BuildNonTerminalSymbols(Dfa dfaforgrammar);
   void BuildStart(Dfa dfaforgrammar);
   void BuildProductions(Dfa dfaforgrammar);
-  Grammar ConvertToGrammar(void);
 };
 
+#endif

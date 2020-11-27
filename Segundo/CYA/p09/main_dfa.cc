@@ -16,11 +16,16 @@ en output.txt
 
 #include "grammar.h"
 
+
 // int argc, char const *argv[]
 int main() {
   string help = "--help";
   vector<string> test;
-  Grammar gramamrtest("input.dfa");
+  Dfa dfasimulation("input.dfa");
+  Grammar grammartest(dfasimulation);
+  //grammartest = *dfasimulation.ConvertToGrammar();
+
+  
 
 
   /*
