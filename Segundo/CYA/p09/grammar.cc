@@ -87,20 +87,29 @@ void Grammar::BuildProductions(Dfa dfaforgrammar) {
       foundfinal = false;
       newproduction = true;
       current = temporarymatrix[i][0];
-      i--;/*
-      if (!data.empty()) {
-        newproduction = true;
-        //productions_.push_back(data);
-        current = temporarymatrix[i][0];
-        data.clear();
-        i--;
-      } else {
-        newproduction = true;
-        current = temporarymatrix[i][0];
-        i--;
-      }*/
+      i--;
     }
   }
+  for (auto j = 0; j < finalstates.size(); j++) {
+    auto lenght = finalstates[j].size();
+    string finalstate = finalstates[j];
+    auto once = 0;
+    bool found = false;
+    for (auto i = 0; i < productions_.size(); i++) {
+      string state = productions_[i].substr(0, lenght);
+      if (finalstate == state) {
+        found = true;
+      }
+    }
+    if (found == false) {
+      data.clear();
+      data = finalstate;
+      data += " -> ~";
+      productions_.push_back(data);
+    }
+  }
+    
+    
   
   for (int i = 0; i < productions_.size(); i++)
   {
