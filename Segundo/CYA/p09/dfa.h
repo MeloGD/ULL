@@ -76,7 +76,7 @@ public:
   void BuildTrasitions(string dfafile); 
   void ResizeTransitions(int row);
   // Grammar* ConvertToGrammar(void); 
-  Grammar *ConvertToGrammar(void);
+  Grammar ConvertToGrammar(void);
 };
 
 #endif

@@ -17,39 +17,30 @@ en output.txt
 #include "grammar.h"
 
 
-// int argc, char const *argv[]
-int main() {
+int main(int argc, char const *argv[]) {
   string help = "--help";
-  vector<string> test;
-  Dfa dfasimulation("input.dfa");
-  Grammar grammartest(dfasimulation);
-  //grammartest = *dfasimulation.ConvertToGrammar();
-
-  
-
-
-  /*
   if (argc == 1) {
-    cout << "Ejecute ./dfa --help para obetener más información." << endl;
+    cout << "Ejecute ./grammar --help para obetener más información." << endl;
   }
   if (argc == 2 && argv[1] == help) {
     cout << "--help" << endl;
     cout << "Ejemplo:" << endl;
-    cout << "./dfa input.dfa input.txt output.txt" << endl;
+    cout << "./grammar input.dfa output.gra" << endl;
     cout << "input.dfa: Contiene la sitaxis que describe el dfa." << endl;
-    cout << "input.txt: Las cadenas a estudiar." << endl;
-    cout << "output.txt: El resultado de su evaluación." << endl;
+    cout << "output.gra: El resultado de la gramática converida." << endl;
   } else if (argc == 2 && argv[1] != help) {
     cout << "[ERROR]" << endl;
-    cout << "Ejecute ./dfa --help para obetener más información." << endl;
+    cout << "Ejecute ./grammar --help para obetener más información." << endl;
   } 
-  if (argc == 4) {
-    Dfa dfasimulator1(argv[1]);
-    dfasimulator1.ReadAndWriteFile(argv[2], argv[3]);
-  } else if (argc != 4 && argc != 1 && argc != 2) {
+  if (argc == 3) {
+    Dfa dfasimulation(argv[1]);
+    Grammar grammarsimulation;
+    grammarsimulation = dfasimulation.ConvertToGrammar();
+    grammarsimulation.WriteFile(argv[2]);
+  } else if (argc != 3 && argc != 1 && argc != 2) {
     cout << "[ERROR]" << endl;
-    cout << "Ejecute ./dfa --help para obetener más información." << endl;
+    cout << "Ejecute ./grammar --help para obetener más información." << endl;
   }
-  */ 
+  
   return 0;
 }

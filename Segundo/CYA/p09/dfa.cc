@@ -331,8 +331,11 @@ void Dfa::ResizeTransitions(int row) {
   }
 }
 
-Grammar* Dfa::ConvertToGrammar(void) {
-  
-  
-  return grammar_;
+Grammar Dfa::ConvertToGrammar(void) {
+  Grammar grammarobject;
+  grammarobject.set_terminalsymbols(get_alphabet());
+  grammarobject.set_nonterminalsymbols(get_states());
+  grammarobject.set_start(get_initialstate());
+  grammarobject.set_productions(get_transitions(), get_finalstates());
+  return grammarobject;
 }
