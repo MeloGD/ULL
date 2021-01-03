@@ -2,21 +2,9 @@
 
 
 
-Grammar::Grammar(){
+Grammar::Grammar(){}
 
-}
-
-/*
-Grammar::Grammar(Dfa &dfatogrammar) {
-  BuildTerminalSymbols(dfatogrammar);
-  BuildNonTerminalSymbols(dfatogrammar);
-  start_ = dfatogrammar.get_initialstate();
-  BuildProductions(dfatogrammar);
-}*/
-
-Grammar::~Grammar() {
-
-}
+Grammar::~Grammar() {}
 
 // Getters
 vector<char> Grammar::get_terminalsymbols(void) {
@@ -66,30 +54,23 @@ void Grammar::set_productions(matrixofstrings transitions, vector<string> finals
       }
       data.push_back(transitions[index][1][0]);
       data += transitions[index][2];
-      if (terminalsymbols_.back() != transitions[index][1][0]) {
+      if (terminalsymbols_.back() != transitions[index][1][0] ) {
         data.push_back('|');
       } else {
-        for (auto position = 0; position < finalstates.size(); position++) {
-          string finalstate = finalstates[position];
-          if (current == finalstate) {
-            foundfinal = true;
-          }
-        }
-        if (foundfinal) {
-          accepted = current + " -> ~";
-          productions_.push_back(data);
-          productions_.push_back(accepted);
-          accepted.clear();
-        } else {
           productions_.push_back(data);
           data.clear();
-        }
       } 
     } else {
       foundfinal = false;
       newproduction = true;
       current = transitions[index][0];
       index--;
+      if (!data.empty()) {
+        if (data.back() == '|') {
+          data.pop_back();
+        }
+        productions_.push_back(data);
+      }
     }
   }
   BuildFinalProductions(finalstates); 
@@ -98,23 +79,17 @@ void Grammar::set_productions(matrixofstrings transitions, vector<string> finals
 // Methods
 void Grammar::BuildFinalProductions(vector<string> finalstates) {
   string data;
-    for (auto j = 0; j < finalstates.size(); j++) {
-    auto lenght = finalstates[j].size();
-    string finalstate = finalstates[j];
-    auto once = 0;
-    bool found = false;
-    for (auto i = 0; i < productions_.size(); i++) {
-      string state = productions_[i].substr(0, lenght);
-      if (finalstate == state) {
-        found = true;
-      }
-    }
-    if (found == false) {
+  for (auto j = 0; j < finalstates.size(); j++) {
       data.clear();
-      data = finalstate;
+      data = finalstates[j];
       data += " -> ~";
       productions_.push_back(data);
-    }
+
+  }
+  if (get_start() == "S") {
+    sort(productions_.begin() + 1, productions_.end());
+  } else {
+    sort(productions_.begin(), productions_.end());
   }
 }
 

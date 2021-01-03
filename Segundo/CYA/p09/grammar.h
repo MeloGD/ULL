@@ -2,6 +2,7 @@
 #define GRAMMAR
 
 #include "dfa.h"
+#include <algorithm>
 
 // Gramática
 class Grammar {
