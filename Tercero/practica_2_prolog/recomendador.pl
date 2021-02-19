@@ -54,7 +54,6 @@ option(1) :-
   read(Answer6),  nl,
 
   % Resultado
-  % destination(Dest,Answer1,Answer2,Answer3,Answer4), nl,
   conclution(Answer1, Answer2, Answer3, Answer4, Answer5, Answer6, Dest),
   write('Le recomendamos que viaje a:'), nl,
   write(Dest).
@@ -92,19 +91,19 @@ destination('Las Vegas, Estados Unidos.', 41,'verano','amigos','entretenimiento'
 destination('Abu Dhabi, Emiratos Árabes.', 41,'verano','pareja','entretenimiento','hotel', 2500).
 
 %%% Buscador / Predicados
-conclution(A, B, C, D, E, F, Dest) :- weather(A,Dest), season(B, Dest), people(C, Dest), reason(D, Dest), residence(E, Dest), budget(F, Dest).
+conclution(A, B, C, D, E, F, Dest) :- weather(A,Dest), season(B, Dest), people(C, Dest), reason(D, Dest), residence(E, Dest), budget(F, Dest), !.
 conclution(_, _, _, _, _, _, Dest) :- Dest = 'No le puedo recomendar un destino con sus parámetros.'.
-
-%weather(A, Dest) :- destination(Dest,A,_,_,_).
-season(B, Dest) :- destination(Dest,_,B,_,_,_,_).
-people(C, Dest) :- destination(Dest,_,_,C,_,_,_).
-reason(D, Dest) :- destination(Dest,_,_,_,D,_,_).
-residence(E, Dest) :- destination(Dest,_,_,_,_,E,_).
 
 % Clima
 weather(A, Dest) :- destination(Dest,Temp,_,_,_,_,_) , Temp < 15, A == 'frio'.
 weather(A, Dest) :- destination(Dest,Temp,_,_,_,_,_) , Temp > 15, Temp < 30, A == 'templado'.
 weather(A, Dest) :- destination(Dest,Temp,_,_,_,_,_) , Temp > 30, A == 'calido'.
+
+% Estación, nº de gente, motivo y estancia
+season(B, Dest) :- destination(Dest,_,B,_,_,_,_).
+people(C, Dest) :- destination(Dest,_,_,C,_,_,_).
+reason(D, Dest) :- destination(Dest,_,_,_,D,_,_).
+residence(E, Dest) :- destination(Dest,_,_,_,_,E,_).
 
 % Presupuesto
 budget(F, Dest) :- destination(Dest,_,_,_,_,_,Price) , Price < 150, F == 'bajo'.
