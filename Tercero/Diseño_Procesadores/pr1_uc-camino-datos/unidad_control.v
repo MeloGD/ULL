@@ -1,4 +1,4 @@
-module unidad_control (input wire q0, reset, clk, output wire CargaQ, DesplazaQ, ResetA, CargaA, Fin)
+module unidad_control (input wire q0, qsub1, reset, clk, output wire CargaQ, DesplazaAQ, ResetA, CargaA, CargaM,Fin)
   // Variables reg que almacenan el estado actual y el siguiente
   reg [2:0] estado, estado_siguiente;
 
@@ -15,9 +15,9 @@ module unidad_control (input wire q0, reset, clk, output wire CargaQ, DesplazaQ,
   // Cambios en flacos de subida de clk o reset
   always @(posedge clk, posedge reset)
     if (reset)
-        state <= S0;
+        estado <= S0;
     else
-        state <= estado_siguiente;
+        estado <= estado_siguiente;
   end
 
   // Funcion de transicion
@@ -37,10 +37,11 @@ module unidad_control (input wire q0, reset, clk, output wire CargaQ, DesplazaQ,
 
   // Funcion de salida
   assign CargaQ = (estado == S0) ? 1:0;
-  assign DesplazaQ = ((estado == S2) | (estado == S4) | (estado == S6)) ? 1:0;
+  assign DesplazaAQ = ((estado == S2) | (estado == S4) | (estado == S6)) ? 1:0;
   assign ResetA = (estado == S0) ? 1:0;
-  assign CargaA;
-  assign Fin;
+  assign CargaA = ((estado == S1) | (estado == S3) | (estado == S5)) ? 1:0;
+  assign CargaM = (estado == S0) ? 1:0;
+  assign Fin = (estado == S7) ? 1:0;
     
 
 end module
