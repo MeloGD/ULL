@@ -1,4 +1,4 @@
-module unidad_control (input wire q0, qsub1, reset, clk, output wire CargaQ, DesplazaAQ, ResetA, CargaA, CargaM,Fin)
+module unidad_control (input wire q0, qsub1, reset, clk, output wire CargaQ, DesplazaAQ, ResetA, CargaA, CargaM, Fin);
   // Variables reg que almacenan el estado actual y el siguiente
   reg [2:0] estado, estado_siguiente;
 
@@ -18,7 +18,7 @@ module unidad_control (input wire q0, qsub1, reset, clk, output wire CargaQ, Des
         estado <= S0;
     else
         estado <= estado_siguiente;
-  end
+  
 
   // Funcion de transicion
   always @(*)
@@ -33,15 +33,17 @@ module unidad_control (input wire q0, qsub1, reset, clk, output wire CargaQ, Des
       S7: estado_siguiente = S7; 
       default: estado_siguiente = S0;
     endcase
-  end
+  
 
   // Funcion de salida
+  // Utilizar un solo reset en S0 para todos los registros
   assign CargaQ = (estado == S0) ? 1:0;
-  assign DesplazaAQ = ((estado == S2) | (estado == S4) | (estado == S6)) ? 1:0;
-  assign ResetA = (estado == S0) ? 1:0;
-  assign CargaA = ((estado == S1) | (estado == S3) | (estado == S5)) ? 1:0;
-  assign CargaM = (estado == S0) ? 1:0;
+  assign CargaM = (estado == S0) ? 1:0; // extension de signo
+  assign ResetA = (estado == S0) ? 1:0; 
+  assign DesplazaAQ = ((estado == S2) || (estado == S4) || (estado == S6)) ? 1:0;
+  assign CargaA = ((estado == S1) || (estado == S3) || (estado == S5) && (((q0 == 0) && (qsub1 == 1)) || ((q0 == 1) && (qsub1 == 0)))) ? 1:0;
+
   assign Fin = (estado == S7) ? 1:0;
     
 
-end module
+endmodule
