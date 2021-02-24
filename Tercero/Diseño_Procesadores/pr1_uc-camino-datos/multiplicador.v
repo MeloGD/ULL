@@ -3,7 +3,7 @@ module multiplicador (input wire [2:0] multiplicando, multiplicador, input wire 
   wire [2:0] q; 
   wire CargaA, CargaM, CargaQ, desplaza,  resta, qsub1;
   // module camino_datos (input wire [2:0] entrada_q, entrada_m, input wire CargaA, CargaQ, CargaM, desplaza, 
-  //                      clk, reset, resta, input wire [2:0] salida_q, output wire qsub1);
+  //                      clk, reset, resta, input wire [2:0] salida_q, output wire qsub1, output wire [5:0] resultado);
   camino_datos CD(multiplicador, multiplicando, CargaA, CargaM, CargaQ, desplaza, Fin, clk, reset, resta, q, qsub1, resultado);
   // module unidad_control (input wire q0, qsub1, reset, clk, output wire CargaQ, DesplazaAQ, CargaA, CargaM, Fin);
   unidad_control UC(q, qsub1, reset, clk, CargaQ, desplaza, CargaA, CargaM, resta, Fin);
