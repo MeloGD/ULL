@@ -17,6 +17,7 @@ module camino_datos (input wire [2:0] entrada_q, entrada_m, input wire CargaA, C
   ffdc #(0) Qmenos1(clk, reset, carga, salida_q[0] , qsub1);
   // preguntar si en el campo input d se puede poner salida_q[0]
   
-  // assign {salida_a[2:0],salida_q} = (fin == 1) ? res
+  // con los assign, no hace falta que resultado sea tipo reg, si fuera un bloque always o similar, si
+  assign resultado = {salida_a[2:0],salida_q};
 endmodule
 
