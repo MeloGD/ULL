@@ -69,19 +69,24 @@ void Ant::Run_Ant(World &mesh) {
     mesh.At_Position( get_currentx() , get_currenty() ).set_state(1);
     if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == '^') {
       Move_Left(mesh);
-    }
-    if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == '<') {
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == '<') {
       Move_Down(mesh);
-    }
-    if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == '>') {
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == '>') {
       Move_Up(mesh);
-    }    
-    if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == 'v') {
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == 'v') {
       Move_Right(mesh);
     }
-    
   } else {
-    
+    mesh.At_Position( get_currentx() , get_currenty() ).set_state(0);
+    if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == '^') {
+      Move_Right(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == '<') {
+      Move_Up(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == '>') {
+      Move_Down(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == 'v') {
+      Move_Left(mesh);
+    }    
   }
   
 }
@@ -102,10 +107,10 @@ void Ant::Move_Up(World &mesh) {
 
 void Ant::Move_Left(World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(' ');
-  set_oldx( get_currentx() );
-  int aux = get_currentx() - 1;
+  set_oldy( get_currenty() );
+  int aux = get_currenty() - 1;
   if (aux < 0) {
-    aux = mesh.get_row() - 1;
+    aux = mesh.get_column() - 1;
     set_currenty(aux);
     mesh.At_Position( get_currentx() , get_currenty() ).set_direction('<');
   } else {
@@ -114,13 +119,12 @@ void Ant::Move_Left(World &mesh) {
   } 
 }
 
-// de aqui para abajo corregir movimientos
 void Ant::Move_Right(World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(' ');
   set_oldy( get_currenty() );
   int aux = get_currenty() + 1;
   if (aux >= mesh.get_column()) {
-    aux = aux - mesh.get_column() ;
+    aux -= mesh.get_column() ;
     set_currenty(aux);
     mesh.At_Position( get_currentx() , get_currenty() ).set_direction('>');
   } else {
@@ -131,14 +135,14 @@ void Ant::Move_Right(World &mesh) {
 
 void Ant::Move_Down(World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(' ');
-  set_oldy( get_currenty() );
-  int aux = get_currenty() - 1;
-  if (aux < 0) {
-    aux = mesh.get_column() - 1;
-    set_currenty(aux);
-    mesh.At_Position( get_currentx() , get_currenty() ).set_direction('^');
+  set_oldx( get_currentx() );
+  int aux = get_currentx() + 1;
+  if (aux >= mesh.get_column()) {
+    aux -= mesh.get_column();
+    set_currentx(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction('v');
   } else {
-    set_currenty(aux);
-    mesh.At_Position( get_currentx() , get_currenty() ).set_direction('^');
+    set_currentx(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction('v');
   } 
 }

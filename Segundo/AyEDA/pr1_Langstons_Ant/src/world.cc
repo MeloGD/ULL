@@ -64,7 +64,7 @@ void
 World::Print_World(void) {
   for (int i = 0; i < get_row(); i++) {
     for (int j = 0; j < get_column(); j++) {
-      std::cout << mesh_[i][j] << "   ";
+      std::cout << mesh_[i][j] << " ";
     }
     std::cout << std::endl;
   }
