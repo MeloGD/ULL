@@ -21,6 +21,11 @@ World::get_column(void) {
   return column_;
 };
 
+const std::vector<std::vector<Jail>>&
+World::get_mesh(void) {
+  return mesh_;
+}
+
 // Setters
 void
 World::set_row(const int row) {
@@ -37,41 +42,32 @@ void
 World::Resize(int row, int column) {
   set_row(row);
   set_column(column);
-  /*
-  mesh_ = new Jail*[row];
+
+  mesh_.resize(row);
   for (int i = 0; i < get_row(); i++) {
-    mesh_[i] = new Jail[column];   
+    mesh_[i].resize(column);   
   }
-  mesh_[1][1].set_state(1);
-  mesh_[0][1].set_state(1);
-  for (int i = 0; i < get_row(); i++) {
-    for (int j = 0; j < get_column(); j++) {
-      std::cout << mesh_[i][j].get_state() ;
-    } 
-  std::cout << std::endl;  
-  }*/
-  mesh2.resize(row);
-  for (int i = 0; i < get_row(); i++) {
-    mesh2[i].resize(column);   
+  for (int j = 0; j < get_row(); j++) {
+    for (int k = 0; k < get_row(); k++) {
+        Jail aux;
+        mesh_[j][k] = aux;
+    }    
   }
-  mesh2[1][2].set_state(1);
-  for (int i = 0; i < get_row(); i++) {
-    for (int j = 0; j < get_column(); j++) {
-      std::cout << mesh2[i][j].get_state() ;
-    } 
-  std::cout << std::endl;
-  }
-   
 }
 
-/*
-Jail&
-World::At(int row, int column) {
-  for (int i = 0; i < row; i++) {
-     for (int j = 0; j < column; j++) {
-       return mesh_[i][j];
-    } 
-  }
-}*/
+// creo que los for sobran MUCHISIMO, revisar mas adelante
+Jail& World::At_Position(int row, int column) {
+  return mesh_[row][column];
+}
 
+void
+World::Print_World(void) {
+  for (int i = 0; i < get_row(); i++) {
+    for (int j = 0; j < get_column(); j++) {
+      std::cout << mesh_[i][j] << "   ";
+    }
+    std::cout << std::endl;
+  }
+  
+}
 // Overloads
