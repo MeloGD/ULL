@@ -1,20 +1,29 @@
+/*
+Universidad de La Laguna.
+Grado en Ingeniería Informática.
+Asignatura de Algoritmos y Estructuras de Datos Avanzadas.
+Práctica 1: Hormiga de Langton
+Año: 2020/2021
+Autor: Jesús Carmelo González Domínguez
+email: alu0101267760@ull.edu.es
+Uso en terminal:
+$ make run 
+(una vez compilado, se mosntrará el tablero en blanco con la hormiga, esperando
+que una tecla sea pulsada para inicializar)
+$ make clean
+*/
 #ifndef WORLD
 #define WORLD
 
-#include "jail.h"
+#include "../include/jail.h"
 #include <vector>
-
 
 class World {
 private:
   int row_;
   int column_;
   std::vector<std::vector<Jail>> mesh_;
-  
-  /*
-  int position(int i, int j) const {
-    return (i - 1) * column_ + j - 1;
-  }*/
+
 public:
   World();
   ~World();
@@ -33,8 +42,6 @@ public:
   Jail& At_Position(int row, int column);
   void Print_World(void);
 
-  // Overloads
-  // friend std::ostream & operator << (std::ostream &out, World &world);
 };
 
 #endif

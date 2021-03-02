@@ -1,9 +1,24 @@
-#include "jail.h"
+/*
+Universidad de La Laguna.
+Grado en Ingeniería Informática.
+Asignatura de Algoritmos y Estructuras de Datos Avanzadas.
+Práctica 1: Hormiga de Langton
+Año: 2020/2021
+Autor: Jesús Carmelo González Domínguez
+email: alu0101267760@ull.edu.es
+Uso en terminal:
+$ make run 
+(una vez compilado, se mosntrará el tablero en blanco con la hormiga, esperando
+que una tecla sea pulsada para inicializar)
+$ make clean
+*/
+
+#include "../include/jail.h"
 
 // Constructor
 Jail::Jail(void) {
-  // By default is '0', which means white. '1' means black.
-  set_state(0);
+  // By default is ' ', which means white. 'X' means black.
+  set_state(' ');
   set_direction(' ');
 };
 
@@ -11,34 +26,27 @@ Jail::Jail(void) {
 Jail::~Jail() {} 
 
 // Getters
-const short
-Jail::get_state(void) {
+const char Jail::get_state(void) {
   return myvalues.state_;
 }
 
-const char
-Jail::get_direction(void) {
+const char Jail::get_direction(void) {
   return myvalues.direction_;
 }
+
 // Setters
-void
-Jail::set_state(const short state) {
-  assert(state == 0 || state == 1 );
+void Jail::set_state(const char state) {
+  assert(state == ' ' || state == 'X' );
   myvalues.state_ = state;
 }
 
-void
-Jail::set_direction(const char direction) {
+void Jail::set_direction(const char direction) {
   assert(direction == '>' || direction == '<' || direction == '^' || 
         direction == 'v'|| direction == ' ');
   myvalues.direction_ = direction;
 }
 
-
-
 // Overloads
-std::ostream& 
-operator << (std::ostream &out, Jail &jail) {
+std::ostream& operator << (std::ostream &out, Jail &jail) {
   return out << jail.myvalues.state_ << jail.myvalues.direction_;
-  //  Borrar cuando termine << jail.myvalues.state_
 }

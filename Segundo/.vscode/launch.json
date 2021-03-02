@@ -8,7 +8,7 @@
             "name": "g++ - Build and debug active file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/melo/GitHub/ULL/Segundo/AyEDA/pr1_Langstons_Ant/src/test",
+            "program": "/home/melo/GitHub/ULL/Segundo/AyEDA/pr1_Langstons_Ant/bin/main",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

@@ -1,31 +1,42 @@
+/*
+Universidad de La Laguna.
+Grado en Ingeniería Informática.
+Asignatura de Algoritmos y Estructuras de Datos Avanzadas.
+Práctica 1: Hormiga de Langton
+Año: 2020/2021
+Autor: Jesús Carmelo González Domínguez
+email: alu0101267760@ull.edu.es
+Uso en terminal:
+$ make run 
+(una vez compilado, se mosntrará el tablero en blanco con la hormiga, esperando
+que una tecla sea pulsada para inicializar)
+$ make clean
+*/
+
 #ifndef ANT
 #define ANT
 #include "world.h"
-#include "jail.h"
+#include "../include/jail.h"
 
 class Ant {
 private:
   short currentstate_;
-  short oldstate_;
   short currentx_;
   short currenty_;
   short oldx_;
   short oldy_;
 public:
-  Ant(/* args */);
+  Ant();
   ~Ant();
 
   // Getter
   const short get_currentstate(void);
-  const short get_oldstate(void);
   const short get_currentx(void);
   const short get_currenty(void);
   const short get_oldx(void);
   const short get_oldy(void);
-  // const short get_currentstate(void);
   // Setter
   void set_currentstate(const short state);
-  void set_oldstate(const short oldstate);
   void set_currentx(const short currentx);
   void set_currenty(const short currenty);
   void set_oldx(const short oldx);
