@@ -26,6 +26,7 @@ private:
 
 public:
   World();
+  World(int rows, int columns);
   ~World();
 
   // Getters

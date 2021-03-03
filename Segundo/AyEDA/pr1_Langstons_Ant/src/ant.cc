@@ -18,6 +18,10 @@ $ make clean
 // Constructor
 Ant::Ant() {}
 
+Ant::Ant(World &mundo, int x, int y, char direction) {
+  Place_Ant(mundo,x,y,direction);
+}
+
 // Destructor
 Ant::~Ant() {}
 
@@ -34,13 +38,6 @@ const short Ant::get_currenty(void) {
   return currenty_;
 }
 
-const short Ant::get_oldx(void) {
-  return oldx_;
-}
-
-const short Ant::get_oldy(void) {
-  return oldy_;
-}
 
 // Setters
 void Ant::set_currentstate(const short state) {
@@ -55,16 +52,9 @@ void Ant::set_currenty(const short currenty) {
   currenty_ = currenty;
 }
 
-void Ant::set_oldx(const short oldx) {
-  oldx_ = oldx;
-}
-
-void Ant::set_oldy(const short oldy) {
-  oldy_ = oldy;
-}
-
 // Functions
 void Ant::Place_Ant(World &mesh, int x, int y, char dir) {
+  assert(x < mesh.get_row() && y < mesh.get_column());
   set_currentx(x);
   set_currenty(y);
   mesh.At_Position(x,y).set_state(' ');
@@ -100,7 +90,6 @@ void Ant::Run_Ant(World &mesh) {
 
 void Ant::Move_Up(World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(' ');
-  set_oldx( get_currentx() );
   int aux = get_currentx() - 1;
   if (aux < 0) {
     aux = mesh.get_row() - 1;
@@ -114,7 +103,6 @@ void Ant::Move_Up(World &mesh) {
 
 void Ant::Move_Left(World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(' ');
-  set_oldy( get_currenty() );
   int aux = get_currenty() - 1;
   if (aux < 0) {
     aux = mesh.get_column() - 1;
@@ -128,7 +116,6 @@ void Ant::Move_Left(World &mesh) {
 
 void Ant::Move_Right(World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(' ');
-  set_oldy( get_currenty() );
   int aux = get_currenty() + 1;
   if (aux >= mesh.get_column()) {
     aux -= mesh.get_column() ;
@@ -142,7 +129,6 @@ void Ant::Move_Right(World &mesh) {
 
 void Ant::Move_Down(World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(' ');
-  set_oldx( get_currentx() );
   int aux = get_currentx() + 1;
   if (aux >= mesh.get_column()) {
     aux -= mesh.get_column();

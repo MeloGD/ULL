@@ -19,22 +19,19 @@ $ make clean
 #include <stdlib.h>
 
 int main(void) {
-  World mundo;
-  Ant hormiga;
+  World mundo(100,100);
+  Ant hormiga (mundo,55,49,'>');
   int iterator = 0;
-  
-  mundo.Resize(50,50);
-  hormiga.Place_Ant(mundo,10,10,'^');
+
   mundo.Print_World();
   getchar();
   do {  
     system("clear");
     mundo.Print_World();
     hormiga.Run_Ant(mundo);
-    std::cout << std::endl;
     iterator++;
-    getchar();
-  } while (iterator < 1000);
+    //getchar();
+  } while (iterator < 10200);
 
   return 0;
 }

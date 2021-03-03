@@ -23,24 +23,22 @@ private:
   short currentstate_;
   short currentx_;
   short currenty_;
-  short oldx_;
-  short oldy_;
+
 public:
   Ant();
+  Ant(World &mundo, int i, int j, char direction);
   ~Ant();
 
   // Getter
   const short get_currentstate(void);
   const short get_currentx(void);
   const short get_currenty(void);
-  const short get_oldx(void);
-  const short get_oldy(void);
+
   // Setter
   void set_currentstate(const short state);
   void set_currentx(const short currentx);
   void set_currenty(const short currenty);
-  void set_oldx(const short oldx);
-  void set_oldy(const short oldy);
+
 
   // Functions 
   void Place_Ant(World &mesh, int x, int y, char dir);
