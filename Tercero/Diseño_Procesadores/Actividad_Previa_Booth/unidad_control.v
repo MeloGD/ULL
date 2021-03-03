@@ -41,7 +41,7 @@ module unidad_control (input wire [2:0] q, input wire qsub1, reset, clk, output 
   assign CargaM = (estado == S0) ? 1:0; // extension de signo
   // assign Reset = (estado == S0) ? 1:0; 
   assign DesplazaAQ = ((estado == S2) || (estado == S4) || (estado == S6)) ? 1:0;
-  assign CargaA = ((estado == S1) || (estado == S3) || (estado == S5) && (((q[0] == 0) && (qsub1 == 1)) || ((q[0] == 1) && (qsub1 == 0)))) ? 1:0;
+  assign CargaA = (((estado == S1) || (estado == S3) || (estado == S5)) && (((q[0] == 0) && (qsub1 == 1)) || ((q[0] == 1) && (qsub1 == 0)))) ? 1:0;
   assign Resta = ((q[0] == 1) && (qsub1 == 0)) ? 1:0;
   assign Fin = (estado == S7) ? 1:0;
     
