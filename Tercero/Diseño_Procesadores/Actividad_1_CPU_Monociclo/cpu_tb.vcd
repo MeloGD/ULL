@@ -1,0 +1,196 @@
+$date
+	Fri Mar  5 19:15:51 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	10ps
+$end
+$scope module cd $end
+$var wire 1 ! clk $end
+$var wire 10 " entrada_sumador_a [9:0] $end
+$var wire 3 # op_alu [2:0] $end
+$var wire 1 $ reset $end
+$var wire 1 % s_inc $end
+$var wire 1 & s_inm $end
+$var wire 1 ' we3 $end
+$var wire 1 ( wez $end
+$var wire 1 ) z $end
+$var wire 10 * salida_sumador [9:0] $end
+$var wire 8 + salida_mux_inm [7:0] $end
+$var wire 10 , salida_mux_inc [9:0] $end
+$var wire 16 - salida_memoria_programa [15:0] $end
+$var wire 1 . salida_ffz $end
+$var wire 10 / salida_contador_programa [9:0] $end
+$var wire 8 0 salida_alu [7:0] $end
+$var wire 8 1 rd2 [7:0] $end
+$var wire 8 2 rd1 [7:0] $end
+$var wire 6 3 opcode [5:0] $end
+$var wire 1 4 entrada_ffz $end
+$scope module banco_registros $end
+$var wire 1 ! clk $end
+$var wire 4 5 ra1 [3:0] $end
+$var wire 4 6 ra2 [3:0] $end
+$var wire 4 7 wa3 [3:0] $end
+$var wire 1 ' we3 $end
+$var wire 8 8 wd3 [7:0] $end
+$var wire 8 9 rd2 [7:0] $end
+$var wire 8 : rd1 [7:0] $end
+$upscope $end
+$scope module contador_programa $end
+$var wire 1 ! clk $end
+$var wire 1 $ reset $end
+$var wire 10 ; d [9:0] $end
+$var reg 10 < q [9:0] $end
+$upscope $end
+$scope module ffz $end
+$var wire 1 ! clk $end
+$var wire 1 ( d $end
+$var wire 1 $ reset $end
+$var wire 1 4 carga $end
+$var reg 1 . q $end
+$upscope $end
+$scope module inc $end
+$var wire 10 = d0 [9:0] $end
+$var wire 1 % s $end
+$var wire 10 > y [9:0] $end
+$var wire 10 ? d1 [9:0] $end
+$upscope $end
+$scope module inm $end
+$var wire 8 @ d1 [7:0] $end
+$var wire 1 & s $end
+$var wire 8 A y [7:0] $end
+$var wire 8 B d0 [7:0] $end
+$upscope $end
+$scope module memoria_programa $end
+$var wire 10 C a [9:0] $end
+$var wire 1 ! clk $end
+$var wire 16 D rd [15:0] $end
+$upscope $end
+$scope module sumador $end
+$var wire 10 E a [9:0] $end
+$var wire 10 F b [9:0] $end
+$var wire 10 G y [9:0] $end
+$upscope $end
+$scope module unidad_alu $end
+$var wire 8 H a [7:0] $end
+$var wire 8 I b [7:0] $end
+$var wire 3 J op_alu [2:0] $end
+$var wire 8 K y [7:0] $end
+$var wire 1 4 zero $end
+$var reg 8 L s [7:0] $end
+$upscope $end
+$upscope $end
+$scope module cpu_tb $end
+$var reg 1 M clk $end
+$var reg 1 N reset $end
+$scope module micpu $end
+$var wire 1 M clk $end
+$var wire 1 N reset $end
+$upscope $end
+$upscope $end
+$scope module uc $end
+$var wire 6 O opcode [5:0] $end
+$var wire 1 P z $end
+$var reg 3 Q op_alu [2:0] $end
+$var reg 1 R s_inc $end
+$var reg 1 S s_inm $end
+$var reg 1 T we3 $end
+$var reg 1 U wez $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+xU
+xT
+xS
+0R
+bx Q
+zP
+bz O
+1N
+1M
+bx L
+bx K
+bz J
+bx I
+bx H
+bx G
+bx F
+bz E
+bx D
+bx C
+bx B
+bx A
+bx @
+bx ?
+bx >
+bx =
+bx <
+bx ;
+bx :
+bx 9
+bx 8
+bx 7
+bx 6
+bx 5
+x4
+bx 3
+bx 2
+bx 1
+bx 0
+bx /
+x.
+bx -
+bx ,
+bx +
+bx *
+z)
+z(
+z'
+z&
+z%
+z$
+bz #
+bz "
+z!
+$end
+#1000
+0N
+#3000
+0M
+#6000
+1M
+#9000
+0M
+#12000
+1M
+#15000
+0M
+#18000
+1M
+#21000
+0M
+#24000
+1M
+#27000
+0M
+#30000
+1M
+#33000
+0M
+#36000
+1M
+#39000
+0M
+#42000
+1M
+#45000
+0M
+#48000
+1M
+#51000
+0M
+#54000
+1M
