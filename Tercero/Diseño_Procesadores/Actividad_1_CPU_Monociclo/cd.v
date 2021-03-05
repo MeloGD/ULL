@@ -38,6 +38,8 @@ memprog memoria_programa (clk,
                           salida_contador_programa,
                           salida_memoria_programa);
 
+assign opcode = salida_memoria_programa[15:10];
+
 //  module regfile(input  wire clk, 
 //                 input  wire we3,                  //se�al de habilitaci�n de escritura
 //                 input  wire [3:0]  ra1, ra2, wa3, //direcciones de regs leidos y reg a escribir
