@@ -6,7 +6,7 @@ module cd(input wire clk, reset, s_inc, s_inm, we3, wez,
 wire [15:0] salida_memoria_programa;
 wire [9:0] salida_sumador, salida_mux_inc, entrada_sumador_a, salida_contador_programa;
 wire [7:0] rd1, rd2, salida_alu, salida_mux_inm;
-wire entrada_ffz, salida_ffz;
+wire entrada_ffz;
 
 
 // module mux2 #(parameter WIDTH = 8) 
@@ -19,7 +19,7 @@ mux2 #(10) inc (salida_memoria_programa[9:0], salida_sumador,
 
 // module sum(input  wire [9:0] a, b, 
 //            output wire [9:0] y);
-sum sumador (entrada_sumador_a, salida_contador_programa,
+sum sumador ( 10'b0000000001, salida_contador_programa,
              salida_sumador);
 
 
@@ -60,7 +60,7 @@ alu unidad_alu (rd1, rd2,
                 entrada_ffz);
 
 // module ffd(input wire clk, reset, d, carga, output reg q);
-ffd ffz(clk, reset, wez, entrada_ffz , salida_ffz);
+ffd ffz(clk, reset, entrada_ffz, wez , z);
 
 // module mux2 #(parameter WIDTH = 8) 
 //              (input  wire [WIDTH-1:0] d0, d1, 
