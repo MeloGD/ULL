@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/melo/GitHub/ULL/Segundo/CYA/p05/set_calculator",
+            "program": "/home/melo/GitHub/ULL/Segundo/AyEDA/pr2_Langstons_Ant_pt2/src/test",
             "args": [],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",

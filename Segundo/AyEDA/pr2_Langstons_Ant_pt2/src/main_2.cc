@@ -16,7 +16,7 @@ $ make clean
 //#include "../include/world.h"
 //#include "../include/ant.h"
 //#include "../include/jail.h"
-#include "../include/vector_t.h"
+#include "../include/vector_t_2.h"
 //#include <stdlib.h>
 #include<bits/stdc++.h>
 #include <iostream>
@@ -28,44 +28,47 @@ int main(void) {
 
   //mundo.Print_World();
   
-  Vector_T<Vector_T<int>> test;
-  //Vector_T<Vector_T<int>> copia;
+  Vector_t<Vector_t<int>> test;
   
-  test.Resize(5);
-  //copia.Resize(5);
+  test.resize(5);
   
-  for (int i = 0; i < test.get_size(); i++) {
-    test[i].Resize(5);
-    //copia[i].Resize(5);
+  for (int i = 0; i < test.get_size() ; i++) {
+    test[i].resize(5);
   }
+  //test[-1][-1] = 55;
 
-  for (int i = 0; i < test.get_size(); i++) {
-    for (int j = 0; j < test[i].get_size(); j++) {
+  Vector_t<int> prueba;
+  prueba.resize(1);
+  prueba[-1] = 2;
+  std::cout << prueba[-1] << std::endl;
+  //std::cout << test[-1][-1] << std::endl;
+  /*
+  for (int i = -2; i < test.get_size() - 5; i++) {
+    for (int j = -2; j < test[i].get_size() - 5; j++) {
       test[i][j] = i;
-      //copia[i][j] = test[i][j];
     }
   }
-  
+  */
   /*
-  test.Resize(6);
+  test.resize(6);
   for (int i = 0; i < test.get_size(); i++) {
-    test[i].Resize(5);
+    test[i].resize(5);
   }
   */ 
   /*
-  for (int i = 0; i < copia.get_size(); i++) {
-    for (int j = 0; j < copia[i].get_size(); j++) {
-      test[i][j] = copia[i][j];
+  for (int i = -5; i < copia.get_size() - 5; i++) {
+    for (int j = -5; j < copia[i].get_size() - 5; j++) {
+      test[i][j] = copia[i].get_val(j);
     }
-  }*/
-
-  
-  for (int i = 0; i < test.get_size(); i++) {
-    for (int j = 0; j < test[i].get_size(); j++) {
+  }
+  */
+  /*
+  for (int i = -5; i < test.get_size() - 5; i++) {
+    for (int j = -5; j < test[i].get_size() - 5; j++) {
       std::cout << test[i][j];
     }
      std::cout << std::endl;
   }
-  
+  */
   return 0;
 }
