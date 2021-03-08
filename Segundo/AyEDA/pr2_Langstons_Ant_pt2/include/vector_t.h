@@ -15,7 +15,6 @@ private:
   void Destroy(void);
 public:
   Vector_T(const int size = 0);
-  Vector_T(const Vector_T<T>& copy);
   ~Vector_T();
 
   // Getters
@@ -31,6 +30,7 @@ public:
   
   // Overloads
   T& operator[](const int);
+  Vector_T<T>& operator=(const Vector_T<T>&);
 };
 
 // Constructor
@@ -39,11 +39,6 @@ Vector_T<T>::Vector_T(const int size):
 vector_ (NULL),
 size_(size) {
   Build();
-}
-
-template<class T>
-Vector_T<T>::Vector_T(const Vector_T<T>& copy) {
-  *this = copy;
 }
 
 template<class T>
@@ -100,12 +95,10 @@ void Vector_T<T>::Resize(const int size) {
   Build(); 
 }
 
-
 // Overloads
 template<class T>
 T& Vector_T<T>::operator[](const int position) {
   return At(position); 
 }
-
 
 #endif

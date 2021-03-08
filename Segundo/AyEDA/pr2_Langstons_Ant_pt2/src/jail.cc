@@ -18,7 +18,7 @@ $ make clean
 // Constructor
 Jail::Jail(void) {
   // By default is ' ', which means white. 'X' means black.
-  set_state(' ');
+  set_state('0');
   set_direction(' ');
 };
 
@@ -36,7 +36,7 @@ const char Jail::get_direction(void) {
 
 // Setters
 void Jail::set_state(const char state) {
-  assert(state == ' ' || state == 'X' );
+  assert(state == '0' || state == 'X' );
   myvalues.state_ = state;
 }
 

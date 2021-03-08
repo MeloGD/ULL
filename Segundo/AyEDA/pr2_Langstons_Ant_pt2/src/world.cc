@@ -51,39 +51,62 @@ void World::set_column(const int column) {
 void World::Resize_World(int row, int column) {
   set_row(row);
   set_column(column);
-  /*
-  mesh_.resize(row);
+  
+  mesh_.Resize(row);
   for (int i = 0; i < get_row(); i++) {
-    mesh_[i].resize(column);   
+    mesh_[i].Resize(column);   
   }
+  /*
   for (int j = 0; j < get_row(); j++) {
     for (int k = 0; k < get_row(); k++) {
         Jail aux;
         mesh_[j][k] = aux;
     }    
   }*/
-  Vector_T<Vector_T<Jail>> auxiliar;
-  auxiliar.Resize(row);
-  for (int i = 0; i < get_row(); i++) {
-    mesh_[i].Resize(column);   
-  }
+}
 
-  for (int j = 0; j < get_row(); j++) {
-    for (int k = 0; k < get_column(); k++) {
-        Jail aux;
+
+void World::Resize_For_Move(int row, int column, World& mesh) {
+  Vector_T<Vector_T<Jail>> auxiliar;
+  auxiliar.Resize(mesh.get_row());
+  for (int i = 0; i < mesh.get_row(); i++) {
+    auxiliar[i].Resize(mesh.get_column());   
+  }
+  for (int j = 0; j < mesh.get_row(); j++) {
+    for (int k = 0; k < mesh.get_column(); k++) {
         auxiliar[j][k] = mesh_[j][k];
     }    
   }
-
-  
-
-
-
-
-
-
-
-}
+  if (row < 0) {
+    mesh.Resize_World(mesh.get_row() + 1, mesh.get_column());
+    for (int j = 0; j < auxiliar.get_size(); j++) {
+      for (int k = 0; k < auxiliar[j].get_size(); k++) {
+        mesh_[j + 1][k] = auxiliar[j][k];
+      }    
+    }
+  } else if (column < 0) {
+    mesh.Resize_World(mesh.get_row(), mesh.get_column() + 1);
+    for (int j = 0; j < auxiliar.get_size(); j++) {
+      for (int k = 0; k < auxiliar[j].get_size(); k++) {
+        mesh_[j][k + 1] = auxiliar[j][k];
+      }
+    }
+  } else if (column > 0) {
+    mesh.Resize_World(mesh.get_row(), mesh.get_column() + 1);
+    for (int j = 0; j < auxiliar.get_size(); j++) {
+      for (int k = 0; k < auxiliar[j].get_size(); k++) {
+        mesh_[j][k] = auxiliar[j][k];
+      }    
+    }
+  } else if (row > 0) {
+    mesh.Resize_World(mesh.get_row() + 1, mesh.get_column());
+    for (int j = 0; j < auxiliar.get_size(); j++) {
+      for (int k = 0; k < auxiliar[j].get_size(); k++) {
+        mesh_[j][k] = auxiliar[j][k];
+      }    
+    } 
+  }
+};
 
 Jail& World::At_Position(int row, int column) {
   return mesh_[row][column];

@@ -13,66 +13,26 @@ que una tecla sea pulsada para inicializar)
 $ make clean
 */
 
-//#include "../include/world.h"
-//#include "../include/ant.h"
-//#include "../include/jail.h"
-#include "../include/vector_t.h"
-//#include <stdlib.h>
-#include<bits/stdc++.h>
-#include <iostream>
+#include "../include/world.h"
+#include "../include/ant.h"
+#include "../include/jail.h"
+#include <stdlib.h>
 
 int main(void) {
+  World mundo(3,3);
+  Ant hormiga (mundo,2,2,'>');
+  int iterator = 0;
 
-  Vector_T<Vector_T<int>> test;
-  Vector_T<Vector_T<int>> copia;
+  mundo.Print_World();
   
-  test.Resize(5);
-  copia.Resize(5);
-  
-  for (int i = 0; i < test.get_size(); i++) {
-    test[i].Resize(5);
-    copia[i].Resize(5);
-  }
-  
-  // test[-1][-1] = 5; preguntar
-  
-  for (int i = 0; i < test.get_size(); i++) {
-    for (int j = 0; j < test[i].get_size(); j++) {
-      test[i][j] = i;
-      copia[i][j] = test[i][j];
-    }
-  }
-  
-  //Vector_T<Vector_T<int>> copia2(test); preguntar
-  
-  test.Resize(6);
-  for (int i = 0; i < test.get_size(); i++) {
-    test[i].Resize(5);
-  }
-   
-  for (int i = 0; i < copia.get_size(); i++) {
-    for (int j = 0; j < copia[i].get_size(); j++) {
-      test[i+1][j] = copia[i][j]; // preguntar
-    }
-  }
-  
-  // preguntar por un resize esquina
-
-  std::cout << "Vector original" << std::endl;
-  for (int i = 0; i < test.get_size(); i++) {
-    for (int j = 0; j < test[i].get_size(); j++) {
-      std::cout << test[i][j];
-    }
-     std::cout << std::endl;
-  }
-  
-  std::cout << "Vector de copia" << std::endl;
-  for (int i = 0; i < copia.get_size(); i++) {
-    for (int j = 0; j < copia[i].get_size(); j++) {
-      std::cout << copia[i][j];
-    }
-     std::cout << std::endl;
-  }
+  getchar();
+  do {  
+    system("clear");
+    mundo.Print_World();
+    hormiga.Run_Ant(mundo);
+    iterator++;
+    //getchar();
+  } while (iterator < 1000);
   
   return 0;
 }
