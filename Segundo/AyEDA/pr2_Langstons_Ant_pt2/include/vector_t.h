@@ -14,7 +14,8 @@ private:
   void Build(void);
   void Destroy(void);
 public:
-  Vector_T();
+  Vector_T(const int size = 0);
+  Vector_T(const Vector_T<T>& copy);
   ~Vector_T();
 
   // Getters
@@ -34,8 +35,15 @@ public:
 
 // Constructor
 template<class T>
-Vector_T<T>::Vector_T() {
+Vector_T<T>::Vector_T(const int size):
+vector_ (NULL),
+size_(size) {
   Build();
+}
+
+template<class T>
+Vector_T<T>::Vector_T(const Vector_T<T>& copy) {
+  *this = copy;
 }
 
 template<class T>

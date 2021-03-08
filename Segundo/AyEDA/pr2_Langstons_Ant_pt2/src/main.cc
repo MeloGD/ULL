@@ -29,14 +29,16 @@ int main(void) {
   //mundo.Print_World();
   
   Vector_T<Vector_T<int>> test;
-  //Vector_T<Vector_T<int>> copia;
+  Vector_T<Vector_T<int>> copia;
   
   test.Resize(5);
-  //copia.Resize(5);
+  copia.Resize(5);
+  
+  
   
   for (int i = 0; i < test.get_size(); i++) {
     test[i].Resize(5);
-    //copia[i].Resize(5);
+    copia[i].Resize(5);
   }
   
   //test[-1][-1] = 5;
@@ -44,24 +46,24 @@ int main(void) {
   for (int i = 0; i < test.get_size(); i++) {
     for (int j = 0; j < test[i].get_size(); j++) {
       test[i][j] = i;
-      //copia[i][j] = test[i][j];
+      copia[i][j] = test[i][j];
     }
   }
   
-  /*
+  
   test.Resize(6);
   for (int i = 0; i < test.get_size(); i++) {
     test[i].Resize(5);
   }
-  */ 
+   
   /*
   for (int i = 0; i < copia.get_size(); i++) {
     for (int j = 0; j < copia[i].get_size(); j++) {
       test[i][j] = copia[i][j];
     }
-  }*/
-
-  
+  }
+  */
+  std::cout << "Vector original" << std::endl;
   for (int i = 0; i < test.get_size(); i++) {
     for (int j = 0; j < test[i].get_size(); j++) {
       std::cout << test[i][j];
@@ -69,5 +71,13 @@ int main(void) {
      std::cout << std::endl;
   }
   
+  std::cout << "Vector de copia" << std::endl;
+  for (int i = 0; i < copia.get_size(); i++) {
+    for (int j = 0; j < copia[i].get_size(); j++) {
+      std::cout << copia[i][j];
+    }
+     std::cout << std::endl;
+  }
+
   return 0;
 }
