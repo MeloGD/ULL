@@ -22,6 +22,8 @@ initial
 begin
   $dumpfile("cpu_tb.vcd");
   $dumpvars;
+  // añadir nuevo dumpvars
+  //$dumpvars(  ,cpu_tb.cpu.cd.regfile[1]);
   reset = 1;  //a partir del flanco de subida del reset empieza el funcionamiento normal
   #10;
   reset = 0;  //bajamos el reset 
