@@ -38,7 +38,9 @@ int main(void) {
     test[i].Resize(5);
     //copia[i].Resize(5);
   }
-
+  
+  //test[-1][-1] = 5;
+  
   for (int i = 0; i < test.get_size(); i++) {
     for (int j = 0; j < test[i].get_size(); j++) {
       test[i][j] = i;
