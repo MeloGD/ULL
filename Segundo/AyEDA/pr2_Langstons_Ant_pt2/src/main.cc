@@ -22,26 +22,19 @@ $ make clean
 #include <iostream>
 
 int main(void) {
-  //World mundo(80,80);
-  //Ant hormiga (mundo,25,25,'>');
-  //int iterator = 0;
 
-  //mundo.Print_World();
-  
   Vector_T<Vector_T<int>> test;
   Vector_T<Vector_T<int>> copia;
   
   test.Resize(5);
   copia.Resize(5);
   
-  
-  
   for (int i = 0; i < test.get_size(); i++) {
     test[i].Resize(5);
     copia[i].Resize(5);
   }
   
-  //test[-1][-1] = 5;
+  // test[-1][-1] = 5; preguntar
   
   for (int i = 0; i < test.get_size(); i++) {
     for (int j = 0; j < test[i].get_size(); j++) {
@@ -50,19 +43,21 @@ int main(void) {
     }
   }
   
+  //Vector_T<Vector_T<int>> copia2(test); preguntar
   
   test.Resize(6);
   for (int i = 0; i < test.get_size(); i++) {
     test[i].Resize(5);
   }
    
-  /*
   for (int i = 0; i < copia.get_size(); i++) {
     for (int j = 0; j < copia[i].get_size(); j++) {
-      test[i][j] = copia[i][j];
+      test[i+1][j] = copia[i][j]; // preguntar
     }
   }
-  */
+  
+  // preguntar por un resize esquina
+
   std::cout << "Vector original" << std::endl;
   for (int i = 0; i < test.get_size(); i++) {
     for (int j = 0; j < test[i].get_size(); j++) {
@@ -78,6 +73,6 @@ int main(void) {
     }
      std::cout << std::endl;
   }
-
+  
   return 0;
 }
