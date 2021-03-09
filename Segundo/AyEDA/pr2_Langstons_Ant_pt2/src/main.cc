@@ -13,27 +13,18 @@ que una tecla sea pulsada para inicializar)
 $ make clean
 */
 
+#include "../include/universe.h"
 #include "../include/world.h"
 #include "../include/ant.h"
 #include "../include/jail.h"
+
 #include <stdlib.h>
+#include <string>
 
 int main(void) {
-  World mundo(3,3);
-  // hormiga se tiene que poner siempre en la 0,0
-  Ant hormiga (mundo,2,2,'^');
-  int iterator = 0;
 
-  mundo.Print_World();
-  
-  getchar();
-  do {  
-    system("clear");
-    mundo.Print_World();
-    hormiga.Run_Ant(mundo);
-    iterator++;
-    //getchar();
-  } while (iterator < 1000);
-  
+  Universe Universo(1000, 3, 3);
+  Universo.Run_Universe();
+
   return 0;
 }

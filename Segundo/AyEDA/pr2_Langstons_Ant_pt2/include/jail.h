@@ -18,12 +18,24 @@ $ make clean
 
 #include <assert.h>
 #include <iostream>
+#include <string>
+
+#define UP "\u2191"
+#define UP_LEFT "\u2B09"
+#define UP_RIGHT "\u2B08"
+#define LEFT "\u2190"
+#define RIGHT "\u2192"
+#define DOWN "\u2193"
+#define DOWN_LEFT "\u2B0B"
+#define DOWN_RIGHT "\u2B0A"
+
+using namespace std;
 
 class Jail {
 private:
   struct values {
     char state_;
-    char direction_;  
+    string direction_;  
   } myvalues;
     
 public:
@@ -32,11 +44,11 @@ public:
 
   // Getters
   const char get_state(void);
-  const char get_direction(void);
+  const string get_direction(void);
   
   // Setters
   void set_state(const char state);
-  void set_direction(const char direction);
+  void set_direction(const string direction);
   
   // Overloads
   friend std::ostream & operator << (std::ostream &out, Jail &jail);

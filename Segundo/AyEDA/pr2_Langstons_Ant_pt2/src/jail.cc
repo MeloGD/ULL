@@ -19,7 +19,7 @@ $ make clean
 Jail::Jail(void) {
   // By default is ' ', which means white. 'X' means black.
   set_state('0');
-  set_direction(' ');
+  set_direction(" ");
 };
 
 // Destrutor
@@ -30,7 +30,7 @@ const char Jail::get_state(void) {
   return myvalues.state_;
 }
 
-const char Jail::get_direction(void) {
+const string Jail::get_direction(void) {
   return myvalues.direction_;
 }
 
@@ -40,9 +40,10 @@ void Jail::set_state(const char state) {
   myvalues.state_ = state;
 }
 
-void Jail::set_direction(const char direction) {
-  assert(direction == '>' || direction == '<' || direction == '^' || 
-        direction == 'v'|| direction == ' ' || direction == 'F');
+void Jail::set_direction(const string direction) {
+  assert(direction == UP || direction == DOWN || direction == RIGHT || 
+        direction == LEFT || direction == " " || direction == UP_LEFT || 
+        direction == UP_RIGHT || direction == DOWN_LEFT|| direction == DOWN_RIGHT);
   myvalues.direction_ = direction;
 }
 
