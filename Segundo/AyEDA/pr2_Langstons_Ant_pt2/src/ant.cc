@@ -65,7 +65,7 @@ void Ant::Run_Ant(World &mesh) {
   if (mesh.At_Position( get_currentx() , get_currenty() ).get_state() == '0') {
     mesh.At_Position( get_currentx() , get_currenty() ).set_state('X');
     if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == '^') {
-      Move_Left(mesh);
+      Move_Up_Left(mesh);
     } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == '<') {
       Move_Down(mesh);
     } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == '>') {
@@ -139,4 +139,12 @@ void Ant::Move_Down(World &mesh) {
     set_currentx(aux);
     mesh.At_Position( get_currentx() , get_currenty() ).set_direction('v');
   } 
+}
+
+void Ant::Move_Up_Left(World &mesh) {
+  Move_Up(mesh);
+  mesh.At_Position( get_currentx() , get_currenty() ).set_direction(' ');
+  Move_Left(mesh);
+  mesh.At_Position( get_currentx() , get_currenty() ).set_direction(' ');
+  mesh.At_Position( get_currentx() , get_currenty() ).set_direction('F');
 }

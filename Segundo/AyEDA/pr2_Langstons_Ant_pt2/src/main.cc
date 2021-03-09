@@ -20,7 +20,8 @@ $ make clean
 
 int main(void) {
   World mundo(3,3);
-  Ant hormiga (mundo,2,2,'>');
+  // hormiga se tiene que poner siempre en la 0,0
+  Ant hormiga (mundo,2,2,'^');
   int iterator = 0;
 
   mundo.Print_World();

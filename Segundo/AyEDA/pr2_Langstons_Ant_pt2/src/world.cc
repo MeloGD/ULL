@@ -18,7 +18,7 @@ $ make clean
 // Constructor
 World::World() {}
 
-World::World(int rows, int columns) {
+World::World(int columns, int rows) {
   Resize_World(rows, columns);
 }
 
@@ -49,20 +49,39 @@ void World::set_column(const int column) {
 
 // Functions
 void World::Resize_World(int row, int column) {
-  set_row(row);
-  set_column(column);
-  
-  mesh_.Resize(row);
-  for (int i = 0; i < get_row(); i++) {
-    mesh_[i].Resize(column);   
+  if (row < 0 && column > 0) {
+    int newrow = row * row;
+    set_row(newrow);
+    set_column(column);
+    mesh_.Resize(newrow);
+    for (int i = 0; i < get_row(); i++) {
+      mesh_[i].Resize(column);   
+    }
+  } else if (column < 0 && row > 0) {
+    int newcolumn = column * column;
+    set_row(row);
+    set_column(newcolumn);
+    mesh_.Resize(row);
+    for (int i = 0; i < get_row(); i++) {
+      mesh_[i].Resize(newcolumn);   
+    }
+  } else if (column < 0 && row < 0) {
+    int newrow = row * (-1);
+    int newcolumn = column * (-1);
+    set_row(newrow);
+    set_column(newcolumn);
+    mesh_.Resize(newrow);
+    for (int i = 0; i < get_row(); i++) {
+      mesh_[i].Resize(newcolumn);   
+    } 
+  } else {
+    set_row(row);
+    set_column(column);
+    mesh_.Resize(row);
+    for (int i = 0; i < get_row(); i++) {
+      mesh_[i].Resize(column);   
+    }
   }
-  /*
-  for (int j = 0; j < get_row(); j++) {
-    for (int k = 0; k < get_row(); k++) {
-        Jail aux;
-        mesh_[j][k] = aux;
-    }    
-  }*/
 }
 
 

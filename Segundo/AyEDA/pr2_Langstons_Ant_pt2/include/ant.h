@@ -44,9 +44,17 @@ public:
   void Place_Ant(World &mesh, int x, int y, char dir);
   void Run_Ant(World &mesh);
   void Move_Up(World &mesh);
+  void Move_Up_Left(World &mesh);
+  void Move_Up_Right(World &mesh);
   void Move_Left(World &mesh);
+  void Move_Left_Up(World &mesh);
+  void Move_Left_Down(World &mesh);
   void Move_Right(World &mesh);
+  void Move_Right_Up(World &mesh);
+  void Move_Right_Down(World &mesh);
   void Move_Down(World &mesh);
+  void Move_Down_Left(World &mesh);
+  void Move_Down_Right(World &mesh);
   
 };
 

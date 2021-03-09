@@ -42,7 +42,7 @@ void Jail::set_state(const char state) {
 
 void Jail::set_direction(const char direction) {
   assert(direction == '>' || direction == '<' || direction == '^' || 
-        direction == 'v'|| direction == ' ');
+        direction == 'v'|| direction == ' ' || direction == 'F');
   myvalues.direction_ = direction;
 }
 
