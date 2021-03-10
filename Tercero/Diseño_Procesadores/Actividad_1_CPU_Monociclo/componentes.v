@@ -68,8 +68,8 @@ module ffd(input wire clk, reset, d, carga, output reg q);
 	      q <= d;
 endmodule
 
-module pila(input wire clk, reset, popsignal, pushsignal,
-            output wire [9:0] pop,
+module stack(input wire clk, reset, popsignal, pushsignal,
+            output reg [9:0] pop,
             input wire [9:0] push);
   
   // bus de 10 --> 8 instrucciones para saltos

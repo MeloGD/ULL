@@ -1,4 +1,4 @@
-module cd(input wire clk, reset, s_inc, s_inm, we3, wez, 
+module cd(input wire clk, reset, s_inc, s_inm, we3, wez, pop_signal, push_signal, s_stack,
           input wire [2:0] op_alu, 
           output wire z, output wire [5:0] opcode);
 
@@ -7,6 +7,9 @@ wire [15:0] salida_memoria_programa;
 wire [9:0] salida_sumador, salida_mux_inc, entrada_sumador_a, salida_contador_programa;
 wire [7:0] rd1, rd2, salida_alu, salida_mux_inm;
 wire entrada_ffz;
+
+// Pila
+wire [9:0] salida_pila, salida_mux_stack;
 
 
 // module mux2 #(parameter WIDTH = 8) 
@@ -69,4 +72,20 @@ ffd ffz(clk, reset, entrada_ffz, wez , z);
 mux2 inm(salida_alu, salida_memoria_programa[11:4],
           s_inm,
           salida_mux_inm);
+
+// adicion de un registro interno en la cpu como pila, antes del pc
+// module mux2 #(parameter WIDTH = 8) 
+//              (input  wire [WIDTH-1:0] d0, d1, 
+//               input  wire s, 
+//               output wire [WIDTH-1:0] y);  
+mux2 #(10) mux_stack(salida_mux_inc, salida_pila,
+                     s_stack,
+                     salida_mux_stack);
+
+// module stack(input wire clk, reset, popsignal, pushsignal,
+//              output reg [9:0] pop,
+//              input wire [9:0] push);                     
+stack pila(clk, reset, popsignal, pushsignal,
+           salida_pila,
+           salida_contador_programa);
 endmodule
