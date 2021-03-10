@@ -31,7 +31,7 @@ sum sumador ( 10'b0000000001, salida_contador_programa,
 //               input wire [WIDTH-1:0] d, 
 //               output reg [WIDTH-1:0] q);          
 registro #(10) contador_programa (clk, reset,
-                                  salida_mux_inc,
+                                  salida_mux_stack,
                                   salida_contador_programa);
 
 // module memprog(input  wire clk,
