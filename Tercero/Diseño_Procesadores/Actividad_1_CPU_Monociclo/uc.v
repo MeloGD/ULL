@@ -1,6 +1,6 @@
 module uc(input wire [5:0] opcode, 
           input wire z, 
-          output reg s_inc, s_inm, we3, wez, 
+          output reg s_inc, s_inm, we3, wez, pop, push, s_stack,
           output reg [2:0] op_alu);
 
 always @(opcode)
@@ -48,8 +48,20 @@ casez (opcode)
         end else begin
           s_inc = 1;
         end
-      end   
-      
+      end
+    // Subrutinas - Pila
+    // pop
+    6'b1111zz:
+      begin
+        s_stack = 1;
+        pop = 1;
+      end     
+    // push
+    6'b1110zz:
+      begin
+        s_stack = 1;
+        push = 1;
+      end
     default:; 
   endcase
 

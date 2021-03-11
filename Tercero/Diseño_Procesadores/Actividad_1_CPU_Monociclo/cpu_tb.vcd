@@ -1,5 +1,5 @@
 $date
-	Mon Mar  8 14:01:31 2021
+	Wed Mar 10 11:28:25 2021
 $end
 $version
 	Icarus Verilog
@@ -16,89 +16,117 @@ $var wire 1 " reset $end
 $var wire 1 # z $end
 $var wire 1 $ wez $end
 $var wire 1 % we3 $end
-$var wire 1 & s_inm $end
-$var wire 1 ' s_inc $end
-$var wire 6 ( opcode [5:0] $end
-$var wire 3 ) op_alu [2:0] $end
+$var wire 1 & s_stack $end
+$var wire 1 ' s_inm $end
+$var wire 1 ( s_inc $end
+$var wire 1 ) push $end
+$var wire 1 * pop $end
+$var wire 6 + opcode [5:0] $end
+$var wire 3 , op_alu [2:0] $end
 $scope module camino_datos $end
 $var wire 1 ! clk $end
+$var wire 1 - popsignal $end
+$var wire 1 . pushsignal $end
 $var wire 1 " reset $end
 $var wire 1 # z $end
 $var wire 1 $ wez $end
 $var wire 1 % we3 $end
-$var wire 10 * salida_sumador [9:0] $end
-$var wire 8 + salida_mux_inm [7:0] $end
-$var wire 10 , salida_mux_inc [9:0] $end
-$var wire 16 - salida_memoria_programa [15:0] $end
-$var wire 10 . salida_contador_programa [9:0] $end
-$var wire 8 / salida_alu [7:0] $end
-$var wire 1 & s_inm $end
-$var wire 1 ' s_inc $end
-$var wire 8 0 rd2 [7:0] $end
-$var wire 8 1 rd1 [7:0] $end
-$var wire 6 2 opcode [5:0] $end
-$var wire 3 3 op_alu [2:0] $end
-$var wire 1 4 entrada_ffz $end
+$var wire 10 / salida_sumador [9:0] $end
+$var wire 10 0 salida_pila [9:0] $end
+$var wire 10 1 salida_mux_stack [9:0] $end
+$var wire 8 2 salida_mux_inm [7:0] $end
+$var wire 10 3 salida_mux_inc [9:0] $end
+$var wire 16 4 salida_memoria_programa [15:0] $end
+$var wire 10 5 salida_contador_programa [9:0] $end
+$var wire 8 6 salida_alu [7:0] $end
+$var wire 1 & s_stack $end
+$var wire 1 ' s_inm $end
+$var wire 1 ( s_inc $end
+$var wire 8 7 rd2 [7:0] $end
+$var wire 8 8 rd1 [7:0] $end
+$var wire 1 ) push_signal $end
+$var wire 1 * pop_signal $end
+$var wire 6 9 opcode [5:0] $end
+$var wire 3 : op_alu [2:0] $end
+$var wire 1 ; entrada_ffz $end
 $scope module banco_registros $end
 $var wire 1 ! clk $end
-$var wire 4 5 ra1 [3:0] $end
-$var wire 4 6 ra2 [3:0] $end
-$var wire 4 7 wa3 [3:0] $end
+$var wire 4 < ra1 [3:0] $end
+$var wire 4 = ra2 [3:0] $end
+$var wire 4 > wa3 [3:0] $end
 $var wire 1 % we3 $end
-$var wire 8 8 wd3 [7:0] $end
-$var wire 8 9 rd2 [7:0] $end
-$var wire 8 : rd1 [7:0] $end
+$var wire 8 ? wd3 [7:0] $end
+$var wire 8 @ rd2 [7:0] $end
+$var wire 8 A rd1 [7:0] $end
 $upscope $end
 $scope module contador_programa $end
 $var wire 1 ! clk $end
 $var wire 1 " reset $end
-$var wire 10 ; d [9:0] $end
-$var reg 10 < q [9:0] $end
+$var wire 10 B d [9:0] $end
+$var reg 10 C q [9:0] $end
 $upscope $end
 $scope module ffz $end
 $var wire 1 ! clk $end
 $var wire 1 " reset $end
-$var wire 1 4 d $end
+$var wire 1 ; d $end
 $var wire 1 $ carga $end
 $var reg 1 # q $end
 $upscope $end
 $scope module inc $end
-$var wire 10 = d0 [9:0] $end
-$var wire 10 > y [9:0] $end
-$var wire 1 ' s $end
-$var wire 10 ? d1 [9:0] $end
+$var wire 10 D d0 [9:0] $end
+$var wire 10 E y [9:0] $end
+$var wire 1 ( s $end
+$var wire 10 F d1 [9:0] $end
 $upscope $end
 $scope module inm $end
-$var wire 8 @ d1 [7:0] $end
-$var wire 8 A y [7:0] $end
-$var wire 1 & s $end
-$var wire 8 B d0 [7:0] $end
+$var wire 8 G d1 [7:0] $end
+$var wire 8 H y [7:0] $end
+$var wire 1 ' s $end
+$var wire 8 I d0 [7:0] $end
 $upscope $end
 $scope module memoria_programa $end
-$var wire 10 C a [9:0] $end
+$var wire 10 J a [9:0] $end
 $var wire 1 ! clk $end
-$var wire 16 D rd [15:0] $end
+$var wire 16 K rd [15:0] $end
+$upscope $end
+$scope module mux_stack $end
+$var wire 10 L d0 [9:0] $end
+$var wire 10 M y [9:0] $end
+$var wire 1 & s $end
+$var wire 10 N d1 [9:0] $end
+$upscope $end
+$scope module pila $end
+$var wire 1 ! clk $end
+$var wire 1 - popsignal $end
+$var wire 10 O push [9:0] $end
+$var wire 1 . pushsignal $end
+$var wire 1 " reset $end
+$var reg 10 P pop [9:0] $end
+$var reg 3 Q stack_pointer [2:0] $end
 $upscope $end
 $scope module sumador $end
-$var wire 10 E a [9:0] $end
-$var wire 10 F b [9:0] $end
-$var wire 10 G y [9:0] $end
+$var wire 10 R a [9:0] $end
+$var wire 10 S b [9:0] $end
+$var wire 10 T y [9:0] $end
 $upscope $end
 $scope module unidad_alu $end
-$var wire 8 H a [7:0] $end
-$var wire 8 I b [7:0] $end
-$var wire 8 J y [7:0] $end
-$var wire 1 4 zero $end
-$var wire 3 K op_alu [2:0] $end
-$var reg 8 L s [7:0] $end
+$var wire 8 U a [7:0] $end
+$var wire 8 V b [7:0] $end
+$var wire 8 W y [7:0] $end
+$var wire 1 ; zero $end
+$var wire 3 X op_alu [2:0] $end
+$var reg 8 Y s [7:0] $end
 $upscope $end
 $upscope $end
 $scope module unidad_control $end
-$var wire 6 M opcode [5:0] $end
+$var wire 6 Z opcode [5:0] $end
 $var wire 1 # z $end
-$var reg 3 N op_alu [2:0] $end
-$var reg 1 ' s_inc $end
-$var reg 1 & s_inm $end
+$var reg 3 [ op_alu [2:0] $end
+$var reg 1 * pop $end
+$var reg 1 ) push $end
+$var reg 1 ( s_inc $end
+$var reg 1 ' s_inm $end
+$var reg 1 & s_stack $end
 $var reg 1 % we3 $end
 $var reg 1 $ wez $end
 $upscope $end
@@ -107,47 +135,60 @@ $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
+bx [
+b100011 Z
+bx Y
+bx X
+bx W
+b0 V
+b0 U
+b1 T
+b0 S
+b1 R
+b0 Q
+bx P
+b0 O
 bx N
-b100011 M
-bx L
-bx K
-bx J
-b0 I
-b0 H
-b1 G
-b0 F
+bx M
+b1 L
+b1000111100001010 K
+b0 J
+bx I
+b11110000 H
+b11110000 G
+b1 F
 b1 E
-b1000111100001010 D
+b1100001010 D
 b0 C
 bx B
-b11110000 A
-b11110000 @
-b1 ?
-b1 >
-b1100001010 =
-b0 <
-b1 ;
-b0 :
-b0 9
-b11110000 8
-b1010 7
-b0 6
-b1111 5
-x4
-bx 3
-b100011 2
-b0 1
-b0 0
-bx /
-b0 .
-b1000111100001010 -
-b1 ,
-b11110000 +
-b1 *
-bx )
-b100011 (
+b0 A
+b0 @
+b11110000 ?
+b1010 >
+b0 =
+b1111 <
+x;
+bx :
+b100011 9
+b0 8
+b0 7
+bx 6
+b0 5
+b1000111100001010 4
+b1 3
+b11110000 2
+bx 1
+bx 0
+b1 /
+z.
+z-
+bx ,
+b100011 +
+x*
+x)
+1(
 1'
-1&
+x&
 1%
 x$
 0#
@@ -159,226 +200,75 @@ $end
 #3000
 0!
 #6000
-04
-b100 /
-b100 B
-b100 J
-b100 L
-b100 +
-b100 8
-b100 A
-b11 0
-b11 9
-b11 I
-b1 1
-b1 :
-b1 H
-0&
-1$
-b10 )
-b10 3
-b10 K
-b10 N
-b100011 @
-b111 7
-b11 6
-b10 5
-b1000 (
-b1000 2
-b1000 M
-b1000110111 =
-b10 ,
-b10 ;
-b10 >
-b10001000110111 -
-b10001000110111 D
-b10 *
-b10 ?
-b10 G
-b1 .
-b1 <
-b1 C
-b1 F
+bx 2
+bx ?
+bx H
+bx 7
+bx @
+bx V
+bx 8
+bx A
+bx U
+bx G
+bx >
+bx =
+bx <
+bx +
+bx 9
+bx Z
+bx D
+bx 3
+bx E
+bx L
+bx 4
+bx K
+bx /
+bx F
+bx T
+bx 5
+bx C
+bx J
+bx O
+bx S
+b0 Q
 1!
 #9000
 0!
 #12000
-b10 +
-b10 8
-b10 A
-b10 /
-b10 B
-b10 J
-b10 L
-b1 0
-b1 9
-b1 I
-b11 1
-b11 :
-b11 H
-b11 )
-b11 3
-b11 K
-b11 N
-b10101 @
-b1000 7
-b101 6
-b1 5
-b1100 (
-b1100 2
-b1100 M
-b101011000 =
-b11 ,
-b11 ;
-b11 >
-b11000101011000 -
-b11000101011000 D
-b11 *
-b11 ?
-b11 G
-b10 .
-b10 <
-b10 C
-b10 F
+b0 Q
 1!
 #15000
 0!
 #18000
-14
-b0 +
-b0 8
-b0 A
-b0 /
-b0 B
-b0 J
-b0 L
-b0 0
-b0 9
-b0 I
-b0 1
-b0 :
-b0 H
-b0 )
-b0 3
-b0 K
-b0 N
-b0 @
-b0 7
-b0 6
-b0 5
-b0 (
-b0 2
-b0 M
-b0 =
-b100 ,
-b100 ;
-b100 >
-b0 -
-b0 D
-b100 *
-b100 ?
-b100 G
-b11 .
-b11 <
-b11 C
-b11 F
+b0 Q
 1!
 #21000
 0!
 #24000
-b1000000 @
-b100 5
-b1 (
-b1 2
-b1 M
-b101 ,
-b101 ;
-b101 >
-b10000000000 -
-b10000000000 D
-b101 *
-b101 ?
-b101 G
-b100 .
-b100 <
-b100 C
-b100 F
-1#
+b0 Q
 1!
 #27000
 0!
 #30000
-b0 @
-b0 5
-b0 (
-b0 2
-b0 M
-b110 ,
-b110 ;
-b110 >
-b0 -
-b0 D
-b110 *
-b110 ?
-b110 G
-b101 .
-b101 <
-b101 C
-b101 F
+b0 Q
 1!
 #33000
 0!
 #36000
-b111 ,
-b111 ;
-b111 >
-b111 *
-b111 ?
-b111 G
-b110 .
-b110 <
-b110 C
-b110 F
+b0 Q
 1!
 #39000
 0!
 #42000
-b1000 ,
-b1000 ;
-b1000 >
-b1000 *
-b1000 ?
-b1000 G
-b111 .
-b111 <
-b111 C
-b111 F
+b0 Q
 1!
 #45000
 0!
 #48000
-b1001 ,
-b1001 ;
-b1001 >
-b1001 *
-b1001 ?
-b1001 G
-b1000 .
-b1000 <
-b1000 C
-b1000 F
+b0 Q
 1!
 #51000
 0!
 #54000
-b1010 ,
-b1010 ;
-b1010 >
-b1010 *
-b1010 ?
-b1010 G
-b1001 .
-b1001 <
-b1001 C
-b1001 F
+b0 Q
 1!
