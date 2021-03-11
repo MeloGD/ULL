@@ -2,7 +2,7 @@
 Universidad de La Laguna.
 Grado en Ingeniería Informática.
 Asignatura de Algoritmos y Estructuras de Datos Avanzadas.
-Práctica 1: Hormiga de Langton
+Práctica 2: Hormiga de Langton
 Año: 2020/2021
 Autor: Jesús Carmelo González Domínguez
 email: alu0101267760@ull.edu.es
@@ -17,7 +17,7 @@ $ make clean
 
 // Constructor
 Jail::Jail(void) {
-  // By default is ' ', which means white. 'X' means black.
+  // By default is '0', which means white. 'X' means black.
   set_state('0');
   set_direction(" ");
 };
