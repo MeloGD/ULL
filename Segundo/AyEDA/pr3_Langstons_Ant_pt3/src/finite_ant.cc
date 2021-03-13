@@ -79,8 +79,8 @@ void Finite_Ant::Move_Right(Finite_World &mesh) {
 void Finite_Ant::Move_Down(Finite_World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   int aux = get_currentx() + 1;
-  if (aux >= mesh.get_column()) {
-    aux -= mesh.get_column();
+  if (aux >= mesh.get_row()) {
+    aux -= mesh.get_row();
     set_currentx(aux);
     mesh.At_Position( get_currentx() , get_currenty() ).set_direction(DOWN);
   } else {

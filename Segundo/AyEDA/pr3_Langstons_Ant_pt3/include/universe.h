@@ -24,9 +24,11 @@ private:
   int steps_;
   int rows_;
   int columns_;
+  World world_;
 
 public:
   Universe(const int steps, const int rows, const int columns);
+  Universe(World& world);
   ~Universe();
 
   // Getters

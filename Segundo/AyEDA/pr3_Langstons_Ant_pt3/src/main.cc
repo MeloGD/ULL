@@ -24,18 +24,22 @@ $ make clean
 int main(void) {
   /*
   char typeworld;
+  int rows;
+  int columns;
   int antcount;
   std::cout << "Bienvenido a la Hormiga de Langton" << std::endl;
-  std::cout << "¿Desea un mundo finito o infinito?" << std::endl;
-  std::cout << " - Escriba i para infinito." << std::endl;
-  std::cout << " - Escriba f para finito." << std::endl;
+  std::cout << "¿Desea un mundo finito o infinito? Especifique dimensiones" << std::endl;
+  std::cout << " - Ejemplo: i 3 3 (infinito 3x3)" << std::endl;
+  std::cin << typeworld << rows << columns;
   std::cout << "¿Cuantas hormigas desea ejecutar y en que posición?" << std::endl;
   */
 
   
   
-  Universe Universo(1000, 3, 3);
-  Universo.Run_Universe('i');
+  //Universe Universo(1000, 3, 3);
+  World mundo(10,3);
+  Universe universo(mundo);
+  universo.Run_Universe('f');
   
 
   return 0;

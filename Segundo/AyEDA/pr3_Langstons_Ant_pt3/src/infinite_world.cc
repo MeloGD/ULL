@@ -69,3 +69,12 @@ void Infinite_World::Resize_For_Move(int row, int column, Infinite_World& mesh) 
 };
 
 
+Infinite_World& Infinite_World::operator=(World& world) {
+  set_row(world.get_row());
+  set_column(world.get_column());
+  set_mesh(world.get_mesh());
+  
+  return *this;
+}
+
+

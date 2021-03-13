@@ -26,3 +26,13 @@ Finite_World::Finite_World(int rows, int columns) {
 Finite_World::~Finite_World() {}
 
 
+// Overloads
+Finite_World& Finite_World::operator=(World& world) {
+  set_row(world.get_row());
+  set_column(world.get_column());
+  set_mesh(world.get_mesh());
+  
+  return *this;
+}
+
+

@@ -18,11 +18,12 @@ public:
   // Getters
   const int get_row(void);
   const int get_column(void);
-  const Vector_T<Vector_T<Jail>>& get_mesh(void);
+  Vector_T<Vector_T<Jail>>& get_mesh(void);
 
   // Setters
   void set_row(const int row);
   void set_column(const int column);
+  void set_mesh(Vector_T<Vector_T<Jail>>& mesh);
 
   // Functions
   // finito
@@ -35,6 +36,8 @@ public:
   //void Print_Infinite_World(void);
 
   //void Resize_For_Move(int row, int column, Infinite_World& mesh);
+  // Overloads
+  World& operator=(World& world);
 
 };
 
@@ -46,6 +49,9 @@ public:
   Finite_World();
   Finite_World(int rows, int columns);
   ~Finite_World();
+
+  // Overloads
+  Finite_World& operator=(World& world);
 
 };
 
@@ -59,6 +65,9 @@ public:
 
   // Functions
   void Resize_For_Move(int row, int column, Infinite_World& mesh);
+
+  // Overloads
+  Infinite_World& operator=(World& world);
 
 };
 

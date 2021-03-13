@@ -34,7 +34,7 @@ const int World::get_column(void) {
   return column_;
 };
 
-const Vector_T<Vector_T<Jail>>& World::get_mesh(void) {
+Vector_T<Vector_T<Jail>>& World::get_mesh(void) {
   return mesh_;
 }
 
@@ -45,6 +45,19 @@ void World::set_row(const int row) {
 
 void World::set_column(const int column) {
   column_ = column;
+};
+
+
+void World::set_mesh(Vector_T<Vector_T<Jail>>& mesh) {
+  mesh_.Resize(mesh.get_size());
+  for (int i = 0; i < mesh_.get_size(); i++) {
+    mesh_[i].Resize(mesh[i].get_size());
+  }
+  for (int i = 0; i < mesh.get_size(); i++) {
+    for (int j = 0; j < mesh[i].get_size(); j++) {
+      mesh_[i][j] = mesh[i][j];
+    } 
+  }
 };
 
 // Functions
@@ -97,3 +110,11 @@ void World::Print_World(void) {
   }
 }
 
+// Overloads
+World& World::operator=(World& world) {
+  set_row(world.get_row());
+  set_column(world.get_column());
+  set_mesh(world.get_mesh());
+  
+  return *this;
+}
