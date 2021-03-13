@@ -17,7 +17,7 @@ $ make clean
 #define UNIVERSE
 
 #include "../include/ant.h"
-#include "../include/finite_world.h"
+#include "../include/world.h"
 
 class Universe {
 private:
@@ -40,7 +40,7 @@ public:
   void set_columns(const int columns);
 
   // Functions
-  void Run_Universe(void);
+  void Run_Universe(char typeworld);
 };
 
 #endif

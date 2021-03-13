@@ -13,14 +13,13 @@ que una tecla sea pulsada para inicializar)
 $ make clean
 */
 
-#ifndef WORLD
-#define WORLD
+#ifndef INFINITE_WORLD
+#define INFINITE_WORLD
 
 #include "../include/jail.h"
-//#include <vector>
 #include "../include/vector_t.h"
 
-class World {
+class Infinite_World {
 private:
   int row_;
   int column_;
@@ -28,9 +27,9 @@ private:
   Vector_T<Vector_T<Jail>> mesh_;
 
 public:
-  World();
-  World(int rows, int columns);
-  ~World();
+  Infinite_World();
+  Infinite_World(int rows, int columns);
+  ~Infinite_World();
 
   // Getters
   const int get_row(void);
@@ -42,10 +41,10 @@ public:
   void set_column(const int column);
 
   // Functions
-  void Resize_World(int row, int column);
-  void Resize_For_Move(int row, int column, World& mesh);
+  void Resize_Infinite_World(int row, int column);
+  void Resize_For_Move(int row, int column, Infinite_World& mesh);
   Jail& At_Position(int row, int column);
-  void Print_World(void);
+  void Print_Infinite_World(void);
 
 };
 

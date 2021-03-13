@@ -54,19 +54,36 @@ void Universe::set_columns(const int columns) {
 
 
 // Functions
-void Universe::Run_Universe(void) {
-  World mundo( get_rows() , get_columns() );
-  Ant hormiga( mundo, 0 , 0 , UP );
-  int steps = 0;
-
-  mundo.Print_World();
-  getchar();
-  do {  
-    system("clear");
+void Universe::Run_Universe(char typeworld) {
+  if (typeworld == 'i') {  
+    Infinite_World mundo( get_rows() , get_columns() );
+    Ant hormiga( mundo, 0 , 0 , UP );
+    int steps = 0;
     mundo.Print_World();
-    hormiga.Run_Ant(mundo);
-    steps++;
     getchar();
-  } while (steps < get_steps());
+    do {  
+      system("clear");
+      mundo.Print_World();
+      hormiga.Run_Ant(mundo);
+      steps++;
+      getchar();
+    } while (steps < get_steps());
+  } else {
+    Finite_World mundo( get_rows() , get_columns() );
+    Finite_Ant hormiga( mundo, 0 , 0 , UP );
+    int steps = 0;
+    mundo.Print_World();
+    getchar();
+    do {  
+      system("clear");
+      mundo.Print_World();
+      hormiga.Run_Ant(mundo);
+      steps++;
+      getchar();
+    } while (steps < get_steps());
+  }
+  
+  
+
   
 }

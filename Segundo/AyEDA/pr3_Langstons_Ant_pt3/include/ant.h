@@ -16,7 +16,7 @@ $ make clean
 #ifndef ANT
 #define ANT
 
-#include "../include/infinite_world.h"
+#include "../include/world.h"
 #include "../include/jail.h"
 
 
@@ -43,19 +43,49 @@ public:
   void set_currentx(const short currentx);
   void set_currenty(const short currenty);
 
-
   // Functions 
   void Place_Ant(World &mesh, int x, int y, string dir);
-  void Run_Ant(World &mesh);
-  void Move_Up(World &mesh);
-  void Move_Up_Left(World &mesh);
-  void Move_Up_Right(World &mesh);
-  void Move_Left(World &mesh);
-  void Move_Right(World &mesh);
-  void Move_Down(World &mesh);
-  void Move_Down_Left(World &mesh);
-  void Move_Down_Right(World &mesh);
+  void Run_Ant(Infinite_World &mesh);
+  void Move_Up(Infinite_World &mesh);
+  void Move_Up_Left(Infinite_World &mesh);
+  void Move_Up_Right(Infinite_World &mesh);
+  void Move_Left(Infinite_World &mesh);
+  void Move_Right(Infinite_World &mesh);
+  void Move_Down(Infinite_World &mesh);
+  void Move_Down_Left(Infinite_World &mesh);
+  void Move_Down_Right(Infinite_World &mesh);
   
 };
+
+class Infinite_Ant : public Ant{
+private:
+  
+public:
+  Infinite_Ant(/* args */);
+  Infinite_Ant(Infinite_World &mundo, int i, int j, string direction);
+  ~Infinite_Ant();
+};
+
+class Finite_Ant : public Ant{
+private:
+  
+public:
+  Finite_Ant(/* args */);
+  Finite_Ant(Finite_World &mundo, int i, int j, string direction);
+  ~Finite_Ant();
+
+   // Functions 
+  //void Place_Ant(World &mesh, int x, int y, string dir);
+  void Run_Ant(Finite_World &mesh);
+  void Move_Up(Finite_World &mesh);
+  void Move_Up_Left(Finite_World &mesh);
+  void Move_Up_Right(Finite_World &mesh);
+  void Move_Left(Finite_World &mesh);
+  void Move_Right(Finite_World &mesh);
+  void Move_Down(Finite_World &mesh);
+  void Move_Down_Left(Finite_World &mesh);
+  void Move_Down_Right(Finite_World &mesh);
+};
+
 
 #endif

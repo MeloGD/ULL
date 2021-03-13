@@ -14,7 +14,7 @@ $ make clean
 */
 
 #include "../include/universe.h"
-#include "../include/finite_world.h"
+#include "../include/world.h"
 #include "../include/ant.h"
 #include "../include/jail.h"
 
@@ -23,15 +23,20 @@ $ make clean
 
 int main(void) {
   /*
-  Universe Universo(1000, 3, 3);
-  Universo.Run_Universe();
+  char typeworld;
+  int antcount;
+  std::cout << "Bienvenido a la Hormiga de Langton" << std::endl;
+  std::cout << "¿Desea un mundo finito o infinito?" << std::endl;
+  std::cout << " - Escriba i para infinito." << std::endl;
+  std::cout << " - Escriba f para finito." << std::endl;
+  std::cout << "¿Cuantas hormigas desea ejecutar y en que posición?" << std::endl;
   */
-  World mundo(10,10);
-  //Ant hormiga (mundo,25,25,UP);
-  int iterator = 0;
 
-  mundo.Print_World();
-  getchar();
+  
+  
+  Universe Universo(1000, 3, 3);
+  Universo.Run_Universe('i');
+  
 
   return 0;
 }

@@ -61,7 +61,7 @@ void Ant::Place_Ant(World &mesh, int x, int y, string dir) {
   mesh.At_Position(x,y).set_direction(dir);
 }
 
-void Ant::Run_Ant(World &mesh) {
+void Ant::Run_Ant(Infinite_World &mesh) {
   if (mesh.At_Position( get_currentx() , get_currenty() ).get_state() == '0') {
     mesh.At_Position( get_currentx() , get_currenty() ).set_state('X');
     if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == UP) {
@@ -103,7 +103,7 @@ void Ant::Run_Ant(World &mesh) {
   }
 }
 
-void Ant::Move_Up(World &mesh) {
+void Ant::Move_Up(Infinite_World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   int aux = get_currentx() - 1;
   if (aux < 0) {
@@ -116,7 +116,7 @@ void Ant::Move_Up(World &mesh) {
   } 
 }
 
-void Ant::Move_Left(World &mesh) {
+void Ant::Move_Left(Infinite_World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   int aux = get_currenty() - 1;
   if (aux < 0) {
@@ -130,7 +130,7 @@ void Ant::Move_Left(World &mesh) {
   } 
 }
 
-void Ant::Move_Right(World &mesh) {
+void Ant::Move_Right(Infinite_World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   int aux = get_currenty() + 1;
   if (aux >= mesh.get_column()) {
@@ -143,7 +143,7 @@ void Ant::Move_Right(World &mesh) {
   } 
 }
 
-void Ant::Move_Down(World &mesh) {
+void Ant::Move_Down(Infinite_World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   int aux = get_currentx() + 1;
   if (aux >= mesh.get_row()) {
@@ -156,7 +156,7 @@ void Ant::Move_Down(World &mesh) {
   } 
 }
 
-void Ant::Move_Up_Left(World &mesh) {
+void Ant::Move_Up_Left(Infinite_World &mesh) {
   Move_Up(mesh);
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   Move_Left(mesh);
@@ -164,7 +164,7 @@ void Ant::Move_Up_Left(World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(UP_LEFT);
 }
 
-void Ant::Move_Up_Right(World &mesh) {
+void Ant::Move_Up_Right(Infinite_World &mesh) {
   Move_Up(mesh);
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   Move_Right(mesh);
@@ -172,7 +172,7 @@ void Ant::Move_Up_Right(World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(UP_RIGHT);
 }
 
-void Ant::Move_Down_Left(World &mesh) {
+void Ant::Move_Down_Left(Infinite_World &mesh) {
   Move_Down(mesh);
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   Move_Left(mesh);
@@ -180,7 +180,7 @@ void Ant::Move_Down_Left(World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(DOWN_LEFT);
 }
 
-void Ant::Move_Down_Right(World &mesh) {
+void Ant::Move_Down_Right(Infinite_World &mesh) {
   Move_Down(mesh);
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   Move_Right(mesh);

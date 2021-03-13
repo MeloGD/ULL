@@ -12,22 +12,22 @@ $ make run
 que una tecla sea pulsada para inicializar)
 $ make clean
 */
-#ifndef WORLD
-#define WORLD
+#ifndef FINITE_WORLD
+#define FINITE_WORLD
 
 #include "../include/jail.h"
 #include "../include/vector_t.h"
 
-class World {
+class Finite_World {
 private:
   int row_;
   int column_;
   Vector_T<Vector_T<Jail>> mesh_;
 
 public:
-  World();
-  World(int rows, int columns);
-  ~World();
+  Finite_World();
+  Finite_World(int rows, int columns);
+  ~Finite_World();
 
   // Getters
   const int get_row(void);
@@ -41,7 +41,7 @@ public:
   // Functions
   void Resize(int row, int column);
   Jail& At_Position(int row, int column);
-  void Print_World(void);
+  void Print_Finite_World(void);
 
 };
 
