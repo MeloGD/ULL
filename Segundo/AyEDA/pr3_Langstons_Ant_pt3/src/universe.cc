@@ -99,31 +99,35 @@ void Universe::Run_Infinite_Universe(void) {
         infinite_antlist[i].Run_Ant(mundo);
         newx = mundo.get_row();
         newy = mundo.get_column();
+        /*
         std::cout << oldx << std::endl;
         std::cout << oldy << std::endl;
         std::cout << newx << std::endl;
         std::cout << newy << std::endl;
+        */
         getchar();
         
         if (oldx != newx && oldy != newy) {
           for (int j = 0; j < infinite_antlist.size(); j++) {
             if (j != i) {
-              std::cout << "j i valen: " << j << i << endl;
+              //std::cout << "j valen: " << j << endl;
               newx -= oldx;
               newy -= oldy;
-              infinite_antlist[j].Place_Ant(mundo, newx, newy, " ");
+              infinite_antlist[j].Place_Ant(mundo,(infinite_antlist[j].get_currentx() + 1),
+                                            (infinite_antlist[j].get_currenty() + 1), 
+                                            infinite_antlist[j].get_direction());
             }
           }
-        } /*
-          else if (oldy != newy) {
+        } else if (oldy != newy) {
           for (int j = 0; j < infinite_antlist.size(); j++) {
             if (j != i) {
               newy -= oldy;
-              infinite_antlist[j].Place_Ant(mundo, infinite_antlist[j].get_currentx(), newy, " ");
+              infinite_antlist[j].Place_Ant(mundo,(infinite_antlist[j].get_currentx()),
+                                            (infinite_antlist[j].get_currenty() + 1), 
+                                            infinite_antlist[j].get_direction());
             }
           }
-        }*/
-        
+        }
       }
       /*
       // guardar valores de columna actuales
