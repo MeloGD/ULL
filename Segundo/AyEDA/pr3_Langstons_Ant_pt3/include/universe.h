@@ -18,6 +18,7 @@ $ make clean
 
 #include "../include/ant.h"
 #include "../include/world.h"
+#include <vector>
 
 class Universe {
 private:
@@ -26,10 +27,11 @@ private:
   int columns_;
   World world_;
   Ant ant_;
+  std::vector<Ant> antlist_;
 
 public:
   Universe(const int steps, const int rows, const int columns);
-  Universe(World& world, Ant& ant);
+  Universe(World& world, std::vector<Ant>& antlist);
   ~Universe();
 
   // Getters
@@ -41,11 +43,14 @@ public:
   void set_steps(const int steps);
   void set_rows(const int rows);
   void set_columns(const int columns);
+  void set_antlist(std::vector<Ant>& antlist);
 
   // Functions
   void Run_Universe(char typeworld);
   void Run_Infinite_Universe(void);
   void Run_Finite_Universe(void);
+  
+
 };
 
 #endif

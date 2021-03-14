@@ -23,9 +23,9 @@ Universe::Universe(const int steps, const int rows, const int columns) {
   set_columns(columns);
 }
 
-Universe::Universe(World& world, Ant& ant) {
+Universe::Universe(World& world,  std::vector<Ant> & antlist) {
   world_ = world;
-  ant_ = ant;
+  set_antlist(antlist);
 }
 
 // Destructor
@@ -57,6 +57,13 @@ void Universe::set_columns(const int columns) {
   columns_ = columns;
 }
 
+void Universe::set_antlist(std::vector<Ant>& antlist) {
+  antlist_.resize(antlist.size());
+  for (int i = 0; i < antlist_.size(); i++){
+    antlist_[i] = antlist[i];
+  }
+}
+
 
 // Functions
 void Universe::Run_Universe(char typeworld) {
@@ -69,32 +76,65 @@ void Universe::Run_Universe(char typeworld) {
 
 void Universe::Run_Infinite_Universe(void) {
     Infinite_World mundo;
+    std::vector<Infinite_Ant> infinite_antlist;
     mundo = world_;
-    world_.~World();
-    Infinite_Ant hormiga;
-    hormiga = ant_;
-    ant_.~Ant();
-    int steps = 0;
-    Infinite_Ant hormiga2(mundo,0,0,UP);
+    infinite_antlist.resize(antlist_.size());
+    for (int i = 0; i < antlist_.size(); i++) {
+      infinite_antlist[i] = antlist_[i];
+      short x = infinite_antlist[i].get_currentx();
+      short y = infinite_antlist[i].get_currenty();
+      std::string dir = infinite_antlist[i].get_direction();
+      infinite_antlist[i].Place_Ant(mundo, x, y, dir);
+    }
+    int steps = 0, oldx = 0, oldy = 0, newx = 0, newy = 0;   
     mundo.Print_World();
     getchar();
-    int oldx = 0;
-    int oldy = 0;
-    int newx = 0;
-    int newy = 0;
+    
     do {  
       system("clear");
       mundo.Print_World();
+      for (int i = 0; i < infinite_antlist.size(); i++) {
+        oldx = mundo.get_row();
+        oldy = mundo.get_column();
+        infinite_antlist[i].Run_Ant(mundo);
+        newx = mundo.get_row();
+        newy = mundo.get_column();
+        std::cout << oldx << std::endl;
+        std::cout << oldy << std::endl;
+        std::cout << newx << std::endl;
+        std::cout << newy << std::endl;
+        getchar();
+        
+        if (oldx != newx && oldy != newy) {
+          for (int j = 0; j < infinite_antlist.size(); j++) {
+            if (j != i) {
+              std::cout << "j i valen: " << j << i << endl;
+              newx -= oldx;
+              newy -= oldy;
+              infinite_antlist[j].Place_Ant(mundo, newx, newy, " ");
+            }
+          }
+        } /*
+          else if (oldy != newy) {
+          for (int j = 0; j < infinite_antlist.size(); j++) {
+            if (j != i) {
+              newy -= oldy;
+              infinite_antlist[j].Place_Ant(mundo, infinite_antlist[j].get_currentx(), newy, " ");
+            }
+          }
+        }*/
+        
+      }
+      /*
       // guardar valores de columna actuales
-      oldx = mundo.get_row();
-      oldy = mundo.get_column();
+
       hormiga.Run_Ant(mundo);
       newx = mundo.get_row();
       newy = mundo.get_column();
       
       if (oldx != newx) {
         newx -= oldx;
-        /*
+        
         std::cout << oldx << std::endl;
         std::cout << newx << std::endl;
         
@@ -102,7 +142,7 @@ void Universe::Run_Infinite_Universe(void) {
         hormiga2.Place_Ant(mundo, newx, hormiga2.get_currenty(), " ");
         valx = hormiga2.get_currentx();
         valy = hormiga2.get_currenty();
-        */
+        /
         hormiga2.set_currentx(newx);
         
       }
@@ -110,10 +150,12 @@ void Universe::Run_Infinite_Universe(void) {
       // guardar nuevos y comparar, si cambian, corregir la siguiente hormiga
       // con place_ant 
       hormiga2.Run_Ant(mundo);
-      
+      */
       steps++;
+      //std::cout << steps << std::endl;
       getchar();
-    } while (steps < 1000);
+    } while (steps < 1000); 
+    
 }
 
 void Universe::Run_Finite_Universe(void) {
@@ -136,3 +178,4 @@ void Universe::Run_Finite_Universe(void) {
       getchar();
     } while (steps < 1000);
 }
+

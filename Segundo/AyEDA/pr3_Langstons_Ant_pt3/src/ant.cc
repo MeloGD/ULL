@@ -26,8 +26,8 @@ Ant::Ant(World &mundo, int x, int y, string direction) {
 Ant::~Ant() {}
 
 // Getters
-const short Ant::get_currentstate(void) {
-  return currentstate_;
+const std::string Ant::get_direction(void) {
+  return direction_;
 }
 
 const short Ant::get_currentx(void) {
@@ -40,8 +40,8 @@ const short Ant::get_currenty(void) {
 
 
 // Setters
-void Ant::set_currentstate(const short state) {
-  currentstate_ = state;
+void Ant::set_direction(std::string direction) {
+  direction_ = direction;
 }
 
 void Ant::set_currentx(const short currentx) {
@@ -184,10 +184,32 @@ void Ant::Move_Down_Right(Infinite_World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(DOWN_RIGHT);
 }
 
+std::string& Ant::Fix_Direction(std::string direction) {
+  if (direction == "up") {
+    direction = UP;
+  } else if (direction == "right") {
+    direction = RIGHT;
+  } else if (direction == "left") {
+    direction = LEFT;
+  } else if (direction == "down") {
+    direction = DOWN;
+  } else if (direction == "upright") {
+    direction = UP_RIGHT;
+  } else if (direction == "upright") {
+    direction = UP_RIGHT;
+  } else if (direction == "upleft") {
+    direction = UP_LEFT;
+  } else if (direction == "downright") {
+    direction = DOWN_RIGHT;
+  } else if (direction == "downleft") {
+    direction = DOWN_LEFT;
+  }
+}
+
 
 // Overloads
 Ant& Ant::operator=(Ant& ant) {
-  set_currentstate(ant.get_currentstate());
+  set_direction(ant.get_direction());
   set_currentx(ant.get_currentx());
   set_currenty(ant.get_currenty());
   

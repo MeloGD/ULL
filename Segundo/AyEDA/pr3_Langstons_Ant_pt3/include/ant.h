@@ -24,7 +24,7 @@ $ make clean
 
 class Ant {
 private:
-  short currentstate_;
+  std::string direction_;
   short currentx_;
   short currenty_;
 
@@ -34,12 +34,12 @@ public:
   ~Ant();
 
   // Getter
-  const short get_currentstate(void);
+  const std::string get_direction(void);
   const short get_currentx(void);
   const short get_currenty(void);
 
   // Setter
-  void set_currentstate(const short state);
+  void set_direction(const std::string direction);
   void set_currentx(const short currentx);
   void set_currenty(const short currenty);
 
@@ -54,6 +54,7 @@ public:
   void Move_Down(Infinite_World &mesh);
   void Move_Down_Left(Infinite_World &mesh);
   void Move_Down_Right(Infinite_World &mesh);
+  std::string& Fix_Direction(std::string direction);
 
   // Overloads
   Ant& operator=(Ant& ant);
@@ -91,6 +92,7 @@ public:
   void Move_Down(Finite_World &mesh);
   void Move_Down_Left(Finite_World &mesh);
   void Move_Down_Right(Finite_World &mesh);
+  
 
   // Overloads
   Finite_Ant& operator=(Ant& ant);

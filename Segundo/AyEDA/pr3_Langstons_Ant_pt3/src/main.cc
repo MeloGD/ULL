@@ -17,30 +17,40 @@ $ make clean
 #include "../include/world.h"
 #include "../include/ant.h"
 #include "../include/jail.h"
-#include <vector>
+
 #include <stdlib.h>
 #include <string>
 
 int main(void) {
-  /*
   char typeworld;
-  int rows;
-  int columns;
-  int antcount;
+  int rows, columns, antcount, steps = 0;
   std::cout << "Bienvenido a la Hormiga de Langton" << std::endl;
   std::cout << "¿Desea un mundo finito o infinito? Especifique dimensiones" << std::endl;
   std::cout << " - Ejemplo: i 3 3 (infinito 3x3)" << std::endl;
-  std::cin << typeworld << rows << columns;
-  std::cout << "¿Cuantas hormigas desea ejecutar y en que posición?" << std::endl;
-  */
-
+  std::cin >> typeworld >> rows >> columns;
+  World mundo(rows,columns);
+  std::cout << "¿Cuantas hormigas desea ejecutar?" << std::endl;
+  std::cin >> antcount;
+  std::vector<Ant> antlist;
+  do {
+    Ant dohormiga;
+    int posx, posy = 0;
+    std::string direction = " ";
+    std::cout << "Introduzca las coordenadas x y, la oritación" << std::endl;
+    std::cout << "de la hormiga: " << steps << std::endl;
+    std::cout << "Ejemplo: 0 0 up" << std::endl;
+    std::cin >> posx >> posy >> direction;
+    dohormiga.set_currentx(posx);
+    dohormiga.set_currenty(posy);
+    direction = dohormiga.Fix_Direction(direction);
+    dohormiga.set_direction(direction);
+    antlist.push_back(dohormiga);
+    steps++;
+  } while (steps < antcount);
   
-  
-  //Universe Universo(1000, 3, 3);
-  World mundo(3,3);
-  Ant hormiga(mundo, 0,2,UP);
-  Universe universo(mundo,hormiga);
-  universo.Run_Universe('i');
+    
+  Universe universo(mundo,antlist);
+  universo.Run_Universe(typeworld);
   
   
 

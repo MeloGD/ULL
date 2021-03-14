@@ -91,7 +91,7 @@ void Finite_Ant::Move_Down(Finite_World &mesh) {
 
 // Overloads
 Finite_Ant& Finite_Ant::operator=(Ant& ant) {
-  set_currentstate(ant.get_currentstate());
+  set_direction(ant.get_direction());
   set_currentx(ant.get_currentx());
   set_currenty(ant.get_currenty());
   
