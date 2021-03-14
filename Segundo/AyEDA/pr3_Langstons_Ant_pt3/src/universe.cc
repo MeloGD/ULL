@@ -23,8 +23,9 @@ Universe::Universe(const int steps, const int rows, const int columns) {
   set_columns(columns);
 }
 
-Universe::Universe(World& world) {
+Universe::Universe(World& world, Ant& ant) {
   world_ = world;
+  ant_ = ant;
 }
 
 // Destructor
@@ -60,36 +61,78 @@ void Universe::set_columns(const int columns) {
 // Functions
 void Universe::Run_Universe(char typeworld) {
   if (typeworld == 'i') {  
+    Run_Infinite_Universe();
+  } else {
+    Run_Infinite_Universe();
+  }
+}
+
+void Universe::Run_Infinite_Universe(void) {
     Infinite_World mundo;
     mundo = world_;
-    Ant hormiga( mundo, 0 , 0 , UP );
+    world_.~World();
+    Infinite_Ant hormiga;
+    hormiga = ant_;
+    ant_.~Ant();
     int steps = 0;
+    Infinite_Ant hormiga2(mundo,0,0,UP);
     mundo.Print_World();
     getchar();
+    int oldx = 0;
+    int oldy = 0;
+    int newx = 0;
+    int newy = 0;
     do {  
       system("clear");
       mundo.Print_World();
+      // guardar valores de columna actuales
+      oldx = mundo.get_row();
+      oldy = mundo.get_column();
       hormiga.Run_Ant(mundo);
+      newx = mundo.get_row();
+      newy = mundo.get_column();
+      
+      if (oldx != newx) {
+        newx -= oldx;
+        /*
+        std::cout << oldx << std::endl;
+        std::cout << newx << std::endl;
+        
+        int valx, valy = 0;
+        hormiga2.Place_Ant(mundo, newx, hormiga2.get_currenty(), " ");
+        valx = hormiga2.get_currentx();
+        valy = hormiga2.get_currenty();
+        */
+        hormiga2.set_currentx(newx);
+        
+      }
+      
+      // guardar nuevos y comparar, si cambian, corregir la siguiente hormiga
+      // con place_ant 
+      hormiga2.Run_Ant(mundo);
+      
       steps++;
       getchar();
     } while (steps < 1000);
-  } else {
-    Finite_World mundo;
-    mundo = world_;
-    Finite_Ant hormiga( mundo, 0 , 0 , UP );
-    int steps = 0;
-    mundo.Print_World();
-    getchar();
-    do {  
-      system("clear");
-      mundo.Print_World();
-      hormiga.Run_Ant(mundo);
-      steps++;
-      getchar();
-    } while (steps < 1000);
-  }
-  
-  
+}
 
-  
+void Universe::Run_Finite_Universe(void) {
+      Finite_World mundo;
+    mundo = world_;
+    world_.~World();
+    Finite_Ant hormiga;
+    hormiga = ant_;
+    ant_.~Ant();
+    int steps = 0;
+    Finite_Ant hormiga2(mundo,0,3,UP);
+    mundo.Print_World();
+    getchar();
+    do {  
+      system("clear");
+      mundo.Print_World();
+      hormiga.Run_Ant(mundo);
+      hormiga2.Run_Ant(mundo);
+      steps++;
+      getchar();
+    } while (steps < 1000);
 }

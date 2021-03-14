@@ -160,7 +160,6 @@ void Ant::Move_Up_Left(Infinite_World &mesh) {
   Move_Up(mesh);
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   Move_Left(mesh);
-  mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(UP_LEFT);
 }
 
@@ -168,7 +167,6 @@ void Ant::Move_Up_Right(Infinite_World &mesh) {
   Move_Up(mesh);
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   Move_Right(mesh);
-  mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(UP_RIGHT);
 }
 
@@ -176,7 +174,6 @@ void Ant::Move_Down_Left(Infinite_World &mesh) {
   Move_Down(mesh);
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   Move_Left(mesh);
-  mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(DOWN_LEFT);
 }
 
@@ -184,6 +181,15 @@ void Ant::Move_Down_Right(Infinite_World &mesh) {
   Move_Down(mesh);
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   Move_Right(mesh);
-  mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(DOWN_RIGHT);
+}
+
+
+// Overloads
+Ant& Ant::operator=(Ant& ant) {
+  set_currentstate(ant.get_currentstate());
+  set_currentx(ant.get_currentx());
+  set_currenty(ant.get_currenty());
+  
+  return *this;
 }

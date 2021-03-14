@@ -17,7 +17,7 @@ $ make clean
 #include "../include/world.h"
 #include "../include/ant.h"
 #include "../include/jail.h"
-
+#include <vector>
 #include <stdlib.h>
 #include <string>
 
@@ -37,9 +37,11 @@ int main(void) {
   
   
   //Universe Universo(1000, 3, 3);
-  World mundo(10,3);
-  Universe universo(mundo);
-  universo.Run_Universe('f');
+  World mundo(3,3);
+  Ant hormiga(mundo, 0,2,UP);
+  Universe universo(mundo,hormiga);
+  universo.Run_Universe('i');
+  
   
 
   return 0;

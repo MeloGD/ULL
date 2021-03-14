@@ -54,6 +54,9 @@ public:
   void Move_Down(Infinite_World &mesh);
   void Move_Down_Left(Infinite_World &mesh);
   void Move_Down_Right(Infinite_World &mesh);
+
+  // Overloads
+  Ant& operator=(Ant& ant);
   
 };
 
@@ -64,6 +67,9 @@ public:
   Infinite_Ant(/* args */);
   Infinite_Ant(Infinite_World &mundo, int i, int j, string direction);
   ~Infinite_Ant();
+
+  // Overloads
+  Infinite_Ant& operator=(Ant& ant);
 };
 
 class Finite_Ant : public Ant{
@@ -85,6 +91,9 @@ public:
   void Move_Down(Finite_World &mesh);
   void Move_Down_Left(Finite_World &mesh);
   void Move_Down_Right(Finite_World &mesh);
+
+  // Overloads
+  Finite_Ant& operator=(Ant& ant);
 };
 
 

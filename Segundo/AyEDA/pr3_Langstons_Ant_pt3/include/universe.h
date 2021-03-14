@@ -25,10 +25,11 @@ private:
   int rows_;
   int columns_;
   World world_;
+  Ant ant_;
 
 public:
   Universe(const int steps, const int rows, const int columns);
-  Universe(World& world);
+  Universe(World& world, Ant& ant);
   ~Universe();
 
   // Getters
@@ -43,6 +44,8 @@ public:
 
   // Functions
   void Run_Universe(char typeworld);
+  void Run_Infinite_Universe(void);
+  void Run_Finite_Universe(void);
 };
 
 #endif
