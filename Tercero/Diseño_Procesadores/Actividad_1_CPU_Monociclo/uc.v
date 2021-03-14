@@ -15,6 +15,9 @@ casez (opcode)
         s_inc = 1;
         s_inm = 0; // para poder cargar el valor que sale de la alu en el mux
         we3 = 1 ; // habilito la escritura en el banco de registros
+        s_stack = 0;
+        push = 0;
+        pop = 0;
       end
 
     // Carga de constante inmediata, las cargas escriben en el banco de registros
@@ -24,12 +27,18 @@ casez (opcode)
         s_inm = 1;
         s_inc = 1;
         we3 = 1;
+        s_stack = 0;
+        push = 0;
+        pop = 0;
     end
     
     // Salto
     6'b110000: 
       begin 
         s_inc = 0;
+        s_stack = 0;
+        push = 0;
+        pop = 0;
       end
     // Salto Z
     6'b110001: 
@@ -39,6 +48,9 @@ casez (opcode)
         end else begin
           s_inc = 1;
         end
+        s_stack = 0;
+        push = 0;
+        pop = 0;
       end  
     // Salto No Z
     6'b110010:
@@ -48,19 +60,30 @@ casez (opcode)
         end else begin
           s_inc = 1;
         end
+        push = 0;
+        pop = 0;
+        s_stack = 0;
       end
     // Subrutinas - Pila
     // pop
     6'b1111zz:
       begin
+        s_inc = 0;
         s_stack = 1;
         pop = 1;
+        push = 0;
+        we3 = 0;
+        wez = 0;
       end     
     // push
     6'b1110zz:
       begin
-        s_stack = 1;
+        s_inc = 1;
+        s_stack = 0;
         push = 1;
+        pop = 0;
+        we3 = 0;
+        wez = 0;
       end
     default:; 
   endcase

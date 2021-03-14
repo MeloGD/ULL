@@ -1,5 +1,5 @@
 $date
-	Wed Mar 10 11:28:25 2021
+	Sun Mar 14 22:41:19 2021
 $end
 $version
 	Icarus Verilog
@@ -25,103 +25,101 @@ $var wire 6 + opcode [5:0] $end
 $var wire 3 , op_alu [2:0] $end
 $scope module camino_datos $end
 $var wire 1 ! clk $end
-$var wire 1 - popsignal $end
-$var wire 1 . pushsignal $end
 $var wire 1 " reset $end
 $var wire 1 # z $end
 $var wire 1 $ wez $end
 $var wire 1 % we3 $end
-$var wire 10 / salida_sumador [9:0] $end
-$var wire 10 0 salida_pila [9:0] $end
-$var wire 10 1 salida_mux_stack [9:0] $end
-$var wire 8 2 salida_mux_inm [7:0] $end
-$var wire 10 3 salida_mux_inc [9:0] $end
-$var wire 16 4 salida_memoria_programa [15:0] $end
-$var wire 10 5 salida_contador_programa [9:0] $end
-$var wire 8 6 salida_alu [7:0] $end
+$var wire 10 - salida_sumador [9:0] $end
+$var wire 10 . salida_pila [9:0] $end
+$var wire 10 / salida_mux_stack [9:0] $end
+$var wire 8 0 salida_mux_inm [7:0] $end
+$var wire 10 1 salida_mux_inc [9:0] $end
+$var wire 16 2 salida_memoria_programa [15:0] $end
+$var wire 10 3 salida_contador_programa [9:0] $end
+$var wire 8 4 salida_alu [7:0] $end
 $var wire 1 & s_stack $end
 $var wire 1 ' s_inm $end
 $var wire 1 ( s_inc $end
-$var wire 8 7 rd2 [7:0] $end
-$var wire 8 8 rd1 [7:0] $end
-$var wire 1 ) push_signal $end
-$var wire 1 * pop_signal $end
-$var wire 6 9 opcode [5:0] $end
-$var wire 3 : op_alu [2:0] $end
-$var wire 1 ; entrada_ffz $end
+$var wire 8 5 rd2 [7:0] $end
+$var wire 8 6 rd1 [7:0] $end
+$var wire 1 ) pushsignal $end
+$var wire 1 * popsignal $end
+$var wire 6 7 opcode [5:0] $end
+$var wire 3 8 op_alu [2:0] $end
+$var wire 1 9 entrada_ffz $end
 $scope module banco_registros $end
 $var wire 1 ! clk $end
-$var wire 4 < ra1 [3:0] $end
-$var wire 4 = ra2 [3:0] $end
-$var wire 4 > wa3 [3:0] $end
+$var wire 4 : ra1 [3:0] $end
+$var wire 4 ; ra2 [3:0] $end
+$var wire 4 < wa3 [3:0] $end
 $var wire 1 % we3 $end
-$var wire 8 ? wd3 [7:0] $end
-$var wire 8 @ rd2 [7:0] $end
-$var wire 8 A rd1 [7:0] $end
+$var wire 8 = wd3 [7:0] $end
+$var wire 8 > rd2 [7:0] $end
+$var wire 8 ? rd1 [7:0] $end
 $upscope $end
 $scope module contador_programa $end
 $var wire 1 ! clk $end
 $var wire 1 " reset $end
-$var wire 10 B d [9:0] $end
-$var reg 10 C q [9:0] $end
+$var wire 10 @ d [9:0] $end
+$var reg 10 A q [9:0] $end
 $upscope $end
 $scope module ffz $end
 $var wire 1 ! clk $end
 $var wire 1 " reset $end
-$var wire 1 ; d $end
+$var wire 1 9 d $end
 $var wire 1 $ carga $end
 $var reg 1 # q $end
 $upscope $end
 $scope module inc $end
-$var wire 10 D d0 [9:0] $end
-$var wire 10 E y [9:0] $end
+$var wire 10 B d0 [9:0] $end
+$var wire 10 C y [9:0] $end
 $var wire 1 ( s $end
-$var wire 10 F d1 [9:0] $end
+$var wire 10 D d1 [9:0] $end
 $upscope $end
 $scope module inm $end
-$var wire 8 G d1 [7:0] $end
-$var wire 8 H y [7:0] $end
+$var wire 8 E d1 [7:0] $end
+$var wire 8 F y [7:0] $end
 $var wire 1 ' s $end
-$var wire 8 I d0 [7:0] $end
+$var wire 8 G d0 [7:0] $end
 $upscope $end
 $scope module memoria_programa $end
-$var wire 10 J a [9:0] $end
+$var wire 10 H a [9:0] $end
 $var wire 1 ! clk $end
-$var wire 16 K rd [15:0] $end
+$var wire 16 I rd [15:0] $end
 $upscope $end
 $scope module mux_stack $end
-$var wire 10 L d0 [9:0] $end
-$var wire 10 M y [9:0] $end
+$var wire 10 J d0 [9:0] $end
+$var wire 10 K y [9:0] $end
 $var wire 1 & s $end
-$var wire 10 N d1 [9:0] $end
+$var wire 10 L d1 [9:0] $end
 $upscope $end
 $scope module pila $end
 $var wire 1 ! clk $end
-$var wire 1 - popsignal $end
-$var wire 10 O push [9:0] $end
-$var wire 1 . pushsignal $end
+$var wire 10 M push [9:0] $end
 $var wire 1 " reset $end
-$var reg 10 P pop [9:0] $end
-$var reg 3 Q stack_pointer [2:0] $end
+$var wire 1 ) pushsignal $end
+$var wire 1 * popsignal $end
+$var reg 10 N pop [9:0] $end
+$var reg 3 O stack_pointer [2:0] $end
 $upscope $end
 $scope module sumador $end
-$var wire 10 R a [9:0] $end
-$var wire 10 S b [9:0] $end
-$var wire 10 T y [9:0] $end
+$var wire 10 P a [9:0] $end
+$var wire 10 Q b [9:0] $end
+$var wire 10 R y [9:0] $end
 $upscope $end
 $scope module unidad_alu $end
-$var wire 8 U a [7:0] $end
-$var wire 8 V b [7:0] $end
-$var wire 8 W y [7:0] $end
-$var wire 1 ; zero $end
-$var wire 3 X op_alu [2:0] $end
-$var reg 8 Y s [7:0] $end
+$var wire 8 S a [7:0] $end
+$var wire 8 T b [7:0] $end
+$var wire 8 U y [7:0] $end
+$var wire 1 9 zero $end
+$var wire 3 V op_alu [2:0] $end
+$var reg 8 W s [7:0] $end
 $upscope $end
 $upscope $end
 $scope module unidad_control $end
-$var wire 6 Z opcode [5:0] $end
+$var wire 6 X opcode [5:0] $end
 $var wire 1 # z $end
-$var reg 3 [ op_alu [2:0] $end
+$var reg 3 Y op_alu [2:0] $end
 $var reg 1 * pop $end
 $var reg 1 ) push $end
 $var reg 1 ( s_inc $end
@@ -135,61 +133,59 @@ $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-bx [
-b100011 Z
 bx Y
-bx X
+b110001 X
 bx W
-b0 V
-b0 U
-b1 T
+bx V
+bx U
+b0 T
 b0 S
 b1 R
 b0 Q
-bx P
+b1 P
 b0 O
 bx N
-bx M
-b1 L
-b1000111100001010 K
-b0 J
-bx I
-b11110000 H
-b11110000 G
-b1 F
-b1 E
-b1100001010 D
-b0 C
-bx B
+b0 M
+bx L
+b1 K
+b1 J
+b1100010000010111 I
+b0 H
+bx G
+bx F
+b1000001 E
+b1 D
+b1 C
+b10111 B
 b0 A
-b0 @
-b11110000 ?
-b1010 >
-b0 =
-b1111 <
-x;
-bx :
-b100011 9
-b0 8
-b0 7
-bx 6
+b1 @
+b0 ?
+b0 >
+bx =
+b111 <
+b1 ;
+b100 :
+x9
+bx 8
+b110001 7
+b0 6
 b0 5
-b1000111100001010 4
-b1 3
-b11110000 2
-bx 1
+bx 4
+b0 3
+b1100010000010111 2
+b1 1
 bx 0
 b1 /
-z.
-z-
+bx .
+b1 -
 bx ,
-b100011 +
-x*
-x)
+b110001 +
+0*
+0)
 1(
-1'
-x&
-1%
+x'
+0&
+x%
 x$
 0#
 1"
@@ -200,75 +196,194 @@ $end
 #3000
 0!
 #6000
-bx 2
-bx ?
-bx H
-bx 7
-bx @
-bx V
-bx 8
-bx A
-bx U
-bx G
-bx >
-bx =
-bx <
-bx +
-bx 9
-bx Z
-bx D
-bx 3
-bx E
-bx L
-bx 4
-bx K
-bx /
-bx F
-bx T
-bx 5
-bx C
-bx J
-bx O
-bx S
-b0 Q
+b1 O
+0$
+0%
+1)
+b10 /
+b10 @
+b10 K
+b0 E
+b0 <
+b0 ;
+b0 :
+b111000 +
+b111000 7
+b111000 X
+b0 B
+b10 1
+b10 C
+b10 J
+b1110000000000000 2
+b1110000000000000 I
+b10 -
+b10 D
+b10 R
+b1 3
+b1 A
+b1 H
+b1 M
+b1 Q
 1!
 #9000
 0!
 #12000
-b0 Q
+0)
+b11 /
+b11 @
+b11 K
+b1000001 E
+b111 <
+b1 ;
+b100 :
+b110001 +
+b110001 7
+b110001 X
+b10111 B
+b11 1
+b11 C
+b11 J
+b1100010000010111 2
+b1100010000010111 I
+b11 -
+b11 D
+b11 R
+b10 3
+b10 A
+b10 H
+b10 M
+b10 Q
 1!
 #15000
 0!
 #18000
-b0 Q
+b100 /
+b100 @
+b100 K
+b100 1
+b100 C
+b100 J
+b100 -
+b100 D
+b100 R
+b11 3
+b11 A
+b11 H
+b11 M
+b11 Q
 1!
 #21000
 0!
 #24000
-b0 Q
+b10 O
+1)
+b101 /
+b101 @
+b101 K
+b0 E
+b0 <
+b0 ;
+b0 :
+b111000 +
+b111000 7
+b111000 X
+b0 B
+b101 1
+b101 C
+b101 J
+b1110000000000000 2
+b1110000000000000 I
+b101 -
+b101 D
+b101 R
+b100 3
+b100 A
+b100 H
+b100 M
+b100 Q
 1!
 #27000
 0!
 #30000
-b0 Q
+b110 /
+b110 @
+b110 K
+b110 1
+b110 C
+b110 J
+b110 -
+b110 D
+b110 R
+b101 3
+b101 A
+b101 H
+b101 M
+b101 Q
 1!
 #33000
 0!
 #36000
-b0 Q
+b1 O
+0)
+1*
+1&
+0(
+bx /
+bx @
+bx K
+b111100 +
+b111100 7
+b111100 X
+b0 1
+b0 C
+b0 J
+b1111000000000000 2
+b1111000000000000 I
+b111 -
+b111 D
+b111 R
+b110 3
+b110 A
+b110 H
+b110 M
+b110 Q
 1!
 #39000
 0!
 #42000
-b0 Q
+bx 5
+bx >
+bx T
+bx 6
+bx ?
+bx S
+bx 1
+bx C
+bx J
+bx E
+bx <
+bx ;
+bx :
+bx +
+bx 7
+bx X
+bx B
+bx 2
+bx I
+bx -
+bx D
+bx R
+bx 3
+bx A
+bx H
+bx M
+bx Q
 1!
 #45000
 0!
 #48000
-b0 Q
 1!
 #51000
 0!
 #54000
-b0 Q
 1!

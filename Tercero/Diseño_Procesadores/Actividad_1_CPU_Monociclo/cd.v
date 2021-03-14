@@ -1,4 +1,4 @@
-module cd(input wire clk, reset, s_inc, s_inm, we3, wez, pop_signal, push_signal, s_stack,
+module cd(input wire clk, reset, s_inc, s_inm, we3, wez, popsignal, pushsignal, s_stack,
           input wire [2:0] op_alu, 
           output wire z, output wire [5:0] opcode);
 

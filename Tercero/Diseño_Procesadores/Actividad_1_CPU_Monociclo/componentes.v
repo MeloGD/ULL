@@ -76,20 +76,29 @@ module stack(input wire clk, reset, popsignal, pushsignal,
   reg [9:0] memoria_pila[0:7];
   reg [2:0] stack_pointer;
   // inicializacion del stack pointer a 0
-  initial begin
-    stack_pointer <= 3'b000;
-  end
-  
-  always @(posedge clk, posedge reset) begin
-    if (reset)
+  initial 
+    begin
       stack_pointer = 3'b000;
+    end
+  
+  always @(pushsignal, popsignal, posedge reset) begin
+    if (reset)
+      begin
+        stack_pointer = 3'b000;
+      end
     if (pushsignal)
-      // cargamos, luego incrementamos
-      memoria_pila[stack_pointer] = push;
-      stack_pointer = stack_pointer + 1;
-    if (popsignal)
-      pop = memoria_pila[stack_pointer];
-      stack_pointer = stack_pointer - 1;
+      begin
+        // cargamos, luego incrementamos
+        memoria_pila[stack_pointer] = push;
+        stack_pointer = stack_pointer + 3'b001;
+      end
+    if (popsignal) 
+      begin
+        //pop = memoria_pila[stack_pointer];
+        pop = memoria_pila[stack_pointer];
+        stack_pointer = stack_pointer - 3'b001;
+      end
+      
     // if sp > 8 avisar de error  
   end
 
