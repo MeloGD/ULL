@@ -27,6 +27,7 @@ private:
   std::string direction_;
   short currentx_;
   short currenty_;
+  bool resizenegative_;
 
 public:
   Ant();
@@ -37,11 +38,13 @@ public:
   const std::string get_direction(void);
   const short get_currentx(void);
   const short get_currenty(void);
+  const bool get_resizenegative(void);
 
   // Setter
   void set_direction(const std::string direction);
   void set_currentx(const short currentx);
   void set_currenty(const short currenty);
+  void set_resizenegative(const bool resize);
 
   // Functions 
   void Place_Ant(World &mesh, int x, int y, string dir);

@@ -70,7 +70,7 @@ void Universe::Run_Universe(char typeworld) {
   if (typeworld == 'i') {  
     Run_Infinite_Universe();
   } else {
-    Run_Infinite_Universe();
+    Run_Finite_Universe();
   }
 }
 
@@ -98,65 +98,47 @@ void Universe::Run_Infinite_Universe(void) {
         oldy = mundo.get_column();
         infinite_antlist[i].Run_Ant(mundo);
         newx = mundo.get_row();
-        newy = mundo.get_column();
-        /*
-        std::cout << oldx << std::endl;
-        std::cout << oldy << std::endl;
-        std::cout << newx << std::endl;
-        std::cout << newy << std::endl;
-        */
-        getchar();
-        
-        if (oldx != newx && oldy != newy) {
+        newy = mundo.get_column();       
+        if (oldx != newx && oldy != newy && infinite_antlist[i].get_resizenegative()) {
           for (int j = 0; j < infinite_antlist.size(); j++) {
             if (j != i) {
               //std::cout << "j valen: " << j << endl;
-              newx -= oldx;
-              newy -= oldy;
+              //newx -= oldx;
+              //newy -= oldy;
               infinite_antlist[j].Place_Ant(mundo,(infinite_antlist[j].get_currentx() + 1),
                                             (infinite_antlist[j].get_currenty() + 1), 
                                             infinite_antlist[j].get_direction());
             }
           }
-        } else if (oldy != newy) {
+        } else if (oldy != newy && infinite_antlist[i].get_resizenegative() ) {
           for (int j = 0; j < infinite_antlist.size(); j++) {
             if (j != i) {
-              newy -= oldy;
+              //newy -= oldy;
               infinite_antlist[j].Place_Ant(mundo,(infinite_antlist[j].get_currentx()),
                                             (infinite_antlist[j].get_currenty() + 1), 
                                             infinite_antlist[j].get_direction());
             }
           }
+        }  else if (oldx != newx && infinite_antlist[i].get_resizenegative()) {
+          for (int j = 0; j < infinite_antlist.size(); j++) {
+            if (j != i) {
+              //newy -= oldy;
+              infinite_antlist[j].Place_Ant(mundo,(infinite_antlist[j].get_currentx() + 1),
+                                            (infinite_antlist[j].get_currenty()), 
+                                            infinite_antlist[j].get_direction());
+            }
+          }
+        } else {
+          for (int j = 0; j < infinite_antlist.size(); j++) {
+              //newy -= oldy;
+              infinite_antlist[j].Place_Ant(mundo,(infinite_antlist[j].get_currentx() ),
+                                            (infinite_antlist[j].get_currenty()), 
+                                            infinite_antlist[j].get_direction());
+                
+          }
         }
       }
-      /*
-      // guardar valores de columna actuales
-
-      hormiga.Run_Ant(mundo);
-      newx = mundo.get_row();
-      newy = mundo.get_column();
-      
-      if (oldx != newx) {
-        newx -= oldx;
-        
-        std::cout << oldx << std::endl;
-        std::cout << newx << std::endl;
-        
-        int valx, valy = 0;
-        hormiga2.Place_Ant(mundo, newx, hormiga2.get_currenty(), " ");
-        valx = hormiga2.get_currentx();
-        valy = hormiga2.get_currenty();
-        /
-        hormiga2.set_currentx(newx);
-        
-      }
-      
-      // guardar nuevos y comparar, si cambian, corregir la siguiente hormiga
-      // con place_ant 
-      hormiga2.Run_Ant(mundo);
-      */
       steps++;
-      //std::cout << steps << std::endl;
       getchar();
     } while (steps < 1000); 
     

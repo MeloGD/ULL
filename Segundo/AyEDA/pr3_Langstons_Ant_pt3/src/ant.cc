@@ -38,6 +38,10 @@ const short Ant::get_currenty(void) {
   return currenty_;
 }
 
+const bool Ant::get_resizenegative(void) {
+  return resizenegative_;
+}
+
 
 // Setters
 void Ant::set_direction(std::string direction) {
@@ -52,12 +56,16 @@ void Ant::set_currenty(const short currenty) {
   currenty_ = currenty;
 }
 
+void Ant::set_resizenegative(const bool resize) {
+  resizenegative_ = resize;
+}
+
 // Functions
 void Ant::Place_Ant(World &mesh, int x, int y, string dir) {
   assert(x < mesh.get_row() && y < mesh.get_column());
   set_currentx(x);
   set_currenty(y);
-  mesh.At_Position(x,y).set_state('0');
+  //mesh.At_Position(x,y).set_state('0');
   mesh.At_Position(x,y).set_direction(dir);
 }
 
@@ -107,6 +115,7 @@ void Ant::Move_Up(Infinite_World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   int aux = get_currentx() - 1;
   if (aux < 0) {
+    set_resizenegative(true);
     set_currentx(0);
     mesh.Resize_For_Move(aux,get_currenty(), mesh);
     mesh.At_Position( get_currentx() , get_currenty() ).set_direction(UP);
@@ -123,6 +132,7 @@ void Ant::Move_Left(Infinite_World &mesh) {
   int aux = get_currenty() - 1;
   if (aux < 0) {
     //aux = mesh.get_column() - 1;
+    set_resizenegative(true);
     set_currenty(0);
     mesh.Resize_For_Move(get_currentx(),aux, mesh);
     mesh.At_Position( get_currentx() , get_currenty() ).set_direction(LEFT);
@@ -138,6 +148,7 @@ void Ant::Move_Right(Infinite_World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   int aux = get_currenty() + 1;
   if (aux >= mesh.get_column()) {
+    set_resizenegative(false);
     set_currenty(aux);
     mesh.Resize_For_Move(0,aux, mesh);
     mesh.At_Position( get_currentx() , get_currenty() ).set_direction(RIGHT);
@@ -153,6 +164,7 @@ void Ant::Move_Down(Infinite_World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   int aux = get_currentx() + 1;
   if (aux >= mesh.get_row()) {
+    set_resizenegative(false);
     set_currentx(aux);
     mesh.Resize_For_Move(aux,0, mesh);
     mesh.At_Position( get_currentx() , get_currenty() ).set_direction(DOWN);
