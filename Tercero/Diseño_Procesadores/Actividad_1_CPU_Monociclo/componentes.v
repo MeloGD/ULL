@@ -95,8 +95,8 @@ module stack(input wire clk, reset, popsignal, pushsignal,
     if (popsignal) 
       begin
         //pop = memoria_pila[stack_pointer];
-        pop = memoria_pila[stack_pointer];
         stack_pointer = stack_pointer - 3'b001;
+        pop = memoria_pila[stack_pointer];
       end
       
     // if sp > 8 avisar de error  
