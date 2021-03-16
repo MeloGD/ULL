@@ -17,11 +17,16 @@ $ make clean
 #include <stdlib.h>
 
 // Constructor
+Universe::Universe(){
+
+}
+
 Universe::Universe(const int steps, const int rows, const int columns) {
   set_steps(steps);
   set_rows(rows);
   set_columns(columns);
 }
+
 
 Universe::Universe(World& world,  std::vector<Ant> & antlist) {
   world_ = world;
@@ -64,104 +69,8 @@ void Universe::set_antlist(std::vector<Ant>& antlist) {
   }
 }
 
+void Universe::Run_Universe() {
+  std::cout << "OMEGALUL";
 
-// Functions
-void Universe::Run_Universe(char typeworld) {
-  if (typeworld == 'i') {  
-    Run_Infinite_Universe();
-  } else {
-    Run_Finite_Universe();
-  }
-}
-
-void Universe::Run_Infinite_Universe(void) {
-    Infinite_World mundo;
-    std::vector<Infinite_Ant> infinite_antlist;
-    mundo = world_;
-    infinite_antlist.resize(antlist_.size());
-    for (int i = 0; i < antlist_.size(); i++) {
-      infinite_antlist[i] = antlist_[i];
-      short x = infinite_antlist[i].get_currentx();
-      short y = infinite_antlist[i].get_currenty();
-      std::string dir = infinite_antlist[i].get_direction();
-      infinite_antlist[i].Place_Ant(mundo, x, y, dir);
-    }
-    int steps = 0, oldx = 0, oldy = 0, newx = 0, newy = 0;   
-    mundo.Print_World();
-    getchar();
-    
-    do {  
-      system("clear");
-      mundo.Print_World();
-      for (int i = 0; i < infinite_antlist.size(); i++) {
-        oldx = mundo.get_row();
-        oldy = mundo.get_column();
-        infinite_antlist[i].Run_Ant(mundo);
-        newx = mundo.get_row();
-        newy = mundo.get_column();       
-        if (oldx != newx && oldy != newy && infinite_antlist[i].get_resizenegative()) {
-          for (int j = 0; j < infinite_antlist.size(); j++) {
-            if (j != i) {
-              //std::cout << "j valen: " << j << endl;
-              //newx -= oldx;
-              //newy -= oldy;
-              infinite_antlist[j].Place_Ant(mundo,(infinite_antlist[j].get_currentx() + 1),
-                                            (infinite_antlist[j].get_currenty() + 1), 
-                                            infinite_antlist[j].get_direction());
-            }
-          }
-        } else if (oldy != newy && infinite_antlist[i].get_resizenegative() ) {
-          for (int j = 0; j < infinite_antlist.size(); j++) {
-            if (j != i) {
-              //newy -= oldy;
-              infinite_antlist[j].Place_Ant(mundo,(infinite_antlist[j].get_currentx()),
-                                            (infinite_antlist[j].get_currenty() + 1), 
-                                            infinite_antlist[j].get_direction());
-            }
-          }
-        }  else if (oldx != newx && infinite_antlist[i].get_resizenegative()) {
-          for (int j = 0; j < infinite_antlist.size(); j++) {
-            if (j != i) {
-              //newy -= oldy;
-              infinite_antlist[j].Place_Ant(mundo,(infinite_antlist[j].get_currentx() + 1),
-                                            (infinite_antlist[j].get_currenty()), 
-                                            infinite_antlist[j].get_direction());
-            }
-          }
-        } else {
-          for (int j = 0; j < infinite_antlist.size(); j++) {
-              //newy -= oldy;
-              infinite_antlist[j].Place_Ant(mundo,(infinite_antlist[j].get_currentx() ),
-                                            (infinite_antlist[j].get_currenty()), 
-                                            infinite_antlist[j].get_direction());
-                
-          }
-        }
-      }
-      steps++;
-      getchar();
-    } while (steps < 1000); 
-    
-}
-
-void Universe::Run_Finite_Universe(void) {
-      Finite_World mundo;
-    mundo = world_;
-    world_.~World();
-    Finite_Ant hormiga;
-    hormiga = ant_;
-    ant_.~Ant();
-    int steps = 0;
-    Finite_Ant hormiga2(mundo,0,3,UP);
-    mundo.Print_World();
-    getchar();
-    do {  
-      system("clear");
-      mundo.Print_World();
-      hormiga.Run_Ant(mundo);
-      hormiga2.Run_Ant(mundo);
-      steps++;
-      getchar();
-    } while (steps < 1000);
 }
 
