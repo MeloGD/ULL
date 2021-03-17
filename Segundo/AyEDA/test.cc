@@ -18,7 +18,7 @@ class Rectangle: public Shape {
    public:
       Rectangle( int a = 0, int b = 0):Shape(a, b) { }
       
-      int area () { 
+      int area (char pepe) { 
          cout << "Rectangle class area :" <<endl;
          return (width * height); 
       }
@@ -28,7 +28,7 @@ class Triangle: public Shape {
    public:
       Triangle( int a = 0, int b = 0):Shape(a, b) { }
       
-      int area () { 
+      int area (int pepe) { 
          cout << "Triangle class area :" <<endl;
          return (width * height / 2); 
       }
@@ -44,7 +44,7 @@ int main() {
    shape = &rec;
    
    // call rectangle area.
-   shape->area();
+   shape->area(5);
 
    // store the address of Triangle
    shape = &tri;

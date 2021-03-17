@@ -44,7 +44,7 @@ void Infinite_Universe::set_antlist(std::vector<Infinite_Ant>& antlist) {
 // Functions
 
 void Infinite_Universe::Run_Universe() {
-
+    // PASAR TODO ESTE CODIGO AL MUNDO
     int steps = 0, oldx = 0, oldy = 0, newx = 0, newy = 0;   
     for (int i = 0; i < infantlist_.size(); i++) {
       short x = infantlist_[i].get_currentx();
