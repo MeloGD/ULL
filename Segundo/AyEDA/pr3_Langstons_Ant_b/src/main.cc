@@ -38,7 +38,7 @@ int main(void) {
       std::string direction = " ";
       std::cout << "Introduzca las coordenadas x y, la oritación" << std::endl;
       std::cout << "de la hormiga: " << steps << std::endl;
-      std::cout << "Ejemplo: 0 0 up" << std::endl;
+      std::cout << "Ejemplo: 0 0 up (o right, left, down, upright, downright...)" << std::endl;
       std::cin >> posx >> posy >> direction;
       dohormiga.set_currentx(posx);
       dohormiga.set_currenty(posy);
@@ -62,7 +62,7 @@ int main(void) {
       std::string direction = " ";
       std::cout << "Introduzca las coordenadas x y, la oritación" << std::endl;
       std::cout << "de la hormiga: " << steps << std::endl;
-      std::cout << "Ejemplo: 0 0 up" << std::endl;
+      std::cout << "Ejemplo: 0 0 up (o right, left, down)" << std::endl;
       std::cin >> posx >> posy >> direction;
       dohormiga.set_currentx(posx);
       dohormiga.set_currenty(posy);
@@ -77,11 +77,5 @@ int main(void) {
     universo->Run_Universe();
     
   }
-  
-
-
-  
-  
-
   return 0;
 }
