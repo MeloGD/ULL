@@ -1,11 +1,12 @@
-module cd(input wire clk, reset, s_inc, s_inm, we3, wez, popsignal, pushsignal, s_stack,
+module cd(input wire clk, reset, s_inc, we3, wez, popsignal, pushsignal, s_stack, we4,
+          input wire [1:0] s_inm,
           input wire [2:0] op_alu, 
           output wire z, output wire [5:0] opcode);
 
 // Camino de datos de instrucciones de un solo ciclo
 wire [15:0] salida_memoria_programa;
 wire [9:0] salida_sumador, salida_mux_inc, entrada_sumador_a, salida_contador_programa;
-wire [7:0] rd1, rd2, salida_alu, salida_mux_inm;
+wire [7:0] rd1, rd2, salida_alu, salida_mux_inm, salida_memoria_datos, salida_io;
 wire entrada_ffz;
 
 // Pila
@@ -65,11 +66,11 @@ alu unidad_alu (rd1, rd2,
 // module ffd(input wire clk, reset, d, carga, output reg q);
 ffd ffz(clk, reset, entrada_ffz, wez , z);
 
-// module mux2 #(parameter WIDTH = 8) 
-//              (input  wire [WIDTH-1:0] d0, d1, 
-//               input  wire s, 
-//               output wire [WIDTH-1:0] y);
-mux2 inm(salida_alu, salida_memoria_programa[11:4],
+// module mux4 #(parameter WIDTH = 8)
+//              (input  wire [WIDTH-1:0] d0, d1, d2, d3,
+//               input  wire [1:0]            s, 
+//               output reg [WIDTH-1:0] y);
+mux4 inm(salida_alu, salida_memoria_programa[11:4], salida_memoria_datos, salida_io,
           s_inm,
           salida_mux_inm);
 
@@ -88,4 +89,17 @@ mux2 #(10) mux_stack(salida_mux_inc, salida_pila,
 stack pila(clk, reset, popsignal, pushsignal,
            salida_pila,
            salida_contador_programa);
+
+// module memory_data(input  wire        clk, 
+//                   input  wire        we4,     
+//                   input  wire [9:0]  ra,       
+//                   input  wire [7:0]  wd4, 	
+//                   output wire [7:0]  rd1);
+memory_data memdata(clk,
+                    we4,
+                    salida_memoria_programa[9:0],
+                    rd1,
+                    salida_memoria_datos);           
 endmodule
+
+

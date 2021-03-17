@@ -1,6 +1,6 @@
-1100_0100_0001_0111  //Instruccion 1 SUMA
+0010_0010_0011_0111  //Instruccion 1 SUMA
 1110_0000_0000_0000  //Instruccion 2 PUSH
-1100_0100_0001_0111  //...
+1000_0000_0011_0001  //Carga inmediata en 2
 1100_0100_0001_0111 
 1110_0000_0000_0000  //Instruccion 5 PUSH
 1100_0100_0001_0111 //Instruccion 6  suma

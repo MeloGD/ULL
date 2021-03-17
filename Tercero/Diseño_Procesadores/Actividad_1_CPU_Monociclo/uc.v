@@ -1,6 +1,7 @@
 module uc(input wire [5:0] opcode, 
           input wire z, 
-          output reg s_inc, s_inm, we3, wez, pop, push, s_stack,
+          output reg s_inc, we3, wez, pop, push, s_stack, we4,
+          output reg [1:0] s_inm,
           output reg [2:0] op_alu);
 
 always @(opcode)
@@ -13,7 +14,7 @@ casez (opcode)
         op_alu = opcode[4:2]; 
         wez = 1; // donde unico tenemos que activar el flag de cero
         s_inc = 1;
-        s_inm = 0; // para poder cargar el valor que sale de la alu en el mux
+        s_inm = 2'b00; // para poder cargar el valor que sale de la alu en el mux
         we3 = 1 ; // habilito la escritura en el banco de registros
         s_stack = 0;
         push = 0;
@@ -24,7 +25,7 @@ casez (opcode)
     // con 10zzzz ya es sufiente para diferenciarlo, no hace falta escribir más nºs  
     6'b10zzzz:
       begin
-        s_inm = 1;
+        s_inm = 2'b01;
         s_inc = 1;
         we3 = 1;
         s_stack = 0;
@@ -66,7 +67,7 @@ casez (opcode)
       end
     // Subrutinas - Pila
     // pop
-    6'b1111zz:
+    6'b111100:
       begin
         s_inc = 0;
         s_stack = 1;
@@ -76,7 +77,7 @@ casez (opcode)
         wez = 0;
       end     
     // push
-    6'b1110zz:
+    6'b111000:
       begin
         s_inc = 1;
         s_stack = 0;
@@ -85,6 +86,10 @@ casez (opcode)
         we3 = 0;
         wez = 0;
       end
+    // load mem_data
+    6'b111010:
+    // store mem_data 
+    6'b111011: 
     default:; 
   endcase
 
