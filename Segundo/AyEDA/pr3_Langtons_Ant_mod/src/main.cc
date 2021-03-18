@@ -2,14 +2,13 @@
 Universidad de La Laguna.
 Grado en Ingeniería Informática.
 Asignatura de Algoritmos y Estructuras de Datos Avanzadas.
-Práctica 2: Hormiga de Langton
+Práctica 3: Hormiga de Langton
 Año: 2020/2021
 Autor: Jesús Carmelo González Domínguez
 email: alu0101267760@ull.edu.es
 Uso en terminal:
 $ make run 
-(una vez compilado, se mosntrará el tablero en blanco con la hormiga, esperando
-que una tecla sea pulsada para inicializar)
+(una vez compilado, se mosntrará un menu de configuracion del tablero, nº de hormigas y su posición)
 $ make clean
 */
 
@@ -32,14 +31,14 @@ int main(void) {
     Infinite_World world (rows, columns);
     std::cout << "¿Cuantas hormigas desea ejecutar?" << std::endl;
     std::cin >> antcount;
-    std::vector<Infinite_Ant> antlist;
+    std::vector<Ant> antlist;
     do {
-      Infinite_Ant dohormiga;
+      Ant dohormiga;
       int posx, posy = 0;
       std::string direction = " ";
       std::cout << "Introduzca las coordenadas x y, la oritación" << std::endl;
       std::cout << "de la hormiga: " << steps << std::endl;
-      std::cout << "Ejemplo: 0 0 up" << std::endl;
+      std::cout << "Ejemplo: 0 0 up (o right, left, down, upright, downright...)" << std::endl;
       std::cin >> posx >> posy >> direction;
       dohormiga.set_currentx(posx);
       dohormiga.set_currenty(posy);
@@ -56,14 +55,14 @@ int main(void) {
     Finite_World world (rows, columns);
     std::cout << "¿Cuantas hormigas desea ejecutar?" << std::endl;
     std::cin >> antcount;
-    std::vector<Finite_Ant> antlist;
+    std::vector<Ant> antlist;
     do {
-      Finite_Ant dohormiga;
+      Ant dohormiga;
       int posx, posy = 0;
       std::string direction = " ";
       std::cout << "Introduzca las coordenadas x y, la oritación" << std::endl;
       std::cout << "de la hormiga: " << steps << std::endl;
-      std::cout << "Ejemplo: 0 0 up" << std::endl;
+      std::cout << "Ejemplo: 0 0 up (o right, left, down)" << std::endl;
       std::cin >> posx >> posy >> direction;
       dohormiga.set_currentx(posx);
       dohormiga.set_currenty(posy);
@@ -78,11 +77,5 @@ int main(void) {
     universo->Run_Universe();
     
   }
-  
-
-
-  
-  
-
   return 0;
 }

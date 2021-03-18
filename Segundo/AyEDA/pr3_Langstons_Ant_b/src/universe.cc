@@ -63,7 +63,7 @@ void Universe::set_columns(const int columns) {
 
 void Universe::set_antlist(std::vector<Ant>& antlist) {
   antlist_.resize(antlist.size());
-  for (int i = 0; i < antlist_.size(); i++){
+  for (unsigned i = 0; i < antlist_.size(); i++){
     antlist_[i] = antlist[i];
   }
 }

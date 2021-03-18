@@ -2,14 +2,13 @@
 Universidad de La Laguna.
 Grado en Ingeniería Informática.
 Asignatura de Algoritmos y Estructuras de Datos Avanzadas.
-Práctica 2: Hormiga de Langton
+Práctica 3: Hormiga de Langton
 Año: 2020/2021
 Autor: Jesús Carmelo González Domínguez
 email: alu0101267760@ull.edu.es
 Uso en terminal:
 $ make run 
-(una vez compilado, se mosntrará el tablero en blanco con la hormiga, esperando
-que una tecla sea pulsada para inicializar)
+(una vez compilado, se mosntrará un menu de configuracion del tablero, nº de hormigas y su posición)
 $ make clean
 */
 
@@ -64,13 +63,12 @@ void Universe::set_columns(const int columns) {
 
 void Universe::set_antlist(std::vector<Ant>& antlist) {
   antlist_.resize(antlist.size());
-  for (int i = 0; i < antlist_.size(); i++){
+  for (unsigned i = 0; i < antlist_.size(); i++){
     antlist_[i] = antlist[i];
   }
 }
 
 void Universe::Run_Universe() {
-  std::cout << "OMEGALUL";
-
+  
 }
 

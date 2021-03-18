@@ -2,14 +2,13 @@
 Universidad de La Laguna.
 Grado en Ingeniería Informática.
 Asignatura de Algoritmos y Estructuras de Datos Avanzadas.
-Práctica 2: Hormiga de Langton Modificada
+Práctica 3: Hormiga de Langton
 Año: 2020/2021
 Autor: Jesús Carmelo González Domínguez
 email: alu0101267760@ull.edu.es
 Uso en terminal:
 $ make run 
-(una vez compilado, se mosntrará el tablero en blanco con la hormiga, esperando
-que una tecla sea pulsada para inicializar)
+(una vez compilado, se mosntrará un menu de configuracion del tablero, nº de hormigas y su posición)
 $ make clean
 */
 
@@ -42,7 +41,6 @@ const bool Ant::get_resizenegative(void) {
   return resizenegative_;
 }
 
-
 // Setters
 void Ant::set_direction(std::string direction) {
   direction_ = direction;
@@ -65,7 +63,6 @@ void Ant::Place_Ant(World &mesh, int x, int y, string dir) {
   assert(x < mesh.get_row() && y < mesh.get_column());
   set_currentx(x);
   set_currenty(y);
-  //mesh.At_Position(x,y).set_state('0');
   mesh.At_Position(x,y).set_direction(dir);
 }
 
@@ -131,7 +128,6 @@ void Ant::Move_Left(Infinite_World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   int aux = get_currenty() - 1;
   if (aux < 0) {
-    //aux = mesh.get_column() - 1;
     set_resizenegative(true);
     set_currenty(0);
     mesh.Resize_For_Move(get_currentx(),aux, mesh);
@@ -230,6 +226,91 @@ std::string& Ant::Fix_Direction(std::string direction) {
   }
 }
 
+void Ant::Run_Antf(Finite_World &mesh) {
+  if (mesh.At_Position( get_currentx() , get_currenty() ).get_state() == '0') {
+    mesh.At_Position( get_currentx() , get_currenty() ).set_state('X');
+    if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == UP) {
+      Move_Leftf(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == LEFT) {
+      Move_Downf(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == RIGHT) {
+      Move_Upf(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN) {
+      Move_Rightf(mesh);
+    }
+  } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_state() == 'X'){
+    mesh.At_Position( get_currentx() , get_currenty() ).set_state('0');
+    if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == UP) {
+      Move_Rightf(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == LEFT) {
+      Move_Upf(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == RIGHT) {
+      Move_Downf(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN) {
+      Move_Leftf(mesh);
+    }    
+  }
+}
+
+void Ant::Move_Upf(Finite_World &mesh) { 
+  mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
+  int aux = get_currentx() - 1;
+  if (aux < 0) {
+    aux = mesh.get_row() - 1;
+    set_currentx(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction(UP);
+    set_direction(UP);
+  } else {
+    set_currentx(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction(UP);
+    set_direction(UP);
+  } 
+}
+
+void Ant::Move_Leftf(Finite_World &mesh) {
+  mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
+  int aux = get_currenty() - 1;
+  if (aux < 0) {
+    aux = mesh.get_column() - 1;
+    set_currenty(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction(LEFT);
+    set_direction(LEFT);
+  } else {
+    set_currenty(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction(LEFT);
+    set_direction(LEFT);
+  } 
+}
+
+void Ant::Move_Rightf(Finite_World &mesh) {
+  mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
+  int aux = get_currenty() + 1;
+  if (aux >= mesh.get_column()) {
+    aux -= mesh.get_column() ;
+    set_currenty(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction(RIGHT);
+    set_direction(RIGHT);
+  } else {
+    set_currenty(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction(RIGHT);
+    set_direction(RIGHT);
+  } 
+}
+
+void Ant::Move_Downf(Finite_World &mesh) {
+  mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
+  int aux = get_currentx() + 1;
+  if (aux >= mesh.get_row()) {
+    aux -= mesh.get_row();
+    set_currentx(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction(DOWN);
+    set_direction(DOWN);
+  } else {
+    set_currentx(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction(DOWN);
+    set_direction(DOWN);
+  } 
+}
 
 // Overloads
 Ant& Ant::operator=(Ant& ant) {
