@@ -124,7 +124,7 @@ endmodule
 //Banco de registros de dos salidas y una entrada
 module memory_data(input  wire        clk, 
                    input  wire        we4,      //se�al de habilitaci�n de escritura
-                   input  wire [9:0]  ra,       //direcciones leidas 
+                   input  wire [11:0]  ra,       //direcciones leidas 
                    input  wire [7:0]  wd4, 			//dato a escribir
                    output wire [7:0]  rd1);     //datos leidos
 
@@ -140,9 +140,11 @@ module memory_data(input  wire        clk,
   // y la escritura del tercero ocurre en flanco de subida del reloj
   
   always @(posedge clk)
-    if (we4) mem_data[ra] <= wd4;	
+    // Donde voy a escribir el dato --> ra[5:0] de la instruccion
+    if (we4) mem_data[ra[5:0]] <= wd4;	
   
   // en caso de fallo probar assign rd1 = mem_data[ra];
-  assign rd1 = (ra != 0) ? mem_data[ra] : 0;
+  // Donde voy a leer el dato
+  assign rd1 = (ra != 0) ? mem_data[ra[11:6]] : 0;
 
 endmodule

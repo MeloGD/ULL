@@ -95,9 +95,9 @@ stack pila(clk, reset, popsignal, pushsignal,
 //                   input  wire [9:0]  ra,       
 //                   input  wire [7:0]  wd4, 	
 //                   output wire [7:0]  rd1);
-memory_data memdata(clk,
+memory_data memoria_datos(clk,
                     we4,
-                    salida_memoria_programa[9:0],
+                    salida_memoria_programa[11:0],
                     rd1,
                     salida_memoria_datos);           
 endmodule
