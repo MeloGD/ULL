@@ -58,13 +58,17 @@ public:
   //Finito
   void Run_Antf(Finite_World &mesh);
   void Move_Upf(Finite_World &mesh);
-  //void Move_Up_Leftf(Finite_World &mesh);
-  //void Move_Up_Rightf(Finite_World &mesh);
   void Move_Leftf(Finite_World &mesh);
   void Move_Rightf(Finite_World &mesh);
   void Move_Downf(Finite_World &mesh);
-  //void Move_Down_Leftf(Finite_World &mesh);
-  //void Move_Down_Rightf(Finite_World &mesh);
+
+  //Finito_R
+  void Run_Antfr(Finite_World_R &mesh);
+  void Move_Upfr(Finite_World_R &mesh);
+  void Move_Leftfr(Finite_World_R &mesh);
+  void Move_Rightfr(Finite_World_R &mesh);
+  void Move_Downfr(Finite_World_R &mesh);
+
 
   // Overloads
   Ant& operator=(Ant& ant);

@@ -16,31 +16,27 @@ $ make clean
 #include <stdlib.h>
 
 // Constructor
-Finite_Universe::Finite_Universe() {
-
-}
-
-Finite_Universe::Finite_Universe(const int steps, const int rows, const int columns) {
+Finite_Universe_T::Finite_Universe_T(const int steps, const int rows, const int columns) {
   set_steps(steps);
   set_rows(rows);
   set_columns(columns);
 }
 
-Finite_Universe::Finite_Universe(Finite_World& world,  std::vector<Ant>& antlist) {
-  fworld_ = world;
+Finite_Universe_T::Finite_Universe_T(Finite_World_T& world,  std::vector<Ant>& antlist) {
+  fworld_t = world;
   set_antlist(antlist);
 }
 
 // Destructor
-Finite_Universe::~Finite_Universe() {}
+Finite_Universe_T::~Finite_Universe_T() {}
 
 // Functions
-void Finite_Universe::Run_Universe() { 
+void Finite_Universe_T::Run_Universe() { 
   for (unsigned i = 0; i < antlist_.size(); i++) {
     short x = antlist_[i].get_currentx();
     short y = antlist_[i].get_currenty();
     std::string dir = antlist_[i].get_direction();
-    antlist_[i].Place_Ant(fworld_, x, y, dir);
+    antlist_[i].Place_Ant(fworld_t, x, y, dir);
   }
   int steps = 0;
   fworld_.Print_World();
@@ -49,12 +45,12 @@ void Finite_Universe::Run_Universe() {
     system("clear");
     fworld_.Print_World();
     for (unsigned i = 0; i < antlist_.size(); i++) {
-      antlist_[i].Run_Antf(fworld_);
+      antlist_[i].Run_Antf(fworld_t);
       for (unsigned j = 0; j < antlist_.size(); j++) {
         short x = antlist_[i].get_currentx();
         short y = antlist_[i].get_currenty();
         std::string dir = antlist_[i].get_direction();
-        antlist_[i].Place_Ant(fworld_, x, y, dir);
+        antlist_[i].Place_Ant(fworld_t, x, y, dir);
       }
     }
     steps++;

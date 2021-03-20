@@ -62,6 +62,36 @@ public:
 
 };
 
+
+class Finite_World_R : public Finite_World {
+private:
+  /* data */
+public:
+  Finite_World_R(/* args */);
+  Finite_World_R(int rows, int columns);
+  ~Finite_World_R();
+
+  // Overloads
+  Finite_World_R& operator=(Finite_World& world);
+};
+
+class Finite_World_T : public Finite_World {
+private:
+  /* data */
+public:
+  Finite_World_T(/* args */);
+  Finite_World_T(int rows, int columns);
+  ~Finite_World_T();
+
+  // Functions
+  // Overloads
+  Finite_World_T& operator=(World& world);
+
+};
+
+
+
+
 class Infinite_World : public World {
 private:
 
@@ -77,5 +107,7 @@ public:
   Infinite_World& operator=(World& world);
 
 };
+
+
 
 #endif

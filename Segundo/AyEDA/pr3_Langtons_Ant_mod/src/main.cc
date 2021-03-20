@@ -51,8 +51,8 @@ int main(void) {
     Infinite_Universe infiniteuniverse(world, antlist);
     universo = &infiniteuniverse;
     universo->Run_Universe();
-  } else {
-    Finite_World world (rows, columns);
+  } else if (typeworld == 'r'){
+    Finite_World_R world (rows, columns);
     std::cout << "¿Cuantas hormigas desea ejecutar?" << std::endl;
     std::cin >> antcount;
     std::vector<Ant> antlist;
@@ -72,8 +72,8 @@ int main(void) {
       steps++;
     } while (steps < antcount);
     Universe *universo;
-    Finite_Universe finiteuniverse(world, antlist);
-    universo = &finiteuniverse;
+    Finite_Universe_R finiteuniverse_r(world, antlist);
+    universo = &finiteuniverse_r;
     universo->Run_Universe();
     
   }

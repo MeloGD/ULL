@@ -312,6 +312,92 @@ void Ant::Move_Downf(Finite_World &mesh) {
   } 
 }
 
+void Ant::Run_Antfr(Finite_World_R &mesh) {
+  if (mesh.At_Position( get_currentx() , get_currenty() ).get_state() == '0') {
+    mesh.At_Position( get_currentx() , get_currenty() ).set_state('X');
+    if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == UP) {
+      Move_Leftfr(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == LEFT) {
+      Move_Downfr(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == RIGHT) {
+      Move_Upfr(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN) {
+      Move_Rightfr(mesh);
+    }
+  } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_state() == 'X'){
+    mesh.At_Position( get_currentx() , get_currenty() ).set_state('0');
+    if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == UP) {
+      Move_Rightfr(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == LEFT) {
+      Move_Upfr(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == RIGHT) {
+      Move_Downfr(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN) {
+      Move_Leftfr(mesh);
+    }    
+  }
+}
+
+void Ant::Move_Upfr(Finite_World_R &mesh) { 
+  mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
+  int aux = get_currentx() - 1;
+  if (aux < 0) {
+    aux += 1;
+    set_currentx(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction(DOWN);
+    set_direction(DOWN);
+  } else {
+    set_currentx(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction(UP);
+    set_direction(UP);
+  } 
+}
+
+void Ant::Move_Leftfr(Finite_World_R &mesh) {
+  mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
+  int aux = get_currenty() - 1;
+  if (aux < 0) {
+    aux += 1;
+    set_currenty(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction(RIGHT);
+    set_direction(RIGHT);
+  } else {
+    set_currenty(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction(LEFT);
+    set_direction(LEFT);
+  } 
+}
+
+void Ant::Move_Rightfr(Finite_World_R &mesh) {
+  mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
+  int aux = get_currenty() + 1;
+  if (aux >= mesh.get_column()) {
+    aux -= 1 ;
+    set_currenty(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction(LEFT);
+    set_direction(LEFT);
+  } else {
+    set_currenty(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction(RIGHT);
+    set_direction(RIGHT);
+  } 
+}
+
+void Ant::Move_Downfr(Finite_World_R &mesh) {
+  mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
+  int aux = get_currentx() + 1;
+  if (aux >= mesh.get_row()) {
+    aux -= 1;
+    set_currentx(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction(UP);
+    set_direction(UP);
+  } else {
+    set_currentx(aux);
+    mesh.At_Position( get_currentx() , get_currenty() ).set_direction(DOWN);
+    set_direction(DOWN);
+  } 
+}
+
 // Overloads
 Ant& Ant::operator=(Ant& ant) {
   set_direction(ant.get_direction());
