@@ -148,3 +148,15 @@ module memory_data(input  wire        clk,
   assign rd1 = (ra != 0) ? mem_data[ra[11:6]] : 0;
 
 endmodule
+
+
+// Decoder para salida datos
+module decoder24(input wire [1:0] in,
+               output wire d0, d1, d2, d3);
+
+  assign d0 =  (~in[1] & ~in[0]);
+  assign d1 =  (~in[1] & in[0]);
+  assign d2 =  (in[1] & ~in[0]);
+  assign d3 =  (in[1] & in[0]);
+
+endmodule

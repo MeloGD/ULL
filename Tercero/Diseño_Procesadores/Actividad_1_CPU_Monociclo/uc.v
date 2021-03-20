@@ -1,7 +1,7 @@
-module uc(input wire [5:0] opcode, 
+module uc(input wire [15:0] opcode, 
           input wire z, 
-          output reg s_inc, we3, wez, pop, push, s_stack, we4,
-          output reg [1:0] s_inm,
+          output reg s_inc, we3, wez, pop, push, s_stack, we4, we_out,
+          output reg [1:0] s_inm, s_in, s_out,
           output reg [2:0] op_alu);
 
 always @(opcode)
@@ -106,6 +106,37 @@ casez (opcode)
         we4 = 0;
         s_inm = 2'b00;
         op_alu = 3'b000;
+      end
+    // IN IO
+    6'b101010:
+      begin
+        s_inc = 1;
+        we3 = 0;
+        wez = 0;
+        pop = 0;
+        push = 1;
+        s_stack = 0;
+        we4 = 0;
+        s_inm = 2'b11;
+        op_alu = 3'b000;
+        s_in = opcode[9:8];
+        we_out = 0;
+      end
+    // OUT IO
+    6'b101011:
+      begin
+        s_inc = 1;
+        we3 = 0;
+        wez = 0;
+        pop = 0;
+        push = 1;
+        s_stack = 0;
+        we4 = 0;
+        s_inm = 2'b11;
+        op_alu = 3'b000;
+        s_in = 2'b00;
+        we_out = 1;
+
       end
     // store mem_data (desde el banco de registros a la memoria de datos)
     6'b1110zz:
