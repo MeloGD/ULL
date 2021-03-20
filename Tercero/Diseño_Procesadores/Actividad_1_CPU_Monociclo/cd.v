@@ -9,7 +9,7 @@ module cd(input wire clk, reset, s_inc, we3, wez, popsignal, pushsignal, s_stack
 wire [15:0] salida_memoria_programa;
 wire [9:0] salida_sumador, salida_mux_inc, entrada_sumador_a, salida_contador_programa;
 wire [7:0] rd1, rd2, salida_alu, salida_mux_inm, salida_memoria_datos, entrada_io, salida_mux_out;
-wire entrada_ffz, d0, d1, d2, d3, rege1, rege2, rege2, rege4;
+wire entrada_ffz, d0, d1, d2, d3, rege1, rege2, rege3, rege4;
 
 // Pila
 wire [9:0] salida_pila, salida_mux_stack;

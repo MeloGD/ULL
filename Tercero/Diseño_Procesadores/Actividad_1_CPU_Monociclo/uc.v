@@ -136,7 +136,7 @@ casez (opcode)
         op_alu = 3'b000;
         s_in = 2'b00;
         we_out = 1;
-
+        s_out = opcode[1:0];
       end
     // store mem_data (desde el banco de registros a la memoria de datos)
     6'b1110zz:
