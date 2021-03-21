@@ -15,58 +15,24 @@ $ make clean
 #include "../include/ant.h"
 
 // Constructor
-Ant::Ant() {}
+Modified_Ant::Modified_Ant() {}
 
-Ant::Ant(World &mundo, int x, int y, string direction) {
+Modified_Ant::Modified_Ant(World &mundo, int x, int y, string direction) {
   Place_Ant(mundo,x,y,direction);
 }
 
 // Destructor
-Ant::~Ant() {}
-
-// Getters
-const std::string Ant::get_direction(void) {
-  return direction_;
-}
-
-const short Ant::get_currentx(void) {
-  return currentx_;
-}
-
-const short Ant::get_currenty(void) {
-  return currenty_;
-}
-
-const bool Ant::get_resizenegative(void) {
-  return resizenegative_;
-}
-
-// Setters
-void Ant::set_direction(std::string direction) {
-  direction_ = direction;
-}
-
-void Ant::set_currentx(const short currentx) {
-  currentx_ = currentx;
-}
-
-void Ant::set_currenty(const short currenty) {
-  currenty_ = currenty;
-}
-
-void Ant::set_resizenegative(const bool resize) {
-  resizenegative_ = resize;
-}
+Modified_Ant::~Modified_Ant() {};
 
 // Functions
-void Ant::Place_Ant(World &mesh, int x, int y, string dir) {
+void Modified_Ant::Place_Ant(World &mesh, int x, int y, string dir) {
   assert(x < mesh.get_row() && y < mesh.get_column());
   set_currentx(x);
   set_currenty(y);
   mesh.At_Position(x,y).set_direction(dir);
 }
 
-void Ant::Run_Ant(Infinite_World &mesh) {
+void Modified_Ant::Run_Ant(Infinite_World &mesh) {
   if (mesh.At_Position( get_currentx() , get_currenty() ).get_state() == '0') {
     mesh.At_Position( get_currentx() , get_currenty() ).set_state('X');
     if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == UP) {
@@ -108,7 +74,7 @@ void Ant::Run_Ant(Infinite_World &mesh) {
   }
 }
 
-void Ant::Move_Up(Infinite_World &mesh) {
+void Modified_Ant::Move_Up(Infinite_World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   int aux = get_currentx() - 1;
   if (aux < 0) {
@@ -124,7 +90,7 @@ void Ant::Move_Up(Infinite_World &mesh) {
   } 
 }
 
-void Ant::Move_Left(Infinite_World &mesh) {
+void Modified_Ant::Move_Left(Infinite_World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   int aux = get_currenty() - 1;
   if (aux < 0) {
@@ -140,7 +106,7 @@ void Ant::Move_Left(Infinite_World &mesh) {
   } 
 }
 
-void Ant::Move_Right(Infinite_World &mesh) {
+void Modified_Ant::Move_Right(Infinite_World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   int aux = get_currenty() + 1;
   if (aux >= mesh.get_column()) {
@@ -156,7 +122,7 @@ void Ant::Move_Right(Infinite_World &mesh) {
   } 
 }
 
-void Ant::Move_Down(Infinite_World &mesh) {
+void Modified_Ant::Move_Down(Infinite_World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   int aux = get_currentx() + 1;
   if (aux >= mesh.get_row()) {
@@ -172,7 +138,7 @@ void Ant::Move_Down(Infinite_World &mesh) {
   } 
 }
 
-void Ant::Move_Up_Left(Infinite_World &mesh) {
+void Modified_Ant::Move_Up_Left(Infinite_World &mesh) {
   Move_Up(mesh);
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   Move_Left(mesh);
@@ -180,7 +146,7 @@ void Ant::Move_Up_Left(Infinite_World &mesh) {
   set_direction(UP_LEFT);
 }
 
-void Ant::Move_Up_Right(Infinite_World &mesh) {
+void Modified_Ant::Move_Up_Right(Infinite_World &mesh) {
   Move_Up(mesh);
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   Move_Right(mesh);
@@ -188,7 +154,7 @@ void Ant::Move_Up_Right(Infinite_World &mesh) {
   set_direction(UP_RIGHT);
 }
 
-void Ant::Move_Down_Left(Infinite_World &mesh) {
+void Modified_Ant::Move_Down_Left(Infinite_World &mesh) {
   Move_Down(mesh);
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   Move_Left(mesh);
@@ -196,7 +162,7 @@ void Ant::Move_Down_Left(Infinite_World &mesh) {
   set_direction(DOWN_LEFT);
 }
 
-void Ant::Move_Down_Right(Infinite_World &mesh) {
+void Modified_Ant::Move_Down_Right(Infinite_World &mesh) {
   Move_Down(mesh);
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   Move_Right(mesh);
@@ -204,7 +170,7 @@ void Ant::Move_Down_Right(Infinite_World &mesh) {
   set_direction(DOWN_RIGHT);
 }
 
-std::string& Ant::Fix_Direction(std::string direction) {
+std::string& Modified_Ant::Fix_Direction(std::string direction) {
   if (direction == "up") {
     direction = UP;
   } else if (direction == "right") {
@@ -226,7 +192,7 @@ std::string& Ant::Fix_Direction(std::string direction) {
   }
 }
 
-void Ant::Run_Antf(Finite_World &mesh) {
+void Modified_Ant::Run_Antf(Finite_World &mesh) {
   if (mesh.At_Position( get_currentx() , get_currenty() ).get_state() == '0') {
     mesh.At_Position( get_currentx() , get_currenty() ).set_state('X');
     if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == UP) {
@@ -252,7 +218,7 @@ void Ant::Run_Antf(Finite_World &mesh) {
   }
 }
 
-void Ant::Move_Upf(Finite_World &mesh) { 
+void Modified_Ant::Move_Upf(Finite_World &mesh) { 
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   int aux = get_currentx() - 1;
   if (aux < 0) {
@@ -267,7 +233,7 @@ void Ant::Move_Upf(Finite_World &mesh) {
   } 
 }
 
-void Ant::Move_Leftf(Finite_World &mesh) {
+void Modified_Ant::Move_Leftf(Finite_World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   int aux = get_currenty() - 1;
   if (aux < 0) {
@@ -282,7 +248,7 @@ void Ant::Move_Leftf(Finite_World &mesh) {
   } 
 }
 
-void Ant::Move_Rightf(Finite_World &mesh) {
+void Modified_Ant::Move_Rightf(Finite_World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   int aux = get_currenty() + 1;
   if (aux >= mesh.get_column()) {
@@ -297,7 +263,7 @@ void Ant::Move_Rightf(Finite_World &mesh) {
   } 
 }
 
-void Ant::Move_Downf(Finite_World &mesh) {
+void Modified_Ant::Move_Downf(Finite_World &mesh) {
   mesh.At_Position( get_currentx() , get_currenty() ).set_direction(" ");
   int aux = get_currentx() + 1;
   if (aux >= mesh.get_row()) {

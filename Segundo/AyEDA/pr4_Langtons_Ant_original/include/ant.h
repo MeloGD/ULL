@@ -43,28 +43,24 @@ public:
   void set_resizenegative(const bool resize);
 
   // Functions 
-  void Place_Ant(World &mesh, int x, int y, string dir);
-  void Run_Ant(Infinite_World &mesh);
-  void Move_Up(Infinite_World &mesh);
-  void Move_Up_Left(Infinite_World &mesh);
-  void Move_Up_Right(Infinite_World &mesh);
-  void Move_Left(Infinite_World &mesh);
-  void Move_Right(Infinite_World &mesh);
-  void Move_Down(Infinite_World &mesh);
-  void Move_Down_Left(Infinite_World &mesh);
-  void Move_Down_Right(Infinite_World &mesh);
+  virtual void Place_Ant(World &mesh, int x, int y, string dir);
+  virtual void Run_Ant(Infinite_World &mesh);
+  virtual void Move_Up(Infinite_World &mesh);
+  virtual void Move_Up_Left(Infinite_World &mesh);
+  virtual void Move_Up_Right(Infinite_World &mesh);
+  virtual void Move_Left(Infinite_World &mesh);
+  virtual void Move_Right(Infinite_World &mesh);
+  virtual void Move_Down(Infinite_World &mesh);
+  virtual void Move_Down_Left(Infinite_World &mesh);
+  virtual void Move_Down_Right(Infinite_World &mesh);
   std::string& Fix_Direction(std::string direction);
 
   //Finito
-  void Run_Antf(Finite_World &mesh);
-  void Move_Upf(Finite_World &mesh);
-  //void Move_Up_Leftf(Finite_World &mesh);
-  //void Move_Up_Rightf(Finite_World &mesh);
-  void Move_Leftf(Finite_World &mesh);
-  void Move_Rightf(Finite_World &mesh);
-  void Move_Downf(Finite_World &mesh);
-  //void Move_Down_Leftf(Finite_World &mesh);
-  //void Move_Down_Rightf(Finite_World &mesh);
+  virtual void Run_Antf(Finite_World &mesh);
+  virtual void Move_Upf(Finite_World &mesh);
+  virtual void Move_Leftf(Finite_World &mesh);
+  virtual void Move_Rightf(Finite_World &mesh);
+  virtual void Move_Downf(Finite_World &mesh);
 
   // Overloads
   Ant& operator=(Ant& ant);
@@ -84,11 +80,33 @@ public:
 class Modified_Ant : public Ant {
 private:
 
-
 public:
   Modified_Ant();
   Modified_Ant(World &mundo, int i, int j, string direction);
   ~Modified_Ant();
+
+  // Functions 
+  void Place_Ant(World &mesh, int x, int y, string dir);
+  void Run_Ant(Infinite_World &mesh);
+  void Move_Up(Infinite_World &mesh);
+  void Move_Up_Left(Infinite_World &mesh);
+  void Move_Up_Right(Infinite_World &mesh);
+  void Move_Left(Infinite_World &mesh);
+  void Move_Right(Infinite_World &mesh);
+  void Move_Down(Infinite_World &mesh);
+  void Move_Down_Left(Infinite_World &mesh);
+  void Move_Down_Right(Infinite_World &mesh);
+  std::string& Fix_Direction(std::string direction);
+
+  //Finito
+  void Run_Antf(Finite_World &mesh);
+  void Move_Upf(Finite_World &mesh);
+  void Move_Leftf(Finite_World &mesh);
+  void Move_Rightf(Finite_World &mesh);
+  void Move_Downf(Finite_World &mesh);
+
+  // Overloads
+  Ant& operator=(Ant& ant);
 
 };
 
