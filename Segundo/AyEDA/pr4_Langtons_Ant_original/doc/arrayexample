@@ -1,0 +1,22 @@
+class world {
+Jail** mesh_;
+}
+
+void
+World::Resize(int row, int column) {
+  set_row(row);
+  set_column(column);
+  
+  mesh_ = new Jail*[row];
+  for (int i = 0; i < get_row(); i++) {
+    mesh_[i] = new Jail[column];   
+  }
+  mesh_[1][1].set_state(1);
+  mesh_[0][1].set_state(1);
+  for (int i = 0; i < get_row(); i++) {
+    for (int j = 0; j < get_column(); j++) {
+      std::cout << mesh_[i][j].get_state() ;
+    } 
+  std::cout << std::endl;
+  }
+} 
