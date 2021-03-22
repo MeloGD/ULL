@@ -177,24 +177,24 @@ void Modified_Ant::Run_Antf(Finite_World &mesh) {
   if (mesh.At_Position( get_currentx() , get_currenty() ).get_state() == '0') {
     mesh.At_Position( get_currentx() , get_currenty() ).set_state('X');
     if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == UP) {
-      Move_Leftf(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == LEFT) {
-      Move_Downf(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == RIGHT) {
-      Move_Upf(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN) {
       Move_Rightf(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == LEFT) {
+      Move_Upf(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == RIGHT) {
+      Move_Downf(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN) {
+      Move_Leftf(mesh);
     }
   } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_state() == 'X'){
     mesh.At_Position( get_currentx() , get_currenty() ).set_state('0');
     if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == UP) {
-      Move_Rightf(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == LEFT) {
-      Move_Upf(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == RIGHT) {
-      Move_Downf(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN) {
       Move_Leftf(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == LEFT) {
+      Move_Downf(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == RIGHT) {
+      Move_Upf(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN) {
+      Move_Rightf(mesh);
     }    
   }
 }

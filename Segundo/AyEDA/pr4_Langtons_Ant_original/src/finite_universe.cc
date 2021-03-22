@@ -13,7 +13,7 @@ $ make clean
 */
 
 
-/*
+
 #include "../include/universe.h"
 #include <stdlib.h>
 
@@ -33,13 +33,13 @@ Finite_Universe::Finite_Universe(Finite_World& world,  std::vector<Ant*>& antlis
 Finite_Universe::~Finite_Universe() {}
 
 // Functions
-/*
+
 void Finite_Universe::Run_Universe() { 
   for (unsigned i = 0; i < antlist_.size(); i++) {
-    short x = antlist_[i].get_currentx();
-    short y = antlist_[i].get_currenty();
-    std::string dir = antlist_[i].get_direction();
-    antlist_[i].Place_Ant(fworld_, x, y, dir);
+    short x = antlist_[i]->get_currentx();
+    short y = antlist_[i]->get_currenty();
+    std::string dir = antlist_[i]->get_direction();
+    antlist_[i]->Place_Ant(fworld_, x, y, dir);
   }
   int steps = 0;
   fworld_.Print_World();
@@ -48,16 +48,15 @@ void Finite_Universe::Run_Universe() {
     system("clear");
     fworld_.Print_World();
     for (unsigned i = 0; i < antlist_.size(); i++) {
-      antlist_[i].Run_Antf(fworld_);
+      antlist_[i]->Run_Antf(fworld_);
       for (unsigned j = 0; j < antlist_.size(); j++) {
-        short x = antlist_[i].get_currentx();
-        short y = antlist_[i].get_currenty();
-        std::string dir = antlist_[i].get_direction();
-        antlist_[i].Place_Ant(fworld_, x, y, dir);
+        short x = antlist_[i]->get_currentx();
+        short y = antlist_[i]->get_currenty();
+        std::string dir = antlist_[i]->get_direction();
+        antlist_[i]->Place_Ant(fworld_, x, y, dir);
       }
     }
     steps++;
     getchar();
   } while (steps < 1000); 
 }
-*/

@@ -71,31 +71,48 @@ int main(void) {
     universo = &infiniteuniverse;
     universo->Run_Universe();
   } else {
-    /*
     Finite_World world (rows, columns);
     std::cout << "¿Cuantas hormigas desea ejecutar?" << std::endl;
     std::cin >> antcount;
-    std::vector<Ant> antlist;
+    std::vector<Ant*> antlist;
     do {
-      Ant dohormiga;
-      int posx, posy = 0;
-      std::string direction = " ";
-      std::cout << "Introduzca las coordenadas x y, la oritación" << std::endl;
-      std::cout << "de la hormiga: " << steps << std::endl;
-      std::cout << "Ejemplo: 0 0 up (o right, left, down)" << std::endl;
-      std::cin >> posx >> posy >> direction;
-      dohormiga.set_currentx(posx);
-      dohormiga.set_currenty(posy);
-      direction = dohormiga.Fix_Direction(direction);
-      dohormiga.set_direction(direction);
-      antlist.push_back(dohormiga);
-      steps++;
-    } while (steps < antcount);
+      std::cout << "¿Qué tipo de hormiga desea, normal o modificada?" << std::endl;
+      std::cout << "Escriba 'n' para normal, 'r' para regular" << std::endl;
+      std::cin >> anttype;
+      if (anttype == 'n') {
+        Regular_Ant *dohormiga1 = new Regular_Ant;
+        int posx, posy = 0;
+        std::string direction = " ";
+        std::cout << "Introduzca las coordenadas x y, la oritación" << std::endl;
+        std::cout << "de la hormiga: " << steps << std::endl;
+        std::cout << "Ejemplo: 0 0 up (o right, left, down, upright, downright...)" << std::endl;
+        std::cin >> posx >> posy >> direction;
+        dohormiga1->set_currentx(posx);
+        dohormiga1->set_currenty(posy);
+        direction = dohormiga1->Fix_Direction(direction);
+        dohormiga1->set_direction(direction);
+        antlist.push_back(dohormiga1);
+        steps++;
+      } else {
+        Modified_Ant *dohormiga2 = new Modified_Ant; 
+        int posx, posy = 0;
+        std::string direction = " ";
+        std::cout << "Introduzca las coordenadas x y, la oritación" << std::endl;
+        std::cout << "de la hormiga: " << steps << std::endl;
+        std::cout << "Ejemplo: 0 0 up (o right, left, down, upright, downright...)" << std::endl;
+        std::cin >> posx >> posy >> direction;
+        dohormiga2->set_currentx(posx);
+        dohormiga2->set_currenty(posy);
+        direction = dohormiga2->Fix_Direction(direction);
+        dohormiga2->set_direction(direction);
+        antlist.push_back(dohormiga2);
+        steps++;
+      } 
+    } while (steps < antcount); 
     Universe *universo;
     Finite_Universe finiteuniverse(world, antlist);
     universo = &finiteuniverse;
     universo->Run_Universe();
-    */
   }
   return 0;
 }

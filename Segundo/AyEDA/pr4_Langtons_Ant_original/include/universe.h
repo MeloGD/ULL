@@ -53,7 +53,7 @@ public:
 
 };
 
-/*
+
 class Finite_Universe : public Universe {
 private:
   
@@ -67,7 +67,7 @@ public:
   void Run_Universe();
   
 };
-*/
+
 
 class Infinite_Universe : public Universe {
 private:
