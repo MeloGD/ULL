@@ -24,7 +24,7 @@ Regular_Ant::Regular_Ant(World &mundo, int x, int y, string direction) {
 // Destructor
 Regular_Ant::~Regular_Ant() {
   
-}
+};
 
 // Functions
 /*
@@ -33,46 +33,47 @@ void Regular_Ant::Place_Ant(World &mesh, int x, int y, string dir) {
   set_currentx(x);
   set_currenty(y);
   mesh.At_Position(x,y).set_direction(dir);
-}*/
+}
+*/
 
 void Regular_Ant::Run_Ant(Infinite_World &mesh) {
   if (mesh.At_Position( get_currentx() , get_currenty() ).get_state() == '0') {
     mesh.At_Position( get_currentx() , get_currenty() ).set_state('X');
     if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == UP) {
-      Move_Up_Right(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == LEFT) {
-      Move_Down_Right(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == RIGHT) {
       Move_Up_Left(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN) {
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == LEFT) {
       Move_Down_Left(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == RIGHT) {
+      Move_Up_Right(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN) {
+      Move_Down_Right(mesh);
     } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == UP_LEFT) {
-      Move_Up(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == UP_RIGHT) {
-      Move_Right(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN_LEFT) {
       Move_Left(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN_RIGHT) {
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == UP_RIGHT) {
+      Move_Up(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN_LEFT) {
       Move_Down(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN_RIGHT) {
+      Move_Right(mesh);
     }
   } else {
     mesh.At_Position( get_currentx() , get_currenty() ).set_state('0');
     if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == UP) {
-      Move_Up_Left(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == LEFT) {
-      Move_Down_Left(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == RIGHT) {
       Move_Up_Right(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN) {
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == LEFT) {
+      Move_Up_Left(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == RIGHT) {
       Move_Down_Right(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN) {
+      Move_Down_Left(mesh);
     } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == UP_LEFT) {
-      Move_Left(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == UP_RIGHT) {
       Move_Up(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN_LEFT) {
-      Move_Down(mesh);
-    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN_RIGHT) {
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == UP_RIGHT) {
       Move_Right(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN_LEFT) {
+      Move_Left(mesh);
+    } else if (mesh.At_Position( get_currentx() , get_currenty() ).get_direction() == DOWN_RIGHT) {
+      Move_Down(mesh);
     } 
   }
 }
@@ -260,11 +261,12 @@ void Regular_Ant::Move_Downf(Finite_World &mesh) {
 }
 
 // Overloads
-
-Ant& Regular_Ant::operator=(Ant& ant) {
+/*
+Ant& Ant::operator=(Ant& ant) {
   set_direction(ant.get_direction());
   set_currentx(ant.get_currentx());
   set_currenty(ant.get_currenty());
   
   return *this;
 }
+*/

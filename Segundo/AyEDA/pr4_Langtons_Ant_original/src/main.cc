@@ -49,8 +49,6 @@ int main(void) {
         direction = dohormiga1->Fix_Direction(direction);
         dohormiga1->set_direction(direction);
         antlist.push_back(dohormiga1);
-        //delete dohormiga1;
-        
         steps++;
       } else {
         Modified_Ant *dohormiga2 = new Modified_Ant; 
@@ -65,11 +63,9 @@ int main(void) {
         direction = dohormiga2->Fix_Direction(direction);
         dohormiga2->set_direction(direction);
         antlist.push_back(dohormiga2);
-        
         steps++;
       } 
     } while (steps < antcount); 
-    
     Universe *universo;
     Infinite_Universe infiniteuniverse(world, antlist);
     universo = &infiniteuniverse;
