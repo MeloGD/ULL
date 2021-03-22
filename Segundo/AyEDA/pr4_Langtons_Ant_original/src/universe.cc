@@ -27,7 +27,7 @@ Universe::Universe(const int steps, const int rows, const int columns) {
 }
 
 
-Universe::Universe(World& world,  std::vector<Ant> & antlist) {
+Universe::Universe(World& world,  std::vector<Ant*>& antlist) {
   world_ = world;
   set_antlist(antlist);
 }
@@ -61,7 +61,8 @@ void Universe::set_columns(const int columns) {
   columns_ = columns;
 }
 
-void Universe::set_antlist(std::vector<Ant>& antlist) {
+
+void Universe::set_antlist(std::vector<Ant*> antlist) {
   antlist_.resize(antlist.size());
   for (unsigned i = 0; i < antlist_.size(); i++){
     antlist_[i] = antlist[i];

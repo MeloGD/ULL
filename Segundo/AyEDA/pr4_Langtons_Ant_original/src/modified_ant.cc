@@ -22,15 +22,19 @@ Modified_Ant::Modified_Ant(World &mundo, int x, int y, string direction) {
 }
 
 // Destructor
-Modified_Ant::~Modified_Ant() {};
+Modified_Ant::~Modified_Ant() {
+  
+};
 
 // Functions
+/*
 void Modified_Ant::Place_Ant(World &mesh, int x, int y, string dir) {
   assert(x < mesh.get_row() && y < mesh.get_column());
   set_currentx(x);
   set_currenty(y);
   mesh.At_Position(x,y).set_direction(dir);
 }
+*/
 
 void Modified_Ant::Run_Ant(Infinite_World &mesh) {
   if (mesh.At_Position( get_currentx() , get_currenty() ).get_state() == '0') {
@@ -170,28 +174,6 @@ void Modified_Ant::Move_Down_Right(Infinite_World &mesh) {
   set_direction(DOWN_RIGHT);
 }
 
-std::string& Modified_Ant::Fix_Direction(std::string direction) {
-  if (direction == "up") {
-    direction = UP;
-  } else if (direction == "right") {
-    direction = RIGHT;
-  } else if (direction == "left") {
-    direction = LEFT;
-  } else if (direction == "down") {
-    direction = DOWN;
-  } else if (direction == "upright") {
-    direction = UP_RIGHT;
-  } else if (direction == "upright") {
-    direction = UP_RIGHT;
-  } else if (direction == "upleft") {
-    direction = UP_LEFT;
-  } else if (direction == "downright") {
-    direction = DOWN_RIGHT;
-  } else if (direction == "downleft") {
-    direction = DOWN_LEFT;
-  }
-}
-
 void Modified_Ant::Run_Antf(Finite_World &mesh) {
   if (mesh.At_Position( get_currentx() , get_currenty() ).get_state() == '0') {
     mesh.At_Position( get_currentx() , get_currenty() ).set_state('X');
@@ -279,6 +261,7 @@ void Modified_Ant::Move_Downf(Finite_World &mesh) {
 }
 
 // Overloads
+/*
 Ant& Ant::operator=(Ant& ant) {
   set_direction(ant.get_direction());
   set_currentx(ant.get_currentx());
@@ -286,3 +269,4 @@ Ant& Ant::operator=(Ant& ant) {
   
   return *this;
 }
+*/

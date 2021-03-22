@@ -29,12 +29,12 @@ private:
 protected:
   Finite_World fworld_;
   Infinite_World infworld_;
-  std::vector<Ant> antlist_;
+  std::vector<Ant*> antlist_;
 
 public:
   Universe();
   Universe(const int steps, const int rows, const int columns);
-  Universe(World& world, std::vector<Ant>& antlist);
+  Universe(World& world, std::vector<Ant*>& antlist);
   ~Universe();
 
   // Getters
@@ -46,33 +46,35 @@ public:
   void set_steps(const int steps);
   void set_rows(const int rows);
   void set_columns(const int columns);
-  void set_antlist(std::vector<Ant>& antlist);
+  void set_antlist(std::vector<Ant*> antlist);
 
   // Functions
   virtual void Run_Universe() = 0;
 
 };
 
+/*
 class Finite_Universe : public Universe {
 private:
-  /* data */
+  
 public:
   
   Finite_Universe(const int steps, const int rows, const int columns);
-  Finite_Universe(Finite_World& world, std::vector<Ant>& antlist);
+  Finite_Universe(Finite_World& world, std::vector<Ant*>& antlist);
   ~Finite_Universe();
 
   // Functions 
   void Run_Universe();
   
 };
+*/
 
 class Infinite_Universe : public Universe {
 private:
   /* data */
 public:
   Infinite_Universe(const int steps, const int rows, const int columns);
-  Infinite_Universe(World& world, std::vector<Ant>& antlist);
+  Infinite_Universe(World& world, std::vector<Ant*>& antlist);
   ~Infinite_Universe();
 
   // Functions

@@ -12,6 +12,8 @@ $ make run
 $ make clean
 */
 
+
+/*
 #include "../include/universe.h"
 #include <stdlib.h>
 
@@ -22,7 +24,7 @@ Finite_Universe::Finite_Universe(const int steps, const int rows, const int colu
   set_columns(columns);
 }
 
-Finite_Universe::Finite_Universe(Finite_World& world,  std::vector<Ant>& antlist) {
+Finite_Universe::Finite_Universe(Finite_World& world,  std::vector<Ant*>& antlist) {
   fworld_ = world;
   set_antlist(antlist);
 }
@@ -31,6 +33,7 @@ Finite_Universe::Finite_Universe(Finite_World& world,  std::vector<Ant>& antlist
 Finite_Universe::~Finite_Universe() {}
 
 // Functions
+/*
 void Finite_Universe::Run_Universe() { 
   for (unsigned i = 0; i < antlist_.size(); i++) {
     short x = antlist_[i].get_currentx();
@@ -57,3 +60,4 @@ void Finite_Universe::Run_Universe() {
     getchar();
   } while (steps < 1000); 
 }
+*/
