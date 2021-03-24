@@ -2,7 +2,7 @@
 Universidad de La Laguna.
 Grado en Ingeniería Informática.
 Asignatura de Algoritmos y Estructuras de Datos Avanzadas.
-Práctica 3: Hormiga de Langton
+Práctica 4: Hormiga de Langton
 Año: 2020/2021
 Autor: Jesús Carmelo González Domínguez
 email: alu0101267760@ull.edu.es
@@ -13,6 +13,7 @@ $ make clean
 */
 
 #include "../include/ant.h"
+#include "../include/my_exception.h"
 
 // Constructor
 Ant::Ant() {}
@@ -28,11 +29,15 @@ Ant::~Ant() {
 
 // Functions
 void Ant::Place_Ant(World &mesh, int x, int y, string dir) {
-  assert(x < mesh.get_row() && y < mesh.get_column());
-  set_currentx(x);
-  set_currenty(y);
-  mesh.At_Position(x,y).set_direction(dir);
-}  
+  try {
+      set_currentx(x);
+      set_currenty(y);
+      mesh.At_Position(x,y).set_direction(dir);
+  } catch(const my_exception& ex) {
+    ex.what();
+  }
+}
+
 
 // Getters
 const std::string Ant::get_direction(void) {
@@ -69,7 +74,6 @@ void Ant::set_resizenegative(const bool resize) {
 }
 
 // Functions
-
 void Ant::Run_Ant(Infinite_World &mesh) {
   if (mesh.At_Position( get_currentx() , get_currenty() ).get_state() == '0') {
     mesh.At_Position( get_currentx() , get_currenty() ).set_state('X');
@@ -295,25 +299,23 @@ void Ant::Move_Downf(Finite_World &mesh) {
 }
 
 
-std::string& Ant::Fix_Direction(std::string direction) {
+void Ant::Fix_Direction(std::string direction) {
   if (direction == "up") {
-    direction = UP;
+    set_direction(UP);
   } else if (direction == "right") {
-    direction = RIGHT;
+    set_direction(RIGHT);
   } else if (direction == "left") {
-    direction = LEFT;
+    set_direction(LEFT);
   } else if (direction == "down") {
-    direction = DOWN;
+    set_direction(DOWN);
   } else if (direction == "upright") {
-    direction = UP_RIGHT;
-  } else if (direction == "upright") {
-    direction = UP_RIGHT;
+    set_direction(UP_RIGHT);
   } else if (direction == "upleft") {
-    direction = UP_LEFT;
+    set_direction(UP_LEFT);
   } else if (direction == "downright") {
-    direction = DOWN_RIGHT;
+    set_direction(DOWN_RIGHT);
   } else if (direction == "downleft") {
-    direction = DOWN_LEFT;
+    set_direction(DOWN_LEFT);
   }
 }
 

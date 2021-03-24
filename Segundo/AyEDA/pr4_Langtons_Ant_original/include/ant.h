@@ -2,7 +2,7 @@
 Universidad de La Laguna.
 Grado en Ingeniería Informática.
 Asignatura de Algoritmos y Estructuras de Datos Avanzadas.
-Práctica 3: Hormiga de Langton
+Práctica 4: Hormiga de Langton
 Año: 2020/2021
 Autor: Jesús Carmelo González Domínguez
 email: alu0101267760@ull.edu.es
@@ -53,7 +53,7 @@ public:
   virtual void Move_Down(Infinite_World &mesh) = 0;
   virtual void Move_Down_Left(Infinite_World &mesh) = 0;
   virtual void Move_Down_Right(Infinite_World &mesh) = 0;
-  std::string& Fix_Direction(std::string direction);
+  void Fix_Direction(std::string direction);
 
   //Finito
   virtual void Run_Antf(Finite_World &mesh) = 0;

@@ -2,7 +2,7 @@
 Universidad de La Laguna.
 Grado en Ingeniería Informática.
 Asignatura de Algoritmos y Estructuras de Datos Avanzadas.
-Práctica 3: Hormiga de Langton
+Práctica 4: Hormiga de Langton
 Año: 2020/2021
 Autor: Jesús Carmelo González Domínguez
 email: alu0101267760@ull.edu.es
@@ -46,8 +46,7 @@ int main(void) {
         std::cin >> posx >> posy >> direction;
         dohormiga1->set_currentx(posx);
         dohormiga1->set_currenty(posy);
-        direction = dohormiga1->Fix_Direction(direction);
-        dohormiga1->set_direction(direction);
+        dohormiga1->Fix_Direction(direction);
         antlist.push_back(dohormiga1);
         steps++;
       } else {
@@ -60,8 +59,7 @@ int main(void) {
         std::cin >> posx >> posy >> direction;
         dohormiga2->set_currentx(posx);
         dohormiga2->set_currenty(posy);
-        direction = dohormiga2->Fix_Direction(direction);
-        dohormiga2->set_direction(direction);
+        dohormiga2->Fix_Direction(direction);
         antlist.push_back(dohormiga2);
         steps++;
       } 
@@ -89,8 +87,7 @@ int main(void) {
         std::cin >> posx >> posy >> direction;
         dohormiga1->set_currentx(posx);
         dohormiga1->set_currenty(posy);
-        direction = dohormiga1->Fix_Direction(direction);
-        dohormiga1->set_direction(direction);
+        dohormiga1->Fix_Direction(direction);
         antlist.push_back(dohormiga1);
         steps++;
       } else {
@@ -103,8 +100,7 @@ int main(void) {
         std::cin >> posx >> posy >> direction;
         dohormiga2->set_currentx(posx);
         dohormiga2->set_currenty(posy);
-        direction = dohormiga2->Fix_Direction(direction);
-        dohormiga2->set_direction(direction);
+        dohormiga2->Fix_Direction(direction);
         antlist.push_back(dohormiga2);
         steps++;
       } 

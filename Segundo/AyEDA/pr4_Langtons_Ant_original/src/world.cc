@@ -2,7 +2,7 @@
 Universidad de La Laguna.
 Grado en Ingeniería Informática.
 Asignatura de Algoritmos y Estructuras de Datos Avanzadas.
-Práctica 3: Hormiga de Langton
+Práctica 4: Hormiga de Langton
 Año: 2020/2021
 Autor: Jesús Carmelo González Domínguez
 email: alu0101267760@ull.edu.es
@@ -11,8 +11,8 @@ $ make run
 (una vez compilado, se mosntrará un menu de configuracion del tablero, nº de hormigas y su posición)
 $ make clean
 */
-
 #include "../include/world.h"
+#include "../include/my_exception.h"
 
 // Constructor
 World::World() {}
@@ -97,6 +97,10 @@ void World::Resize_World(int row, int column) {
 }
 
 Jail& World::At_Position(int row, int column) {
+  if (row >= mesh_.get_size() || column >= mesh_[0].get_size()) {
+    throw my_exception("out");
+  }
+  
   return mesh_[row][column];
 }
 

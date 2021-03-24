@@ -2,7 +2,7 @@
 Universidad de La Laguna.
 Grado en Ingeniería Informática.
 Asignatura de Algoritmos y Estructuras de Datos Avanzadas.
-Práctica 3: Hormiga de Langton
+Práctica 4: Hormiga de Langton
 Año: 2020/2021
 Autor: Jesús Carmelo González Domínguez
 email: alu0101267760@ull.edu.es
@@ -11,8 +11,6 @@ $ make run
 (una vez compilado, se mosntrará un menu de configuracion del tablero, nº de hormigas y su posición)
 $ make clean
 */
-
-
 
 #include "../include/universe.h"
 #include <stdlib.h>
@@ -33,7 +31,6 @@ Finite_Universe::Finite_Universe(Finite_World& world,  std::vector<Ant*>& antlis
 Finite_Universe::~Finite_Universe() {}
 
 // Functions
-
 void Finite_Universe::Run_Universe() { 
   for (unsigned i = 0; i < antlist_.size(); i++) {
     short x = antlist_[i]->get_currentx();

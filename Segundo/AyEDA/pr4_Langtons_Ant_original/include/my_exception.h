@@ -12,25 +12,27 @@ $ make run
 $ make clean
 */
 
-#include "../include/world.h"
+#ifndef EXCEPTION_1
+#define EXCEPTION_1
 
-// Constructor
-Finite_World::Finite_World() {}
+#include <exception>
+#include <iostream>
 
-Finite_World::Finite_World(int rows, int columns) {
-  World::Resize_World(rows, columns);
-}
+class my_exception : public std::exception {
+private:
+    /* data */
+public:
+    my_exception(const char* err);
+    ~my_exception();
+    const char* what() const throw () {
+        return "Hormiga fuera del rango de la matriz.";
+    };
 
-// Destructor
-Finite_World::~Finite_World() {}
-
-// Overloads
-Finite_World& Finite_World::operator=(World& world) {
-  set_row(world.get_row());
-  set_column(world.get_column());
-  set_mesh(world.get_mesh());
-  
-  return *this;
-}
+    
+};
 
 
+
+
+
+#endif

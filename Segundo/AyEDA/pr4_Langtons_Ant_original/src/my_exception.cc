@@ -11,26 +11,12 @@ $ make run
 (una vez compilado, se mosntrará un menu de configuracion del tablero, nº de hormigas y su posición)
 $ make clean
 */
+#include "../include/my_exception.h"
 
-#include "../include/world.h"
+my_exception::my_exception(const char* err) {
 
-// Constructor
-Finite_World::Finite_World() {}
-
-Finite_World::Finite_World(int rows, int columns) {
-  World::Resize_World(rows, columns);
 }
 
-// Destructor
-Finite_World::~Finite_World() {}
+my_exception::~my_exception() {
 
-// Overloads
-Finite_World& Finite_World::operator=(World& world) {
-  set_row(world.get_row());
-  set_column(world.get_column());
-  set_mesh(world.get_mesh());
-  
-  return *this;
 }
-
-
