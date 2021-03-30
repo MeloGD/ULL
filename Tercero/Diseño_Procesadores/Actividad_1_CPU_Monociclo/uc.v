@@ -111,7 +111,7 @@ casez (opcode)
     6'b101010:
       begin
         s_inc = 1;
-        we3 = 0;
+        we3 = 1;
         wez = 0;
         pop = 0;
         push = 1;
@@ -136,7 +136,8 @@ casez (opcode)
         op_alu = 3'b000;
         s_in = 2'b00;
         we_out = 1;
-        s_out = opcode[1:0];
+        s_out = {opcode[1] + opcode[0]};
+        //s_out = opcode[1:0];
       end
     // store mem_data (desde el banco de registros a la memoria de datos)
     6'b1110zz:

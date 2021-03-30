@@ -108,7 +108,7 @@ mux4 in(in1, in2, , ,
           s_in,
           entrada_io);
 // salida datos  
-mux4 out(rd1,salida_memoria_programa[11:4], , ,
+mux4 out(rd2,salida_memoria_programa[11:4], , ,
         s_out,
         salida_mux_out);
 

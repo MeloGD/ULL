@@ -20,6 +20,13 @@ end
 // instanciación del procesador
 cpu micpu(clk, reset, in1, in2, out1, out2, out3, out4);
 
+initial begin
+  #(30)
+  in1 = 8'b00001000;
+  #(30)
+  in1 = 8'b00000000;
+end
+
 initial
 begin
   $dumpfile("cpu_tb.vcd");
@@ -40,3 +47,4 @@ end
 
 
 endmodule
+
