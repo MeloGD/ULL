@@ -108,7 +108,7 @@ mux4 in(in1, in2, , ,
           s_in,
           entrada_io);
 // salida datos  
-mux4 out(rd2,salida_memoria_programa[11:4], , ,
+mux4 out(rd2,salida_memoria_programa[9:2], , ,
         s_out,
         salida_mux_out);
 
@@ -119,19 +119,19 @@ decoder24 deco_out(salida_memoria_programa[1:0],
 //              (input wire clk, reset,
 //               input wire [WIDTH-1:0] d, 
 //               output reg [WIDTH-1:0] q);          
-registro reg1_out (rege1, reset,
+registro_mod reg1_out (rege1, reset,
                    salida_mux_out,
                    out1);
 
-registro reg2_out (rege2, reset,
+registro_mod reg2_out (rege2, reset,
                    salida_mux_out,
                    out2);
 
-registro reg3_out (rege3, reset,
+registro_mod reg3_out (rege3, reset,
                    salida_mux_out,
                    out3);
 
-registro reg4_out (rege4, reset,
+registro_mod reg4_out (rege4, reset,
                    salida_mux_out,
                    out4);                                                         
 

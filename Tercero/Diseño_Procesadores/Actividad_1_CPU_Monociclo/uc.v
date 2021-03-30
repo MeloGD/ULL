@@ -114,7 +114,7 @@ casez (opcode)
         we3 = 1;
         wez = 0;
         pop = 0;
-        push = 1;
+        push = 0;
         s_stack = 0;
         we4 = 0;
         s_inm = 2'b11;
@@ -122,21 +122,39 @@ casez (opcode)
         s_in = opcode[9:8];
         we_out = 0;
       end
-    // OUT IO
+    // OUT IO REG
     6'b101011:
       begin
         s_inc = 1;
         we3 = 0;
         wez = 0;
         pop = 0;
-        push = 1;
+        push = 0;
         s_stack = 0;
         we4 = 0;
-        s_inm = 2'b11;
+        s_inm = 2'b00;
         op_alu = 3'b000;
         s_in = 2'b00;
         we_out = 1;
-        s_out = {opcode[1] + opcode[0]};
+        s_out = 2'b00;
+        //s_out = opcode[1:0];
+      end
+    // OUT IO INM1
+    6'b101100:
+      begin
+        s_inc = 1;
+        we3 = 0;
+        wez = 0;
+        pop = 0;
+        push = 0;
+        s_stack = 0;
+        we4 = 0;
+        s_inm = 2'b00;
+        op_alu = 3'b000;
+        s_in = 2'b00;
+        we_out = 1;
+        s_out = 2'b01;
+        
         //s_out = opcode[1:0];
       end
     // store mem_data (desde el banco de registros a la memoria de datos)
