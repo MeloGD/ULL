@@ -90,7 +90,7 @@ mux2 #(10) mux_stack(salida_mux_inc, salida_pila,
 //              input wire [9:0] push);                     
 stack pila(clk, reset, popsignal, pushsignal,
            salida_pila,
-           salida_contador_programa);
+           salida_mux_stack);
 
 // module memory_data(input  wire        clk, 
 //                   input  wire        we4,     
