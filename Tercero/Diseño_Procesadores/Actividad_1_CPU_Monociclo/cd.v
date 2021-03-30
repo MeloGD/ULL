@@ -121,19 +121,19 @@ decoder24 deco_out(salida_memoria_programa[1:0],
 //               output reg [WIDTH-1:0] q);          
 registro reg1_out (rege1, reset,
                    salida_mux_out,
-                   salida_reg1_out);
+                   out1);
 
 registro reg2_out (rege2, reset,
                    salida_mux_out,
-                   salida_reg2_out);
+                   out2);
 
 registro reg3_out (rege3, reset,
                    salida_mux_out,
-                   salida_reg3_out);
+                   out3);
 
 registro reg4_out (rege4, reset,
                    salida_mux_out,
-                   salida_reg4_out);                                                         
+                   out4);                                                         
 
 assign rege1 = d0 & we_out;
 assign rege2 = d1 & we_out;

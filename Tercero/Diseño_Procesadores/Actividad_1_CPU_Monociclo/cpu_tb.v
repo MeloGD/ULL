@@ -1,9 +1,11 @@
-`timescale 1 ns / 10 ps
+`timescale 1 ns  / 10 ps
 
 module cpu_tb;
 
 
 reg clk, reset;
+reg [7:0] in1, in2;
+wire [7:0] out1, out2, out3, out4;
 
 
 // generación de reloj clk
@@ -16,7 +18,7 @@ begin
 end
 
 // instanciación del procesador
-cpu micpu(clk, reset);
+cpu micpu(clk, reset, in1, in2, out1, out2, out3, out4);
 
 initial
 begin
@@ -35,5 +37,6 @@ begin
   #(9*60);  //Esperamos 9 ciclos o 9 instrucciones
   $finish;
 end
+
 
 endmodule
