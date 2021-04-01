@@ -192,3 +192,44 @@ module interruption2_reg(output wire [9:0] out);
     end
   assign out = intr[1];
 endmodule
+
+module timer(input wire clk, input reset, output reg [9:0] out_timer);
+  reg [9:0] counter = 10'b0000000000;
+  reg [9:0] divisor = 10'b0000000001;
+  
+  /*
+  case (base)
+    // min
+    3'b000:
+      begin
+        divisor = 10'b;
+      end
+    // seg  
+    3'b001:
+      begin
+        divisor = 10'b;
+      end
+    // decimas segundo  
+    3'b010:
+      begin
+        divisor = 10'b;
+      end
+    // centesimas segundo  
+    3'b011:
+      begin
+        divisor = 10'b;
+      end
+    // milesimas segundo  
+    3'b100:
+      begin
+        divisor = 10'b;
+      end        
+  */
+  always @(posedge clk) 
+  begin
+    counter <= counter + 10'b0000000001;
+    out_timer <= counter %divisor;
+  end
+  
+
+endmodule

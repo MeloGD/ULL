@@ -160,6 +160,9 @@ assign temp1 = ~(s_intr1 & 1'b1);
 assign temp2 = s_intr2 & 1'b1;
 assign s_intr = temp1 || temp2;
 
+// Timer
+wire [9:0] out_timer;
+timer custom_timer(clk, reset, out_timer);
 
 endmodule
 

@@ -12,18 +12,18 @@ wire [7:0] out1, out2, out3, out4;
 always //siempre activo, no hay condición de activación
 begin
   clk = 1'b1;
-  #30;
+  #20;
   clk = 1'b0;
-  #30;
+  #20;
 end
 
 initial begin
   intr1 = 1'b0;
   intr2 = 1'b0;
-  #(60)
+  #(40)
   intr1 = 1'b1;
-  #(60)
-  intr1 = 1'b0;
+  #(40)
+  intr1  = 1'b0;
 end
 
 // instanciación del procesador
@@ -43,7 +43,7 @@ end
 initial
 begin
 
-  #(9*60);  //Esperamos 9 ciclos o 9 instrucciones
+  #(9*40);  //Esperamos 9 ciclos o 9 instrucciones
   $finish;
 end
 
