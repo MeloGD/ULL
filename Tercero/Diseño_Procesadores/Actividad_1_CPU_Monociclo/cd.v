@@ -1,4 +1,4 @@
-module cd(input wire clk, reset, s_inc, we3, wez, popsignal, pushsignal, s_stack, we4, we_out,
+module cd(input wire clk, reset, s_inc, we3, wez, popsignal, pushsignal, s_stack, we4, we_out, s_intr1, s_intr2,
           input wire [1:0] s_inm, s_in, s_out,
           input wire [2:0] op_alu, 
           input wire [7:0] in1, in2,
@@ -7,13 +7,14 @@ module cd(input wire clk, reset, s_inc, we3, wez, popsignal, pushsignal, s_stack
 
 // Camino de datos de instrucciones de un solo ciclo
 wire [15:0] salida_memoria_programa;
-wire [9:0] salida_sumador, salida_mux_inc, entrada_sumador_a, salida_contador_programa;
+wire [9:0] salida_sumador, salida_mux_inc, entrada_sumador_a, salida_contador_programa, salida_mux_pc, salida_mux_intr, salida_int1_reg, salida_int2_reg;
 wire [7:0] rd1, rd2, salida_alu, salida_mux_inm, salida_memoria_datos, entrada_io, salida_mux_out;
-wire entrada_ffz, d0, d1, d2, d3, rege1, rege2, rege3, rege4;
+wire entrada_ffz, d0, d1, d2, d3, rege1, rege2, rege3, rege4, or_push;
 
 // Pila
 wire [9:0] salida_pila, salida_mux_stack;
 
+assign or_push = pushsignal || s_intr1;
 
 // module mux2 #(parameter WIDTH = 8) 
 //              (input  wire [WIDTH-1:0] d0, d1, 
@@ -34,7 +35,7 @@ sum sumador ( 10'b0000000001, salida_contador_programa,
 //               input wire [WIDTH-1:0] d, 
 //               output reg [WIDTH-1:0] q);          
 registro #(10) contador_programa (clk, reset,
-                                  salida_mux_stack,
+                                  salida_mux_pc,
                                   salida_contador_programa);
 
 // module memprog(input  wire clk,
@@ -88,7 +89,7 @@ mux2 #(10) mux_stack(salida_mux_inc, salida_pila,
 // module stack(input wire clk, reset, popsignal, pushsignal,
 //              output reg [9:0] pop,
 //              input wire [9:0] push);                     
-stack pila(clk, reset, popsignal, pushsignal,
+stack pila(clk, reset, popsignal, or_push,
            salida_pila,
            salida_mux_stack);
 
@@ -139,6 +140,26 @@ assign rege1 = d0 & we_out;
 assign rege2 = d1 & we_out;
 assign rege3 = d2 & we_out;
 assign rege4 = d3 & we_out;
+
+// Interrupciones
+mux2 #(10) mux_pc(salida_mux_stack, salida_mux_intr,
+                     s_pc,
+                     salida_mux_pc);
+
+mux2 #(10) mux_intr(salida_int1_reg, salida_int2_reg,
+                     s_intr,
+                     salida_mux_intr);
+
+interruption1_reg int1_reg(salida_int1_reg);
+
+interruption2_reg int2_reg(salida_int2_reg);
+
+assign s_pc = s_intr1 || s_intr2;
+wire temp1, temp2;
+assign temp1 = ~(s_intr1 & 1'b1);
+assign temp2 = s_intr2 & 1'b1;
+assign s_intr = temp1 || temp2;
+
 
 endmodule
 

@@ -3,7 +3,7 @@
 module cpu_tb;
 
 
-reg clk, reset;
+reg clk, reset, intr1, intr2;
 reg [7:0] in1, in2;
 wire [7:0] out1, out2, out3, out4;
 
@@ -17,15 +17,17 @@ begin
   #30;
 end
 
-// instanciación del procesador
-cpu micpu(clk, reset, in1, in2, out1, out2, out3, out4);
-
 initial begin
-  #(30)
-  in1 = 8'b00001000;
-  #(30)
-  in1 = 8'b00000000;
+  intr1 = 1'b0;
+  intr2 = 1'b0;
+  #(60)
+  intr1 = 1'b1;
+  #(60)
+  intr1 = 1'b0;
 end
+
+// instanciación del procesador
+cpu micpu(clk, reset, intr1, intr2, in1, in2, out1, out2, out3, out4);
 
 initial
 begin

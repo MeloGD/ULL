@@ -172,5 +172,23 @@ module decoder24(input wire [1:0] in,
   assign d1 =  (~in[1] & in[0]);
   assign d2 =  (in[1] & ~in[0]);
   assign d3 =  (in[1] & in[0]);
+endmodule
 
+// Registros para inte
+module interruption1_reg(output wire [9:0] out);
+  reg[9:0] intr [1:1];
+  initial 
+    begin
+      $readmemb("intr1_reg.dat", intr);
+    end
+  assign out = intr[1];
+endmodule
+
+module interruption2_reg(output wire [9:0] out);
+  reg[9:0] intr [1:1];
+  initial 
+    begin
+      $readmemb("intr2_reg.dat", intr);
+    end
+  assign out = intr[1];
 endmodule
