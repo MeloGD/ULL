@@ -20,8 +20,7 @@ $ make clean
 template<class Key>
 class Sll : public std::forward_list<Key> {
 private:
-  /* data */
-  //std::forward_list<Key> list_;
+   
 public:
   // Constructor
   Sll();

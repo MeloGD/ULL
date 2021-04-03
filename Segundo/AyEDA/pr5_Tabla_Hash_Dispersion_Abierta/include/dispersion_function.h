@@ -27,24 +27,24 @@ public:
 template<class Key>
 class Module_Function : public Dispersion_Function<Key> {
 private:
-    unsigned data_size_;
+    unsigned datasize_;
 public:
-  Module_Function(const unsigned n): data_size_(n) {}
+  Module_Function(const unsigned n): datasize_(n) {}
   unsigned operator() (const Key& k) const {
-    return k % data_size_;
+    return k % datasize_;
   }
 };
 
 template<class Key>
 class Pseudorandom_Function : public Dispersion_Function<Key> {
 private:
-    unsigned data_size_;
+    unsigned datasize_;
 public:
-  Pseudorandom_Function(const unsigned n): data_size_(n) {}
+  Pseudorandom_Function(const unsigned n): datasize_(n) {}
   unsigned operator() (const Key& k) const {
     //srand la puedo llamar desde el main, cambiar 
     srand(k);
-    return rand() % data_size_;
+    return rand() % datasize_;
   }
 };
 
