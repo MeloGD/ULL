@@ -193,43 +193,55 @@ module interruption2_reg(output wire [9:0] out);
   assign out = intr[1];
 endmodule
 
-module timer(input wire clk, input reset, output reg [9:0] out_timer);
+module timer(input wire clk, input reset, input wire [2:0] base, input wire [3:0] umbral, output reg out_timer);
   reg [9:0] counter = 10'b0000000000;
   reg [9:0] divisor = 10'b0000000001;
+  always @(base) begin
+    case (base)
+      // min
+      3'b000:
+        begin
+          divisor = 500000000;
+        end
+      // seg  
+      3'b001:
+        begin
+          divisor = 50000000;
+        end
+      // decimas segundo  
+      3'b010:
+        begin
+          divisor = 5000000;
+        end
+      // centesimas segundo  
+      3'b011:
+        begin
+          divisor = 500000;
+        end
+      // milesimas segundo  
+      3'b100:
+        begin
+          divisor = 50000;
+        end        
+    endcase
+  end
   
-  /*
-  case (base)
-    // min
-    3'b000:
-      begin
-        divisor = 10'b;
-      end
-    // seg  
-    3'b001:
-      begin
-        divisor = 10'b;
-      end
-    // decimas segundo  
-    3'b010:
-      begin
-        divisor = 10'b;
-      end
-    // centesimas segundo  
-    3'b011:
-      begin
-        divisor = 10'b;
-      end
-    // milesimas segundo  
-    3'b100:
-      begin
-        divisor = 10'b;
-      end        
-  */
+  reg umbral_aux = 4'b0000;
   always @(posedge clk) 
   begin
     counter <= counter + 10'b0000000001;
-    out_timer <= counter %divisor;
+    if (counter %divisor == 0) begin
+      umbral_aux += 4'b0001;
+    end
+    else
+      umbral_aux = umbral_aux;
+    if (umbral_aux == umbral)  
+      out_timer = 1'b1;
+    else
+      out_timer = 1'b0;
+    if (umbral_aux >= umbral) begin
+      umbral_aux = 4'b0000;      
+    end    
   end
-  
 
 endmodule

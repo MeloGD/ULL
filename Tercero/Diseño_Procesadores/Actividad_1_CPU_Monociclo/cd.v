@@ -161,8 +161,9 @@ assign temp2 = s_intr2 & 1'b1;
 assign s_intr = temp1 || temp2;
 
 // Timer
-wire [9:0] out_timer;
-timer custom_timer(clk, reset, out_timer);
+reg [2:0] base = 3'b000;
+reg [3:0] umbral = 4'b0001;
+timer custom_timer(clk, reset, base, umbral, out_timer);
 
 endmodule
 
