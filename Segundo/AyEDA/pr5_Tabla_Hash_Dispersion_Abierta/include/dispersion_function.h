@@ -21,7 +21,7 @@ class Dispersion_Function {
 private:
     /* data */
 public:
-  unsigned operator() (const Key& k) const = 0;
+  virtual unsigned operator() (const Key& k) const = 0;
 };
 
 template<class Key>
@@ -29,6 +29,7 @@ class Module_Function : public Dispersion_Function<Key> {
 private:
     unsigned datasize_;
 public:
+  Module_Function() : datasize_(0) {}
   Module_Function(const unsigned n): datasize_(n) {}
   unsigned operator() (const Key& k) const {
     return k % datasize_;

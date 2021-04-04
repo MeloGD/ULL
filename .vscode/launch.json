@@ -8,7 +8,7 @@
             "name": "g++ - Build and debug active file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/melo/GitHub/ULL/Segundo/AyEDA/pr4_Langtons_Ant_original/bin/main",
+            "program": "/home/melo/GitHub/ULL/Segundo/AyEDA/pr5_Tabla_Hash_Dispersion_Abierta/bin/main",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

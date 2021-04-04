@@ -14,17 +14,17 @@ $ make clean
 #include <vector>
 #include "dispersion_function.h"
 #include "sll.h"
-#include <forward_list>
+
 #ifndef HASH  
 #define HASH
 template<class Key>
 class Hash_Table {
 private:
   unsigned tablesize_;
-  std::vector<std::forward_list<Key>*> datavector_;
+  std::vector<Sll<Key>*> datavector_;
   Dispersion_Function<Key>* dispersionfunction_;
 public:
-  Hash_Table(const unsigned size, Dispersion_Function<Key>& fuction);
+  Hash_Table(const unsigned size, Dispersion_Function<Key>* fuction);
   ~Hash_Table();
 
   // Getters
@@ -32,7 +32,7 @@ public:
   // Setters
   void set_tablesize(const unsigned size);
   void set_datavector(void); 
-  void set_dispersionfuction(const Dispersion_Function<Key>& fuction);
+  void set_dispersionfuction(Dispersion_Function<Key>* fuction);
   // Functions
   bool Search(Key& x) const;
   bool Add(const Key& x) ;
@@ -41,12 +41,17 @@ public:
 
 // Constructor
 template<class Key>
-Hash_Table<Key>::Hash_Table(const unsigned size, Dispersion_Function<Key>& fuction) {
+Hash_Table<Key>::Hash_Table(const unsigned size, Dispersion_Function<Key>* fuction) {
   set_tablesize(size);
-  set_datavector(void);
+  set_datavector();
   set_dispersionfuction(fuction);
 }
 
+// Destructor
+template<class Key>
+Hash_Table<Key>::~Hash_Table() {
+
+}
 // Getters
 template<class Key>
 const unsigned Hash_Table<Key>::get_tablesize(void) {
@@ -65,15 +70,22 @@ void Hash_Table<Key>::set_datavector(void) {
 }
 
 template<class Key>
-void Hash_Table<Key>::set_dispersionfuction(const Dispersion_Function<Key>& fuction) {
-  dispersionfunction_ = fuction;
+void Hash_Table<Key>::set_dispersionfuction(Dispersion_Function<Key>* function) {
+  dispersionfunction_ = function;
 }
 
 // Functions
 template<class Key>
 bool Hash_Table<Key>::Search(Key& x) const {
+  //Sll<Key> test;
+  std::cout << datavector_.size() << std::endl;
+  
   for (unsigned i = 0; i < datavector_.size(); i++) {
-    datavector_[0];
+    //std::cout<< datavector_[i] << std::endl;
+    datavector_[i]->push_front(1);
+    if (datavector_[i]->Add(x)) {
+      return true;
+    }
   }
 }
 

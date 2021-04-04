@@ -39,9 +39,9 @@ Sll<Key>::Sll() {}
 // Functions
 template<class Key>
 bool
-Sll<Key>::Search(const Key& x) const {
+Sll<Key>::Search(const Key& x) const { 
   for (auto it = this->begin(); it != this->end(); it++ ) {
-    std::cout << ' '  << *it << std::endl;
+    //std::cout << ' '  << *it << std::endl;
     if (*it == x) {
       return true;
     }   
