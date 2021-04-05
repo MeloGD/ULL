@@ -18,34 +18,12 @@ $ make clean
 #include <iostream>
 
 int main(void) {
-  /*
-  Sll<int> test;
-  test.push_front(1);
-  test.push_front(2);
-  test.push_front(3);
-  
-  //test.insert_after(test.be - 1, 5);
-  //std::forward_list<int>::iterator it;
-  test.reverse();
-  //test.pop_front();
-  /*
-  for (auto it = test.begin(); it != test.end(); it++ ) {
-    std::cout << ' '  << *it << std::endl;
-  }
 
-  int x = 1;
-  bool y;
-  y = test.Add(x);
-  Sll<int> test2;
-  std::cout << "Puedo añadir? " << y << std::endl;
-  */
+  //Module_Function<int> *test2 = new Module_Function<int>;
+  Pseudorandom_Function<int> *test2 = new Pseudorandom_Function<int>;
   
-  Module_Function<int> *test2 = new Module_Function<int>;
-  
-
-
   Hash_Table<int> test(5, test2);
-  int x = 3;
+  int x = 1;
   bool y;
   y = test.Search(x);
   std::cout << "Puedo poner un 4? " << y << std::endl;

@@ -22,7 +22,7 @@ class Hash_Table {
 private:
   unsigned tablesize_;
   std::vector<Sll<int>> datavector_;
-  Dispersion_Function<Key>* dispersionfunction_;
+  Dispersion_Function<int>* dispersionfunction_;
 public:
   Hash_Table(const unsigned size, Dispersion_Function<Key>* fuction);
   ~Hash_Table();
@@ -92,6 +92,9 @@ template<class Key>
 bool Hash_Table<Key>::Search(Key& x) const { 
   for (unsigned i = 0; i < datavector_.size(); i++) {
     if (datavector_[i].Search(x)) {
+      dispersionfunction_->set_size(100);
+      int y = dispersionfunction_->operator()(5);
+      std::cout << "y vale " << y << std::endl; 
       return true;
     }
   }

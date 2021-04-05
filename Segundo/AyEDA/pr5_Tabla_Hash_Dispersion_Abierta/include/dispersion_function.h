@@ -21,6 +21,7 @@ class Dispersion_Function {
 private:
     /* data */
 public:
+  virtual void set_size(const unsigned x) = 0;
   virtual unsigned operator() (const Key& k) const = 0;
 };
 
@@ -29,8 +30,11 @@ class Module_Function : public Dispersion_Function<Key> {
 private:
     unsigned datasize_;
 public:
-  Module_Function() : datasize_(0) {}
+  Module_Function() {}
   Module_Function(const unsigned n): datasize_(n) {}
+  void set_size(const unsigned x) {
+    datasize_ = x;
+  }
   unsigned operator() (const Key& k) const {
     return k % datasize_;
   }
@@ -41,10 +45,14 @@ class Pseudorandom_Function : public Dispersion_Function<Key> {
 private:
     unsigned datasize_;
 public:
+  Pseudorandom_Function() {}
   Pseudorandom_Function(const unsigned n): datasize_(n) {}
+  void set_size(const unsigned x) {
+    datasize_ = x;
+  }
   unsigned operator() (const Key& k) const {
     //srand la puedo llamar desde el main, cambiar 
-    srand(k);
+    srand(time(NULL));
     return rand() % datasize_;
   }
 };
