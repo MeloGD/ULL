@@ -21,7 +21,7 @@ template<class Key>
 class Hash_Table {
 private:
   unsigned tablesize_;
-  std::vector<Sll<Key>*> datavector_;
+  std::vector<Sll<int>> datavector_;
   Dispersion_Function<Key>* dispersionfunction_;
 public:
   Hash_Table(const unsigned size, Dispersion_Function<Key>* fuction);
@@ -66,7 +66,20 @@ void Hash_Table<Key>::set_tablesize(const unsigned size) {
 
 template<class Key>
 void Hash_Table<Key>::set_datavector(void) {
-  datavector_.resize(get_tablesize());
+  //datavector_.resize(get_tablesize());
+  unsigned iterator = 0;
+  
+  while (iterator < get_tablesize()) {
+    Sll<Key> aux;
+    if (iterator == 2) {
+      aux.Set_Value(2);
+    }
+    
+    aux.Set_Value(1);
+    datavector_.push_back(aux);
+    iterator++;
+  }
+  
 }
 
 template<class Key>
@@ -76,14 +89,9 @@ void Hash_Table<Key>::set_dispersionfuction(Dispersion_Function<Key>* function) 
 
 // Functions
 template<class Key>
-bool Hash_Table<Key>::Search(Key& x) const {
-  //Sll<Key> test;
-  std::cout << datavector_.size() << std::endl;
-  
+bool Hash_Table<Key>::Search(Key& x) const { 
   for (unsigned i = 0; i < datavector_.size(); i++) {
-    //std::cout<< datavector_[i] << std::endl;
-    datavector_[i]->push_front(1);
-    if (datavector_[i]->Add(x)) {
+    if (datavector_[i].Search(x)) {
       return true;
     }
   }

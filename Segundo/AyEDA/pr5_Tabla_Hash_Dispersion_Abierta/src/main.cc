@@ -45,7 +45,7 @@ int main(void) {
 
 
   Hash_Table<int> test(5, test2);
-  int x = 4;
+  int x = 3;
   bool y;
   y = test.Search(x);
   std::cout << "Puedo poner un 4? " << y << std::endl;

@@ -20,7 +20,7 @@ $ make clean
 template<class Key>
 class Sll : public std::forward_list<Key> {
 private:
-   
+   std::forward_list<Key> list_;
 public:
   // Constructor
   Sll();
@@ -28,7 +28,7 @@ public:
   // Functions
   bool Search(const Key& x) const;
   bool Add(const Key& x);
-
+  void Set_Value(const Key& x);
 
 };
 
@@ -40,13 +40,21 @@ Sll<Key>::Sll() {}
 template<class Key>
 bool
 Sll<Key>::Search(const Key& x) const { 
-  for (auto it = this->begin(); it != this->end(); it++ ) {
+  for (auto it = list_.begin(); it != list_.end(); it++ ) {
     //std::cout << ' '  << *it << std::endl;
     if (*it == x) {
       return true;
     }   
   }
   return false;
+}
+
+
+// Functions
+template<class Key>
+void
+Sll<Key>::Set_Value(const Key& x) { 
+  list_.push_front(x);
 }
 
 template<class Key>
