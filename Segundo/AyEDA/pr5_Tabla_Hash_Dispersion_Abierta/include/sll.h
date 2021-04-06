@@ -29,6 +29,7 @@ public:
   bool Search(const Key& x) const;
   bool Add(const Key& x);
   void Set_Value(const Key& x);
+  void Print_List(void);
 
 };
 
@@ -41,14 +42,12 @@ template<class Key>
 bool
 Sll<Key>::Search(const Key& x) const { 
   for (auto it = list_.begin(); it != list_.end(); it++ ) {
-    //std::cout << ' '  << *it << std::endl;
     if (*it == x) {
       return true;
     }   
   }
   return false;
 }
-
 
 // Functions
 template<class Key>
@@ -66,4 +65,14 @@ Sll<Key>::Add(const Key& x) {
     return true;
   }
 }
+
+template<class Key>
+void
+Sll<Key>::Print_List(void) {
+  for (auto const& i : list_) {
+    std::cout << "->" << i << "";
+  }
+}
+
+
 #endif

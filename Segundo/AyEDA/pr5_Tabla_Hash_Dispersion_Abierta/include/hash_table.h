@@ -37,6 +37,7 @@ public:
   bool Search(Key& x) const;
   bool Add(Key& x);
   void Insert(Key& x);
+  void Print(void);
 
 };
 
@@ -67,18 +68,10 @@ void Hash_Table<Key>::set_tablesize(const unsigned size) {
 
 template<class Key>
 void Hash_Table<Key>::set_datavector(void) {
-  //datavector_.resize(get_tablesize());
   unsigned iterator = 0;
   
   while (iterator < get_tablesize()) {
     Sll<Key> aux;
-    /*
-    if (iterator == 2) {
-      aux.Set_Value(2);
-    }
-    
-    //aux.Set_Value(1);
-    */
     datavector_.push_back(aux);
     iterator++;
   }
@@ -95,9 +88,6 @@ template<class Key>
 bool Hash_Table<Key>::Search(Key& x) const { 
   for (unsigned i = 0; i < datavector_.size(); i++) {
     if (datavector_[i].Search(x)) {
-      //dispersionfunction_->set_size(100);
-      //int y = dispersionfunction_->operator()(5);
-      std::cout << "El valor " << x << " ha sido colocado en la posición del vector "<< i << std::endl; 
       return true;
     }
   }
@@ -117,11 +107,17 @@ bool Hash_Table<Key>::Add(Key& x) {
 template<class Key>
 void Hash_Table<Key>::Insert(Key& x) {
   if (Add(x)) {
-    //dispersionfunction_->set_size(100);
-    //int y = dispersionfunction_->operator()(5);
-    //std::cout << "y vale " << y << std::endl; 
     dispersionfunction_->set_size(get_tablesize());
     datavector_[dispersionfunction_->operator()(x)].Set_Value(x);
+  } 
+}
+
+template<class Key>
+void Hash_Table<Key>::Print(void) {
+  for (unsigned i = 0; i < datavector_.size(); i++) {
+    std::cout << "Para el indice " << i << ": ";
+    datavector_[i].Print_List();
+    std::cout << std::endl;
   }
   
 }
