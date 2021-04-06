@@ -35,7 +35,8 @@ public:
   void set_dispersionfuction(Dispersion_Function<Key>* fuction);
   // Functions
   bool Search(Key& x) const;
-  bool Add(const Key& x) ;
+  bool Add(Key& x);
+  void Insert(Key& x);
 
 };
 
@@ -71,11 +72,13 @@ void Hash_Table<Key>::set_datavector(void) {
   
   while (iterator < get_tablesize()) {
     Sll<Key> aux;
+    /*
     if (iterator == 2) {
       aux.Set_Value(2);
     }
     
-    aux.Set_Value(1);
+    //aux.Set_Value(1);
+    */
     datavector_.push_back(aux);
     iterator++;
   }
@@ -92,12 +95,34 @@ template<class Key>
 bool Hash_Table<Key>::Search(Key& x) const { 
   for (unsigned i = 0; i < datavector_.size(); i++) {
     if (datavector_[i].Search(x)) {
-      dispersionfunction_->set_size(100);
-      int y = dispersionfunction_->operator()(5);
-      std::cout << "y vale " << y << std::endl; 
+      //dispersionfunction_->set_size(100);
+      //int y = dispersionfunction_->operator()(5);
+      //std::cout << "y vale " << y << std::endl; 
       return true;
     }
   }
+  return false;
 }
 
+template<class Key>
+bool Hash_Table<Key>::Add(Key& x) { 
+  if (Search(x)) {
+    return false;
+  } else {
+    return true;
+  }
+  
+}
+
+template<class Key>
+void Hash_Table<Key>::Insert(Key& x) {
+  if (Add(x)) {
+    //dispersionfunction_->set_size(100);
+    //int y = dispersionfunction_->operator()(5);
+    //std::cout << "y vale " << y << std::endl; 
+    dispersionfunction_->set_size(get_tablesize());
+    datavector_[dispersionfunction_->operator()(x)].Set_Value(x);
+  }
+  
+}
 #endif

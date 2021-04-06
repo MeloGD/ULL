@@ -25,7 +25,10 @@ int main(void) {
   Hash_Table<int> test(5, test2);
   int x = 1;
   bool y;
-  y = test.Search(x);
-  std::cout << "Puedo poner un 4? " << y << std::endl;
+  y = test.Add(x);
+  std::cout << "Puedo poner un 1? " << y << std::endl;
+  test.Insert(x);
+  y = test.Add(x);
+  std::cout << "Puedo poner un 1? " << y << std::endl;
   return 0;
 }
