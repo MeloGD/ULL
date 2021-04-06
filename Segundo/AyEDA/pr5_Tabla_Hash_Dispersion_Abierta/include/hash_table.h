@@ -97,7 +97,7 @@ bool Hash_Table<Key>::Search(Key& x) const {
     if (datavector_[i].Search(x)) {
       //dispersionfunction_->set_size(100);
       //int y = dispersionfunction_->operator()(5);
-      //std::cout << "y vale " << y << std::endl; 
+      std::cout << "El valor " << x << " ha sido colocado en la posición del vector "<< i << std::endl; 
       return true;
     }
   }
