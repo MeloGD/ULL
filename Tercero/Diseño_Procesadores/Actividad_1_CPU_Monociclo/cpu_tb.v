@@ -12,9 +12,9 @@ wire [7:0] out1, out2, out3, out4;
 always //siempre activo, no hay condición de activación
 begin
   clk = 1'b1;
-  #20;
+  #25;
   clk = 1'b0;
-  #20;
+  #25;
 end
 
 initial begin
@@ -43,7 +43,7 @@ end
 initial
 begin
 
-  #(9*40);  //Esperamos 9 ciclos o 9 instrucciones
+  #(50000*50);  //Esperamos 9 ciclos o 9 instrucciones
   $finish;
 end
 

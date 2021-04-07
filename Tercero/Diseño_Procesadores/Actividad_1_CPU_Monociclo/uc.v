@@ -184,8 +184,9 @@ casez (opcode)
         op_alu = 3'b000;
       end
     // Timer (solo usamos este opcode para dejar el resto de señales a 0)
-    6'b101111;
-        s_inc = 0;
+    6'b101111:
+      begin
+        s_inc = 1;
         we3 = 0;
         wez = 0;
         pop = 0;
@@ -194,7 +195,7 @@ casez (opcode)
         we4 = 0;
         s_inm = 2'b00;
         op_alu = 3'b000;
-         
+      end   
     default:; 
   endcase
 

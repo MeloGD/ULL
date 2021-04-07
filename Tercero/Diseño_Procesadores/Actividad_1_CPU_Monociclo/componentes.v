@@ -195,53 +195,60 @@ endmodule
 
 module timer(input wire clk, input reset, input wire [2:0] base, input wire [3:0] umbral, output reg out_timer);
   reg [9:0] counter = 10'b0000000000;
-  reg [9:0] divisor = 10'b0000000001;
+  reg [9:0] divisor;
   always @(base) begin
     case (base)
       // min
       3'b000:
         begin
-          divisor = 500000000;
+          divisor = 1200000000;
         end
       // seg  
       3'b001:
         begin
-          divisor = 50000000;
+          divisor = 20000000;
         end
       // decimas segundo  
       3'b010:
         begin
-          divisor = 5000000;
+          divisor = 2000000;
         end
       // centesimas segundo  
       3'b011:
         begin
-          divisor = 500000;
+          divisor = 200000;
         end
       // milesimas segundo  
       3'b100:
         begin
-          divisor = 50000;
+          divisor = 20000;
         end        
     endcase
   end
   
-  reg umbral_aux = 4'b0000;
+  reg [3:0] umbral_aux = 4'b0000;
   always @(posedge clk) 
   begin
-    counter <= counter + 10'b0000000001;
-    if (counter %divisor == 0) begin
-      umbral_aux += 4'b0001;
-    end
+    
+    if (counter %divisor == 0) 
+      begin
+        umbral_aux = umbral_aux 4'b0001;
+        out_timer = 1'b1;
+      end
     else
-      umbral_aux = umbral_aux;
-    if (umbral_aux == umbral)  
-      out_timer = 1'b1;
+      begin
+        umbral_aux = umbral_aux;
+        out_timer = 1'b0;
+      end
+    if (umbral_aux == umbral)
+      begin
+        umbral_aux = 4'b0000;  
+      end  
     else
-      out_timer = 1'b0;
-    if (umbral_aux >= umbral) begin
-      umbral_aux = 4'b0000;      
-    end    
+      begin
+        out_timer = 1'b0;  
+      end
+    counter <= counter + 10'b0000000001;    
   end
 
 endmodule
