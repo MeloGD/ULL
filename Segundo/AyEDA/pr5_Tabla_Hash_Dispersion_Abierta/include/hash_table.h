@@ -51,9 +51,7 @@ Hash_Table<Key>::Hash_Table(const unsigned size, Dispersion_Function<Key>* fucti
 
 // Destructor
 template<class Key>
-Hash_Table<Key>::~Hash_Table() {
-
-}
+Hash_Table<Key>::~Hash_Table() { }
 // Getters
 template<class Key>
 const unsigned Hash_Table<Key>::get_tablesize(void) {
@@ -69,13 +67,11 @@ void Hash_Table<Key>::set_tablesize(const unsigned size) {
 template<class Key>
 void Hash_Table<Key>::set_datavector(void) {
   unsigned iterator = 0;
-  
   while (iterator < get_tablesize()) {
     Sll<Key> aux;
     datavector_.push_back(aux);
     iterator++;
   }
-  
 }
 
 template<class Key>
@@ -103,7 +99,6 @@ bool Hash_Table<Key>::Add(Key& x) {
   } else {
     return true;
   }
-  
 }
 
 template<class Key>

@@ -51,16 +51,9 @@ public:
     datasize_ = x;
   }
   unsigned operator() (const Key& k) const {
-    //srand la puedo llamar desde el main, cambiar 
+    //srand la puedo llamar desde el main
     srand(time(NULL));
     return rand() % datasize_;
   }
 };
-
-
-
-
-
-
-
 #endif
