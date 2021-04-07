@@ -88,9 +88,11 @@ template<class Key>
 bool Hash_Table<Key>::Search(Key& x) const { 
   for (unsigned i = 0; i < datavector_.size(); i++) {
     if (datavector_[i].Search(x)) {
+      std::cout << "El valor se ha encontrado en la tabla" << std::endl;
       return true;
     }
   }
+  std::cout << "El valor no se encuentra en la tabla." << std::endl;
   return false;
 }
 

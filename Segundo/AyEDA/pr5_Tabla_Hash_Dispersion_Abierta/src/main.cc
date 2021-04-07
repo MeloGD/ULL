@@ -50,7 +50,8 @@ int main(void) {
         std::cin >> yesorno;
         if (yesorno == 'y'){
           std::cout << "¿Que valor?" << std::endl;
-          std::cin >> valuesearch;          
+          std::cin >> valuesearch; 
+          htable.Search(valuesearch);         
         } else {
           keepsearching = false;
           nextstep = false;
