@@ -194,61 +194,61 @@ module interruption2_reg(output wire [9:0] out);
 endmodule
 
 module timer(input wire clk, input reset, input wire [2:0] base, input wire [3:0] umbral, output reg out_timer);
-  reg [9:0] counter = 10'b0000000000;
-  reg [9:0] divisor;
+  reg [15:0] counter = 15'd0;
+  reg [27:0] divisor;
   always @(base) begin
     case (base)
       // min
       3'b000:
         begin
-          divisor = 1200000000;
+          divisor = 1200000;
         end
       // seg  
       3'b001:
         begin
-          divisor = 20000000;
+          divisor = 20000;
         end
       // decimas segundo  
       3'b010:
         begin
-          divisor = 2000000;
+          divisor = 2000;
         end
       // centesimas segundo  
       3'b011:
         begin
-          divisor = 200000;
+          divisor = 200;
         end
       // milesimas segundo  
       3'b100:
         begin
-          divisor = 20000;
+          divisor = 20;
         end        
     endcase
   end
   
-  reg [3:0] umbral_aux = 4'b0000;
+  reg [5:0] umbral_aux = 6'b000000;
   always @(posedge clk) 
   begin
     
     if (counter %divisor == 0) 
       begin
-        umbral_aux = umbral_aux 4'b0001;
+        umbral_aux = umbral_aux + 6'b000001;
         out_timer = 1'b1;
       end
     else
       begin
-        umbral_aux = umbral_aux;
         out_timer = 1'b0;
+        umbral_aux = umbral_aux;
       end
     if (umbral_aux == umbral)
       begin
-        umbral_aux = 4'b0000;  
+        umbral_aux = 6'b000000;  
       end  
     else
       begin
         out_timer = 1'b0;  
       end
-    counter <= counter + 10'b0000000001;    
+    counter <= counter + 15'd1;    
   end
 
 endmodule

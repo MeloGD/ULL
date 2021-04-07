@@ -1,4 +1,5 @@
-`timescale 1 ns  / 10 ps
+//`timescale 1 ns  / 10 ps
+`timescale 1 us  / 10 ps
 
 module cpu_tb;
 
