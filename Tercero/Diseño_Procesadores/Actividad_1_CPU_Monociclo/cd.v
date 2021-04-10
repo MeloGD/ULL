@@ -15,7 +15,7 @@ wire entrada_ffz, d0, d1, d2, d3, rege1, rege2, rege3, rege4, or_push;
 // Pila
 wire [9:0] salida_pila, salida_mux_stack;
 
-assign or_push = pushsignal || s_intr1;
+assign or_push = pushsignal | s_pc;
 
 // Mux Inc
 mux2 #(10) inc (salida_memoria_programa[9:0], salida_sumador, s_inc, salida_mux_inc);
@@ -85,15 +85,15 @@ interruption1_reg int1_reg(salida_int1_reg);
 
 interruption2_reg int2_reg(salida_int2_reg);
 
-assign s_pc = s_intr1 || timer_to_intr2;
+assign s_pc = s_intr1 | timer_to_intr2;
 wire temp1, temp2;
 assign temp1 = ~(s_intr1 & 1'b1);
 assign temp2 = timer_to_intr2 & 1'b1;
-assign s_intr = temp1 || temp2;
+assign s_intr = temp1 | temp2;
 
 // Timer
 wire timer_to_intr2;
-assign timer_to_intr2 = s_intr2 || out_timer ;
+assign timer_to_intr2 = s_intr2 | out_timer ;
 assign base_umbral =  salida_memoria_programa[6:0];
 timer custom_timer(clk, reset, timer_e, base_umbral, out_timer);
 

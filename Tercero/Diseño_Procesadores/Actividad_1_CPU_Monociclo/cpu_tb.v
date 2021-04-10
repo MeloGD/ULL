@@ -21,10 +21,11 @@ end
 initial begin
   intr1 = 1'b0;
   intr2 = 1'b0;
-  #(25)
-  intr1 = 1'b1;
-  #(25)
-  intr1  = 1'b0;
+  in1 = 8'b00000010;
+  //#(25)
+  //intr1 = 1'b0;
+  //#(25)
+  //intr1  = 1'b0;
 end
 
 // instanciación del procesador

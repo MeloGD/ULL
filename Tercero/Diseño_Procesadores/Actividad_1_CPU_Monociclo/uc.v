@@ -41,7 +41,7 @@ casez (opcode)
     6'b100100: 
       begin 
         s_inc = 0;
-        we3 = 1;
+        we3 = 0;
         wez = 0;
         pop = 0;
         push = 0;
