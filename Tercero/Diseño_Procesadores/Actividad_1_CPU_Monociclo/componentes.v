@@ -193,11 +193,20 @@ module interruption2_reg(output wire [9:0] out);
   assign out = intr[1];
 endmodule
 
-module timer(input wire clk, input reset, input wire [2:0] base, input wire [3:0] umbral, output reg out_timer);
+// juntar base y umbral como un bus de entrada
+module timer(input wire clk, reset, timer_e, input wire [6:0] b_u, output reg out_timer);
   reg [15:0] counter = 15'd0;
   reg [27:0] divisor;
-  always @(base) begin
-    case (base)
+  reg [6:0] base_umbral;
+
+  always @(timer_e) begin
+    if (timer_e) begin
+      base_umbral <= b_u;
+    end
+  end
+  
+  always @(base_umbral[6:4]) begin
+    case (base_umbral[6:4])
       // min
       3'b000:
         begin
@@ -225,22 +234,21 @@ module timer(input wire clk, input reset, input wire [2:0] base, input wire [3:0
         end        
     endcase
   end
-  
+
   reg [5:0] umbral_aux = 6'b000000;
   always @(posedge clk) 
   begin
-    
     if (counter %divisor == 0) 
       begin
         umbral_aux = umbral_aux + 6'b000001;
-        out_timer = 1'b1;
+        out_timer = 1'b1 & timer_e;
       end
     else
       begin
         out_timer = 1'b0;
         umbral_aux = umbral_aux;
       end
-    if (umbral_aux == umbral)
+    if (umbral_aux == base_umbral[3:0])
       begin
         umbral_aux = 6'b000000;  
       end  

@@ -21,9 +21,9 @@ end
 initial begin
   intr1 = 1'b0;
   intr2 = 1'b0;
-  #(40)
+  #(25)
   intr1 = 1'b1;
-  #(40)
+  #(25)
   intr1  = 1'b0;
 end
 
@@ -43,7 +43,6 @@ end
 
 initial
 begin
-
   #(50000*50);  //Esperamos 9 ciclos o 9 instrucciones
   $finish;
 end

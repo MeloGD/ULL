@@ -1,4 +1,4 @@
-module cd(input wire clk, reset, s_inc, we3, wez, popsignal, pushsignal, s_stack, we4, we_out, s_intr1, s_intr2,
+module cd(input wire clk, reset, s_inc, we3, wez, popsignal, pushsignal, s_stack, we4, we_out, s_intr1, s_intr2, timer_e,
           input wire [1:0] s_inm, s_in, s_out,
           input wire [2:0] op_alu, 
           input wire [7:0] in1, in2,
@@ -9,6 +9,7 @@ module cd(input wire clk, reset, s_inc, we3, wez, popsignal, pushsignal, s_stack
 wire [15:0] salida_memoria_programa;
 wire [9:0] salida_sumador, salida_mux_inc, entrada_sumador_a, salida_contador_programa, salida_mux_pc, salida_mux_intr, salida_int1_reg, salida_int2_reg;
 wire [7:0] rd1, rd2, salida_alu, salida_mux_inm, salida_memoria_datos, entrada_io, salida_mux_out;
+wire [6:0] base_umbral;
 wire entrada_ffz, d0, d1, d2, d3, rege1, rege2, rege3, rege4, or_push;
 
 // Pila
@@ -154,16 +155,17 @@ interruption1_reg int1_reg(salida_int1_reg);
 
 interruption2_reg int2_reg(salida_int2_reg);
 
-assign s_pc = s_intr1 || s_intr2;
+assign s_pc = s_intr1 || timer_to_intr2;
 wire temp1, temp2;
 assign temp1 = ~(s_intr1 & 1'b1);
-assign temp2 = s_intr2 & 1'b1;
+assign temp2 = timer_to_intr2 & 1'b1;
 assign s_intr = temp1 || temp2;
 
 // Timer
-reg [2:0] base = 3'b011;
-reg [3:0] umbral = 4'b0001;
-timer custom_timer(clk, reset, base, umbral, out_timer);
+wire timer_to_intr2;
+assign timer_to_intr2 = s_intr2 || out_timer ;
+assign base_umbral =  salida_memoria_programa[6:0];
+timer custom_timer(clk, reset, timer_e, base_umbral, out_timer);
 
 endmodule
 

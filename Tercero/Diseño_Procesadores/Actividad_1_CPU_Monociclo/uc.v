@@ -1,6 +1,6 @@
 module uc(input wire [15:0] opcode, 
           input wire z, intr1, intr2, 
-          output reg s_inc, we3, wez, pop, push, s_stack, we4, we_out,
+          output reg s_inc, we3, wez, pop, push, s_stack, we4, we_out, timer_e,
           output reg [1:0] s_inm, s_in, s_out,
           output reg [2:0] op_alu);
 
@@ -20,6 +20,7 @@ casez (opcode)
         s_inm = 2'b00; 
         // necesito estos 3 bits del opcode para poder elegir que tipo de operacion
         op_alu = opcode[4:2]; 
+        //timer_e = 0;
       end
 
     // Carga de constante inmediata, las cargas escriben en el banco de registros  
@@ -182,6 +183,7 @@ casez (opcode)
         we4 = 0;
         s_inm = 2'b10;
         op_alu = 3'b000;
+        timer_e = 0;
       end
     // Timer (solo usamos este opcode para dejar el resto de señales a 0)
     6'b101111:
@@ -195,6 +197,7 @@ casez (opcode)
         we4 = 0;
         s_inm = 2'b00;
         op_alu = 3'b000;
+        timer_e = 1;
       end   
     default:; 
   endcase
