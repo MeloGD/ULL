@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+
+<html  dir="ltr" lang="es" xml:lang="es">
+<head>
+    <title>Campus de Ingeniería y Tecnología: Iniciar sesión en el sitio</title>
+    <link rel="shortcut icon" href="https://campusingenieriaytecnologia.ull.es/theme/image.php/campus/theme/1615817358/favicon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="moodle, Campus de Ingeniería y Tecnología: Iniciar sesión en el sitio" />
+<link rel="stylesheet" type="text/css" href="https://campusingenieriaytecnologia.ull.es/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css" /><script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script><link rel="stylesheet" type="text/css" href="https://campusingenieriaytecnologia.ull.es/theme/styles.php/campus/1615817358_1614414251/all" />
+<script>
+//<![CDATA[
+var M = {}; M.yui = {};
+M.pageloadstarttime = new Date();
+M.cfg = {"wwwroot":"https:\/\/campusingenieriaytecnologia.ull.es","sesskey":"HozcbuxQEO","sessiontimeout":"7200","themerev":"1615817358","slasharguments":1,"theme":"campus","iconsystemmodule":"core\/icon_system_fontawesome","jsrev":"1615817358","admin":"admin","svgicons":true,"usertimezone":"Atl\u00e1ntico\/Canarias","contextid":1,"langrev":1618370584,"templaterev":"1615817358"};var yui1ConfigFn = function(me) {if(/-skin|reset|fonts|grids|base/.test(me.name)){me.type='css';me.path=me.path.replace(/\.js/,'.css');me.path=me.path.replace(/\/yui2-skin/,'/assets/skins/sam/yui2-skin')}};
+var yui2ConfigFn = function(me) {var parts=me.name.replace(/^moodle-/,'').split('-'),component=parts.shift(),module=parts[0],min='-min';if(/-(skin|core)$/.test(me.name)){parts.pop();me.type='css';min=''}
+if(module){var filename=parts.join('-');me.path=component+'/'+module+'/'+filename+min+'.'+me.type}else{me.path=component+'/'+component+'.'+me.type}};
+YUI_config = {"debug":false,"base":"https:\/\/campusingenieriaytecnologia.ull.es\/lib\/yuilib\/3.17.2\/","comboBase":"https:\/\/campusingenieriaytecnologia.ull.es\/theme\/yui_combo.php?","combine":true,"filter":null,"insertBefore":"firstthemesheet","groups":{"yui2":{"base":"https:\/\/campusingenieriaytecnologia.ull.es\/lib\/yuilib\/2in3\/2.9.0\/build\/","comboBase":"https:\/\/campusingenieriaytecnologia.ull.es\/theme\/yui_combo.php?","combine":true,"ext":false,"root":"2in3\/2.9.0\/build\/","patterns":{"yui2-":{"group":"yui2","configFn":yui1ConfigFn}}},"moodle":{"name":"moodle","base":"https:\/\/campusingenieriaytecnologia.ull.es\/theme\/yui_combo.php?m\/1615817358\/","combine":true,"comboBase":"https:\/\/campusingenieriaytecnologia.ull.es\/theme\/yui_combo.php?","ext":false,"root":"m\/1615817358\/","patterns":{"moodle-":{"group":"moodle","configFn":yui2ConfigFn}},"filter":null,"modules":{"moodle-core-blocks":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification"]},"moodle-core-formchangechecker":{"requires":["base","event-focus","moodle-core-event"]},"moodle-core-handlebars":{"condition":{"trigger":"handlebars","when":"after"}},"moodle-core-chooserdialogue":{"requires":["base","panel","moodle-core-notification"]},"moodle-core-tooltip":{"requires":["base","node","io-base","moodle-core-notification-dialogue","json-parse","widget-position","widget-position-align","event-outside","cache-base"]},"moodle-core-popuphelp":{"requires":["moodle-core-tooltip"]},"moodle-core-actionmenu":{"requires":["base","event","node-event-simulate"]},"moodle-core-dragdrop":{"requires":["base","node","io","dom","dd","event-key","event-focus","moodle-core-notification"]},"moodle-core-maintenancemodetimer":{"requires":["base","node"]},"moodle-core-languninstallconfirm":{"requires":["base","node","moodle-core-notification-confirm","moodle-core-notification-alert"]},"moodle-core-notification":{"requires":["moodle-core-notification-dialogue","moodle-core-notification-alert","moodle-core-notification-confirm","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-core-notification-dialogue":{"requires":["base","node","panel","escape","event-key","dd-plugin","moodle-core-widget-focusafterclose","moodle-core-lockscroll"]},"moodle-core-notification-alert":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-confirm":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-exception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-ajaxexception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-event":{"requires":["event-custom"]},"moodle-core-lockscroll":{"requires":["plugin","base-build"]},"moodle-core_availability-form":{"requires":["base","node","event","event-delegate","panel","moodle-core-notification-dialogue","json"]},"moodle-backup-backupselectall":{"requires":["node","event","node-event-simulate","anim"]},"moodle-backup-confirmcancel":{"requires":["node","node-event-simulate","moodle-core-notification-confirm"]},"moodle-course-categoryexpander":{"requires":["node","event-key"]},"moodle-course-util":{"requires":["node"],"use":["moodle-course-util-base"],"submodules":{"moodle-course-util-base":{},"moodle-course-util-section":{"requires":["node","moodle-course-util-base"]},"moodle-course-util-cm":{"requires":["node","moodle-course-util-base"]}}},"moodle-course-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-course-coursebase","moodle-course-util"]},"moodle-course-management":{"requires":["base","node","io-base","moodle-core-notification-exception","json-parse","dd-constrain","dd-proxy","dd-drop","dd-delegate","node-event-delegate"]},"moodle-course-formatchooser":{"requires":["base","node","node-event-simulate"]},"moodle-form-shortforms":{"requires":["node","base","selector-css3","moodle-core-event"]},"moodle-form-dateselector":{"requires":["base","node","overlay","calendar"]},"moodle-form-passwordunmask":{"requires":[]},"moodle-question-searchform":{"requires":["base","node"]},"moodle-question-chooser":{"requires":["moodle-core-chooserdialogue"]},"moodle-question-preview":{"requires":["base","dom","event-delegate","event-key","core_question_engine"]},"moodle-availability_completion-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_date-form":{"requires":["base","node","event","io","moodle-core_availability-form"]},"moodle-availability_grade-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_group-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_grouping-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_profile-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-mod_assign-history":{"requires":["node","transition"]},"moodle-mod_attendance-groupfilter":{"requires":["base","node"]},"moodle-mod_bigbluebuttonbn-recordings":{"requires":["base","node","datasource-get","datasource-jsonschema","datasource-polling","moodle-core-notification"]},"moodle-mod_bigbluebuttonbn-rooms":{"requires":["base","node","datasource-get","datasource-jsonschema","datasource-polling","moodle-core-notification"]},"moodle-mod_bigbluebuttonbn-modform":{"requires":["base","node"]},"moodle-mod_bigbluebuttonbn-broker":{"requires":["base","node","datasource-get","datasource-jsonschema","datasource-polling","moodle-core-notification"]},"moodle-mod_bigbluebuttonbn-imports":{"requires":["base","node"]},"moodle-mod_quiz-modform":{"requires":["base","node","event"]},"moodle-mod_quiz-util":{"requires":["node","moodle-core-actionmenu"],"use":["moodle-mod_quiz-util-base"],"submodules":{"moodle-mod_quiz-util-base":{},"moodle-mod_quiz-util-slot":{"requires":["node","moodle-mod_quiz-util-base"]},"moodle-mod_quiz-util-page":{"requires":["node","moodle-mod_quiz-util-base"]}}},"moodle-mod_quiz-toolboxes":{"requires":["base","node","event","event-key","io","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-slot","moodle-core-notification-ajaxexception"]},"moodle-mod_quiz-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-base","moodle-mod_quiz-util-page","moodle-mod_quiz-util-slot","moodle-course-util"]},"moodle-mod_quiz-autosave":{"requires":["base","node","event","event-valuechange","node-event-delegate","io-form"]},"moodle-mod_quiz-questionchooser":{"requires":["moodle-core-chooserdialogue","moodle-mod_quiz-util","querystring-parse"]},"moodle-mod_quiz-quizbase":{"requires":["base","node"]},"moodle-message_airnotifier-toolboxes":{"requires":["base","node","io"]},"moodle-filter_glossary-autolinker":{"requires":["base","node","io-base","json-parse","event-delegate","overlay","moodle-core-event","moodle-core-notification-alert","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-filter_mathjaxloader-loader":{"requires":["moodle-core-event"]},"moodle-editor_atto-rangy":{"requires":[]},"moodle-editor_atto-editor":{"requires":["node","transition","io","overlay","escape","event","event-simulate","event-custom","node-event-html5","node-event-simulate","yui-throttle","moodle-core-notification-dialogue","moodle-core-notification-confirm","moodle-editor_atto-rangy","handlebars","timers","querystring-stringify"]},"moodle-editor_atto-plugin":{"requires":["node","base","escape","event","event-outside","handlebars","event-custom","timers","moodle-editor_atto-menu"]},"moodle-editor_atto-menu":{"requires":["moodle-core-notification-dialogue","node","event","event-custom"]},"moodle-report_eventlist-eventfilter":{"requires":["base","event","node","node-event-delegate","datatable","autocomplete","autocomplete-filters"]},"moodle-report_loglive-fetchlogs":{"requires":["base","event","node","io","node-event-delegate"]},"moodle-gradereport_grader-gradereporttable":{"requires":["base","node","event","handlebars","overlay","event-hover"]},"moodle-gradereport_history-userselector":{"requires":["escape","event-delegate","event-key","handlebars","io-base","json-parse","moodle-core-notification-dialogue"]},"moodle-tool_capability-search":{"requires":["base","node"]},"moodle-tool_lp-dragdrop-reorder":{"requires":["moodle-core-dragdrop"]},"moodle-tool_monitor-dropdown":{"requires":["base","event","node"]},"moodle-assignfeedback_editpdf-editor":{"requires":["base","event","node","io","graphics","json","event-move","event-resize","transition","querystring-stringify-simple","moodle-core-notification-dialog","moodle-core-notification-alert","moodle-core-notification-warning","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-atto_accessibilitychecker-button":{"requires":["color-base","moodle-editor_atto-plugin"]},"moodle-atto_accessibilityhelper-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_align-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_bold-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_charmap-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_clear-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_collapse-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emojipicker-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emoticon-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_equation-button":{"requires":["moodle-editor_atto-plugin","moodle-core-event","io","event-valuechange","tabview","array-extras"]},"moodle-atto_h5p-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_html-beautify":{},"moodle-atto_html-button":{"requires":["promise","moodle-editor_atto-plugin","moodle-atto_html-beautify","moodle-atto_html-codemirror","event-valuechange"]},"moodle-atto_html-codemirror":{"requires":["moodle-atto_html-codemirror-skin"]},"moodle-atto_image-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_indent-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_italic-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_link-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-usedfiles":{"requires":["node","escape"]},"moodle-atto_managefiles-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_media-button":{"requires":["moodle-editor_atto-plugin","moodle-form-shortforms"]},"moodle-atto_noautolink-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_orderedlist-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_recordrtc-recording":{"requires":["moodle-atto_recordrtc-button"]},"moodle-atto_recordrtc-button":{"requires":["moodle-editor_atto-plugin","moodle-atto_recordrtc-recording"]},"moodle-atto_rtl-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_strike-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_subscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_superscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_table-button":{"requires":["moodle-editor_atto-plugin","moodle-editor_atto-menu","event","event-valuechange"]},"moodle-atto_title-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_underline-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_undo-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_unorderedlist-button":{"requires":["moodle-editor_atto-plugin"]}}},"gallery":{"name":"gallery","base":"https:\/\/campusingenieriaytecnologia.ull.es\/lib\/yuilib\/gallery\/","combine":true,"comboBase":"https:\/\/campusingenieriaytecnologia.ull.es\/theme\/yui_combo.php?","ext":false,"root":"gallery\/1615817358\/","patterns":{"gallery-":{"group":"gallery"}}}},"modules":{"core_filepicker":{"name":"core_filepicker","fullpath":"https:\/\/campusingenieriaytecnologia.ull.es\/lib\/javascript.php\/1615817358\/repository\/filepicker.js","requires":["base","node","node-event-simulate","json","async-queue","io-base","io-upload-iframe","io-form","yui2-treeview","panel","cookie","datatable","datatable-sort","resize-plugin","dd-plugin","escape","moodle-core_filepicker","moodle-core-notification-dialogue"]},"core_comment":{"name":"core_comment","fullpath":"https:\/\/campusingenieriaytecnologia.ull.es\/lib\/javascript.php\/1615817358\/comment\/comment.js","requires":["base","io-base","node","json","yui2-animation","overlay","escape"]},"mathjax":{"name":"mathjax","fullpath":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/mathjax\/2.6.1\/MathJax.js?delayStartupUntil=configured"}}};
+M.yui.loader = {modules: {}};
+
+//]]>
+</script>
+
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="//static.ull.es/v3/dist/img/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="//static.ull.es/v3/dist/img/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"   href="//static.ull.es/v3/dist/img/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="//static.ull.es/v3/dist/img/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="//static.ull.es/v3/dist/img/favicon.ico">
+<meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body  id="page-login-index" class="format-site  path-login gecko dir-ltr lang-es yui-skin-sam yui3-skin-sam campusingenieriaytecnologia-ull-es pagelayout-login course-1 context-1 notloggedin ">
+<div class="toast-wrapper mx-auto py-0 fixed-top" role="status" aria-live="polite"></div>
+
+<div id="page-wrapper" class="page-login">
+
+  <div>
+    <a class="sr-only sr-only-focusable" href="#maincontent">Salta al contenido principal</a>
+</div><script src="https://campusingenieriaytecnologia.ull.es/lib/javascript.php/1615817358/lib/babel-polyfill/polyfill.min.js"></script>
+<script src="https://campusingenieriaytecnologia.ull.es/lib/javascript.php/1615817358/lib/polyfills/polyfill.js"></script>
+<script src="https://campusingenieriaytecnologia.ull.es/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.js"></script><script src="https://campusingenieriaytecnologia.ull.es/lib/javascript.php/1615817358/lib/javascript-static.js"></script>
+<script>
+//<![CDATA[
+document.body.className += ' jsenabled';
+//]]>
+</script>
+
+
+  
+  
+  <div class="navbar navbar-default navbar-ull" role="navigation">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <a href="http://www.ull.es" class="navbar-brand has-logo">
+                  <span class="logo">
+                      <img src="/static/images/ull-logo.png">
+                  </span>
+              </a>
+          </div>
+          <!-- DROPD ULL -->
+          <div class="navbar-dropdowns-ull">
+              <div class="dropdown navbar-dropdowns-sup-dcha menu-desplegable-navbar-ull">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" title="Servicios telemáticos" id="dropdownMenuButton-servicios" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                      <i class="fa fa-desktop"></i>
+                      <span>Servicios telemáticos</span>
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-servicios">
+                      <a class="dropdown-item" target="_blank" title="Gestión de perfil de usuario" href="https://usuarios.ull.es">
+                          <i class="fa fa-user"></i> Gestión de perfil de usuario
+                      </a>
+                      <a class="dropdown-item" target="_blank" href="http://portal.ull.es" title="Portal">
+                          <i class="fa fa-folder-open"></i> Portal
+                      </a>
+                      <a class="dropdown-item" target="_blank" href="https://sede.ull.es" title="Sede electrónica">
+                          <i class="fa fa-briefcase"></i> Sede electrónica
+                      </a>
+                      <a class="dropdown-item" target="_blank" href="https://campusvirtual.ull.es/" title="Campus Virtual">
+                          <i class="fa fa-pencil"></i> Campus Virtual
+                      </a>
+                      <a class="dropdown-item" target="_blank" href="http://mail.ull.edu.es/" title="Correo electrónico">
+                          <i class="fa fa-envelope"></i> Correo electrónico
+                      </a>
+                      <a class="dropdown-item" target="_blank" href="http://www.webs.ull.es" title="Disco duro virtual">
+                          <i class="fa fa-hdd-o"></i> Disco duro virtual
+                      </a>
+                      <a class="dropdown-item" target="_blank" href="https://www.ull.es/servicios/biblioteca/" title="Biblioteca digital">
+                          <i class="fa fa-book"></i> Biblioteca digital
+                      </a>
+                      <a class="dropdown-item" target="_blank" href="http://eventos.ull.es" title="Eventos">
+                          <i class="fa fa-calendar"></i> Eventos
+                      </a>
+                  </div>
+              </div>
+              <div class="dropdown navbar-dropdowns-sup-dcha menu-desplegable-navbar-ull">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" title="Contacto" id="dropdownMenuButton-contacto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                      <i class="fa fa-envelope"></i>
+                      <span>Contacto</span>
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-contacto">
+                      <a class="dropdown-item" target="_blank" title="Página Web ULL" href="https://www.ull.es/">
+                          <i class="fa fa-globe"></i> Página Web ULL
+                      </a>
+                      <a class="dropdown-item" target="_blank" href="https://www.ull.es/directorio" title="Directorio telefónico">
+                          <i class="fa fa-phone"></i> Directorio telefónico
+                      </a>
+                      <div class="dropdown-divider"></div>
+                      <ul class="rrss text-muted list-inline">
+                          <li><a title="Facebook ULL" target="_blank" href="https://www.facebook.com/universidaddelalaguna"><i class="fa fa-facebook-square"></i></a></li>
+                          <li><a title="Twitter ULL" target="_blank" href="https://twitter.com/ull"><i class="fa fa-twitter-square"></i></a></li>
+                          <li><a title="Youtube ULL" target="_blank" href="https://www.youtube.com/canalULL"><i class="fa fa-youtube-square"></i></a></li>
+                          <li><a title="Linkedin ULL" target="_blank" href="https://www.linkedin.com/groups/Universidad-Laguna-2656178"><i class="fa fa-linkedin-square"></i></a></li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <nav class="fixed-top navbar navbar-light bg-white navbar-expand moodle-has-zindex navbar-app">
+      <div data-region="drawer-toggle" class="d-inline-block mr-3">
+          <button aria-expanded="false" aria-controls="nav-drawer" type="button" class="btn nav-link float-sm-left mr-1 btn-secondary" data-action="toggle-drawer" data-side="left" data-preference="drawer-open-nav"><i class="icon fa fa-bars fa-fw " aria-hidden="true"  ></i><span class="sr-only">Panel lateral</span></button>
+      </div>
+      <a href="https://campusvirtual.ull.es" title="Campus Virtual ULL - Portada">
+          <i id="home-cvull" class="fa fa-home"></i>
+      </a>
+      <span class="main-bc-sep">&nbsp;/</span>
+      <a href="https://campusingenieriaytecnologia.ull.es" class="navbar-brand has-logo d-none d-md-block aabtn">
+          <span class="site-name d-none d-md-inline">Ingeniería y Tecnología</span>
+      </a>
+      <ul class="navbar-nav d-none d-md-flex">
+          <!-- custom_menu -->
+          
+          <!-- page_heading_menu -->
+          
+      </ul>
+      <ul class="nav navbar-nav ml-auto">
+          <li class="d-none d-lg-block">
+              
+          </li>
+          <!-- navbar_plugin_output -->
+          <li class="nav-item">
+              
+          </li>
+          <!-- DROPD UDV -->
+          <div class="dropdown menu-desplegable-navbar-ull">
+              <button class="btn btn-secondary dropdown-toggle" type="button" title="Entornos virtuales" id="dropdownMenuButton-entornos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <i class="fa fa-cubes"></i>
+                  <span>Entornos virtuales</span>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-entornos">
+                  <a class="dropdown-item link-institucional" title="Entorno de docencia institucional 20/21" href="https://campusvirtual.ull.es">
+                      <i class="fa fa-dot-circle-o"></i> Institucional 2020/2021
+                  </a>
+                  <a class="dropdown-item link-novigente" title="Entorno de docencia institucional 19/20" href="https://campusvirtual.ull.es">
+                      <i class="fa fa-dot-circle-o"></i> Institucional 2019/2020
+                  </a>
+                  <a class="dropdown-item link-novigente" title="Entorno de docencia institucional 18/19" href="https://campusvirtual.ull.es/1819">
+                      <i class="fa fa-dot-circle-o"></i> Institucional 2018/2019
+                  </a>
+                  <a class="dropdown-item link-formacion" title="Entorno de Formación" href="https://campusvirtual.ull.es/formacion">
+                      <i class="fa fa-dot-circle-o"></i> Formación
+                  </a>
+                  <a class="dropdown-item link-entornos" title="Entornos Colaborativos de trabajo" href="https://campusvirtual.ull.es/entornos">
+                      <i class="fa fa-dot-circle-o"></i> Colaborativos de trabajo
+                  </a>
+                  <a class="dropdown-item link-facultades" title="Entorno de Escuelas y facultades" href="https://campusvirtual.ull.es/facultades">
+                      <i class="fa fa-dot-circle-o"></i> Escuelas y Facultades
+                  </a>
+                  <a class="dropdown-item link-ocw" title="Entorno Open Course Ware" href="https://campusvirtual.ull.es/ocw">
+                      <i class="fa fa-dot-circle-o"></i> OCW
+                  </a>
+              </div>
+          </div>
+          <div class="dropdown menu-desplegable-navbar-ull">
+              <button class="btn btn-secondary dropdown-toggle" type="button" title="Soporte UDV" id="dropdownMenuButton-ayuda" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <i class="fa fa-question-circle"></i>
+                  <span>Soporte UDV</span>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-ayuda">
+                  <a class="dropdown-item" target="_blank" title="Portal UDV" href="https://udv.ull.es">
+                      <i class="fa fa-globe"></i> Portal UDV
+                  </a>
+                  <a class="dropdown-item" href="mailto:unidov@ull.edu.es" title="Correo electrónico unidov@ull.edu.es">
+                      <i class="fa fa-envelope"></i> unidov@ull.edu.es
+                  </a>
+                  <a class="dropdown-item" href="tel:+34922319035" title="Teléfono de contacto">
+                      <i class="fa fa-phone"></i> (+34) 922 319 035
+                  </a>
+                  <a class="dropdown-item horario-udv" href="#" title="Horario UDV">
+                      <i class="fa fa-clock-o"></i> De lunes a viernes de 9:00 a 14:00
+                  </a>
+                  <a class="dropdown-item" href="http://goo.gl/maps/FcwNn" title="Localización sede UDV">
+                      <i class="fa fa-map-marker"></i> Localización sede UDV
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="https://campusvirtual.ull.es/static/terminos-y-condiciones-de-uso/" title="Términos y condiciones de uso" target="_blank">
+                      <i class="fa fa-angle-right"></i> Términos y condiciones de uso
+                  </a>
+                  <a class="dropdown-item" href="https://campusvirtual.ull.es/static/protocolo_publicacion_materiales_cv.pdf" title="Protocolo de publicación de materiales" target="_blank">
+                      <i class="fa fa-angle-right"></i> Protocolo de publicación de materiales
+                  </a>
+                  <a class="dropdown-item" href="https://campusvirtual.ull.es/static/ayuda-soporte" title="Recursos de ayuda y soporte" target="_blank">
+                      <i class="fa fa-angle-right"></i> Recursos de ayuda y soporte
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <ul class="rrss text-muted list-inline">
+                      <li><a title="Facebook UDV" target="_blank" href="http://www.facebook.com/unidov"><i class="fa fa-facebook-square"></i></a></li>
+                      <li><a title="Twitter UDV" target="_blank" href="http://twitter.com/unidov"><i class="fa fa-twitter-square"></i></a></li>
+                      <li><a title="Youtube ULLMedia (UDV)" target="_blank" href="https://www.youtube.com/user/UniversidadLaLaguna"><i class="fa fa-youtube-square"></i></a></li>
+                  </ul>
+              </div>
+          </div>
+          <!-- user_menu -->
+          <li class="nav-item d-flex align-items-center">
+              <div class="usermenu"><span class="login">Usted no se ha identificado.</span></div>
+          </li>
+      </ul>
+      <!-- search_box -->
+  </nav>
+
+  <div id="page" class="container-fluid mt-0">
+    <div id="page-content" class="row">
+      <div class="cabecera-login col-12">
+        <img src="/static/images/logo-campus-virtual.png" />
+      </div>
+
+      <div class="container-fluid mt-0">
+        <div class="row">
+          <div class="col-12">
+            <section class="col-12">
+              <div class="main">
+                <div class="row justify-content-center">
+                  <div class="col-xl-4 col-sm-8">
+                    <div id="ull-cas-login-card" class="card">
+                      <div class="card-block">
+                        <h2 class="card-header text-center">Alumnado, PDI y PAS de la ULL</h2>
+                        <div class="card-body">
+                          <a class="btn btn-primary btn-block" href="index.php?authCAS=CAS" target="_self">Iniciar sesión con credencial ULL</a>
+                          <div class="mt-2 text-center">
+                            <a href="https://usuarios.ull.es/reenvio" target="_blank">¿Olvidó su nombre de usuario/a o contraseña?</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <div id="region-main-box" class="col-12">
+        <section id="region-main" class="col-12" aria-label="Contenido">
+          <div role="main"><span id="maincontent"></span><div class="my-1 my-sm-4"></div>
+<div class="row justify-content-center">
+<div class="col-xl-4 col-sm-8">
+<div class="card">
+    <div class="card-block">
+
+        <a class="btn btn-block card-header text-center" data-toggle="collapse" href="#collapseUsuariosExternos" role="button" aria-expanded="true" aria-controls="collapseExample">
+          Personas externas <i class="fa fa-chevron-down" style="float: right; margin-top: 5px;" id="yui_3_17_2_1_1529395869818_32"></i>
+        </a>
+        <div class="card-body collapse" id="collapseUsuariosExternos">
+
+          <div class="alert alert-warning" role="alert">
+            Este método de acceso sólo funciona si utiliza como credencial de acceso su DNI o equivalente.
+          </div>
+
+
+
+            <div class="row justify-content-md-center">
+                <div class="col-md-12">
+                    <form class="mt-0" action="https://campusingenieriaytecnologia.ull.es/login/index.php" method="post" id="login">
+                        <input id="anchor" type="hidden" name="anchor" value="">
+                        <script>document.getElementById('anchor').value = location.hash;</script>
+                        <input type="hidden" name="logintoken" value="cPbCq1HoMnaW9aoHopZYDIg6D88bsOhk">
+                        <div class="form-group">
+                            <label for="username" class="sr-only">
+                                    Nombre de usuario
+                            </label>
+                            <input type="text" name="username" id="username"
+                                class="form-control"
+                                value=""
+                                placeholder="Nombre de usuario">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="sr-only">Contraseña</label>
+                            <input type="password" name="password" id="password" value=""
+                                class="form-control"
+                                placeholder="Contraseña">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block mt-1" id="loginbtn">Acceder</button>
+                    </form>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="text-center mt-3">
+                        <p class="mb-0"><a href="https://campusingenieriaytecnologia.ull.es/login/forgot_password.php">¿Olvidó su nombre de usuario/a o contraseña?</a></p>
+                    </div>
+
+                    <div class="mt-1 text-center">
+                        Las 'Cookies' deben estar habilitadas en su navegador
+                        <a class="btn btn-link p-0" role="button"
+    data-container="body" data-toggle="popover"
+    data-placement="right" data-content="&lt;div class=&quot;no-overflow&quot;&gt;&lt;p&gt;Este sitio usa una cookie de sesión, generalmente llamada MoodleSession. Debe permitir esta cookie en su navegador para proporcionar continuidad y mantenerse conectado al navegar por el sitio. Cuando salga del sitio o cierre el navegador, esta cookie es destruida (en su navegador y en el servidor).&lt;/p&gt;
+&lt;/div&gt; "
+    data-html="true" tabindex="0" data-trigger="focus">
+  <i class="icon fa fa-question-circle text-info fa-fw "  title="Ayuda con Las &#039;Cookies&#039; deben estar habilitadas en su navegador" aria-label="Ayuda con Las &#039;Cookies&#039; deben estar habilitadas en su navegador"></i>
+</a>
+                    </div>
+
+                    <div class="potentialidplist mt-3">
+                            <div class="potentialidp">
+                                <a href="https://campusingenieriaytecnologia.ull.es/login/index.php?authCAS=CAS" title="CAS ULL" class="btn btn-secondary btn-block">
+                                    CAS ULL
+                                </a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div></div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <div id="goto-top-link">
+      <a class="btn btn-light" role="button" href="#" aria-label="Ir arriba">
+          <i class="icon fa fa-arrow-up fa-fw " aria-hidden="true"  ></i>
+      </a>
+  </div>
+  <footer class="ull-footer">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="address pull-left">
+              <li><strong>Universidad de La Laguna</strong><br> Pabellón de Gobierno, C/ Padre Herrera s/n. | 38200 | Apartado Postal 456 | San Cristóbal de La Laguna | España | (+34) 922 31 90 00</li>
+            </ul>
+            <ul class="list-inline text-muted pull-right">
+              <li><a title="Moodle" target="_blank" href="http://moodle.org"><img src="https://campusvirtual.ull.es/static/images/moodle-gris.jpg"></a></li>
+              <li><a title="Facebook ULL" target="_blank" href="http://www.facebook.com/universidaddelalaguna"><span class="fa fa-facebook-square"></span></a></li>
+              <li><a title="Twitter ULL" target="_blank" href="http://twitter.com/ull"><i class="fa fa-twitter-square"></i></a></li>
+              <li><a title="LinkedIn ULL" target="_blank" href="http://www.linkedin.com/groups/Universidad-Laguna-2656178"><i class="fa fa-linkedin-square"></i></a></li>
+              <li><a title="Página web ULL" target="_blank" href="http://www.ull.es"><i class="fa fa-globe"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <script>
+//<![CDATA[
+var require = {
+    baseUrl : 'https://campusingenieriaytecnologia.ull.es/lib/requirejs.php/1615817358/',
+    // We only support AMD modules with an explicit define() statement.
+    enforceDefine: true,
+    skipDataMain: true,
+    waitSeconds : 0,
+
+    paths: {
+        jquery: 'https://campusingenieriaytecnologia.ull.es/lib/javascript.php/1615817358/lib/jquery/jquery-3.4.1.min',
+        jqueryui: 'https://campusingenieriaytecnologia.ull.es/lib/javascript.php/1615817358/lib/jquery/ui-1.12.1/jquery-ui.min',
+        jqueryprivate: 'https://campusingenieriaytecnologia.ull.es/lib/javascript.php/1615817358/lib/requirejs/jquery-private'
+    },
+
+    // Custom jquery config map.
+    map: {
+      // '*' means all modules will get 'jqueryprivate'
+      // for their 'jquery' dependency.
+      '*': { jquery: 'jqueryprivate' },
+      // Stub module for 'process'. This is a workaround for a bug in MathJax (see MDL-60458).
+      '*': { process: 'core/first' },
+
+      // 'jquery-private' wants the real jQuery module
+      // though. If this line was not here, there would
+      // be an unresolvable cyclic dependency.
+      jqueryprivate: { jquery: 'jquery' }
+    }
+};
+
+//]]>
+</script>
+<script src="https://campusingenieriaytecnologia.ull.es/lib/javascript.php/1615817358/lib/requirejs/require.min.js"></script>
+<script>
+//<![CDATA[
+M.util.js_pending("core/first");require(['core/first'], function() {
+require(['core/prefetch']);
+;
+require(["media_videojs/loader"], function(loader) {
+    loader.setUp(function(videojs) {
+        videojs.options.flash.swf = "https://campusingenieriaytecnologia.ull.es/media/player/videojs/videojs/video-js.swf";
+videojs.addLanguage('es', {
+  "Play": "Reproducir",
+  "Play Video": "Reproducir Vídeo",
+  "Pause": "Pausa",
+  "Current Time": "Tiempo reproducido",
+  "Duration": "Duración total",
+  "Remaining Time": "Tiempo restante",
+  "Stream Type": "Tipo de secuencia",
+  "LIVE": "DIRECTO",
+  "Loaded": "Cargado",
+  "Progress": "Progreso",
+  "Fullscreen": "Pantalla completa",
+  "Non-Fullscreen": "Pantalla no completa",
+  "Mute": "Silenciar",
+  "Unmute": "No silenciado",
+  "Playback Rate": "Velocidad de reproducción",
+  "Subtitles": "Subtítulos",
+  "subtitles off": "Subtítulos desactivados",
+  "Captions": "Subtítulos especiales",
+  "captions off": "Subtítulos especiales desactivados",
+  "Chapters": "Capítulos",
+  "You aborted the media playback": "Ha interrumpido la reproducción del vídeo.",
+  "A network error caused the media download to fail part-way.": "Un error de red ha interrumpido la descarga del vídeo.",
+  "The media could not be loaded, either because the server or network failed or because the format is not supported.": "No se ha podido cargar el vídeo debido a un fallo de red o del servidor o porque el formato es incompatible.",
+  "The media playback was aborted due to a corruption problem or because the media used features your browser did not support.": "La reproducción de vídeo se ha interrumpido por un problema de corrupción de datos o porque el vídeo precisa funciones que su navegador no ofrece.",
+  "No compatible source was found for this media.": "No se ha encontrado ninguna fuente compatible con este vídeo.",
+  "Audio Player": "Reproductor de audio",
+  "Video Player": "Reproductor de video",
+  "Replay": "Volver a reproducir",
+  "Seek to live, currently behind live": "Buscar en vivo, actualmente demorado con respecto a la transmisión en vivo",
+  "Seek to live, currently playing live": "Buscar en vivo, actualmente reproduciendo en vivo",
+  "Progress Bar": "Barra de progreso",
+  "progress bar timing: currentTime={1} duration={2}": "{1} de {2}",
+  "Descriptions": "Descripciones",
+  "descriptions off": "descripciones desactivadas",
+  "Audio Track": "Pista de audio",
+  "Volume Level": "Nivel de volumen",
+  "The media is encrypted and we do not have the keys to decrypt it.": "El material audiovisual está cifrado y no tenemos las claves para descifrarlo.",
+  "Close": "Cerrar",
+  "Modal Window": "Ventana modal",
+  "This is a modal window": "Esta es una ventana modal",
+  "This modal can be closed by pressing the Escape key or activating the close button.": "Esta ventana modal puede cerrarse presionando la tecla Escape o activando el botón de cierre.",
+  ", opens captions settings dialog": ", abre el diálogo de configuración de leyendas",
+  ", opens subtitles settings dialog": ", abre el diálogo de configuración de subtítulos",
+  ", selected": ", seleccionado",
+  "Close Modal Dialog": "Cierra cuadro de diálogo modal",
+  ", opens descriptions settings dialog": ", abre el diálogo de configuración de las descripciones",
+  "captions settings": "configuración de leyendas",
+  "subtitles settings": "configuración de subtítulos",
+  "descriptions settings": "configuración de descripciones",
+  "Text": "Texto",
+  "White": "Blanco",
+  "Black": "Negro",
+  "Red": "Rojo",
+  "Green": "Verde",
+  "Blue": "Azul",
+  "Yellow": "Amarillo",
+  "Magenta": "Magenta",
+  "Cyan": "Cian",
+  "Background": "Fondo",
+  "Window": "Ventana",
+  "Transparent": "Transparente",
+  "Semi-Transparent": "Semitransparente",
+  "Opaque": "Opaca",
+  "Font Size": "Tamaño de fuente",
+  "Text Edge Style": "Estilo de borde del texto",
+  "None": "Ninguno",
+  "Raised": "En relieve",
+  "Depressed": "Hundido",
+  "Uniform": "Uniforme",
+  "Dropshadow": "Sombra paralela",
+  "Font Family": "Familia de fuente",
+  "Proportional Sans-Serif": "Sans-Serif proporcional",
+  "Monospace Sans-Serif": "Sans-Serif monoespacio",
+  "Proportional Serif": "Serif proporcional",
+  "Monospace Serif": "Serif monoespacio",
+  "Casual": "Informal",
+  "Script": "Cursiva",
+  "Small Caps": "Minúsculas",
+  "Reset": "Restablecer",
+  "restore all settings to the default values": "restablece todas las configuraciones a los valores predeterminados",
+  "Done": "Listo",
+  "Caption Settings Dialog": "Diálogo de configuración de leyendas",
+  "Beginning of dialog window. Escape will cancel and close the window.": "Comienzo de la ventana de diálogo. La tecla Escape cancelará la operación y cerrará la ventana.",
+  "End of dialog window.": "Final de la ventana de diálogo.",
+  "{1} is loading.": "{1} se está cargando."
+});
+
+    });
+});;
+
+/*require(["jquery"],function(e){var n="/blocks/globalsurveys/surveycheck.php",u="https://www.ull.es/encuestas/index.php?r=survey/index&lang=es&sid=";n+="?surveyid=956197&username=",u+="956197&token=",e("#surveyButton").on("click",function(){window.open(u,"_blank")}),e.get(n,function(n){0==n&&"".match(/alu\d{10}$/)&&e("#GlobalSurveyModal").modal()})});*/
+;
+
+require(["jquery"],function(e){if(e("body#page-user-edit").length){var a=e("body#page-user-edit input[name='email']").val(),t=e("body#page-user-edit input[name='firstname']").val(),o=encodeURI(e(".navbar-app .usermenu a[data-title='logout,moodle']").attr("href"));""!=t&&""==a&&window.open("/static/novalido.php?logout="+o,"_self")}});
+;
+
+require(["jquery"],function(e){e("body#page-my-index").length&&("".match(/^alu\d{10}$/)?(e("#aviso-area-personal-alumno").toggle(),e("#aviso-area-personal-profesor").remove()):e("body#page-my-index #nav-drawer a[data-key='sitesettings']").length?(e("#aviso-area-personal-alumno").toggle(),e("#aviso-area-personal-profesor").toggle()):(e("#aviso-area-personal-alumno").remove(),e("#aviso-area-personal-profesor").toggle()))});
+;
+
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader'], function() {
+  M.util.js_complete('theme_boost/loader');
+});
+;
+
+        require(['jquery'], function($) {
+            $('a[href="#collapseUsuariosExternos"]').on('click', function(){
+                setTimeout(function(){
+                    if ($('#username').val()) {
+                        $('#password').focus();
+                    } else {
+                        $('#username').focus();
+                    }
+                }, 50);
+            });
+        });
+;
+M.util.js_pending('core/notification'); require(['core/notification'], function(amd) {amd.init(1, [], false); M.util.js_complete('core/notification');});;
+M.util.js_pending('core/log'); require(['core/log'], function(amd) {amd.setConfig({"level":"warn"}); M.util.js_complete('core/log');});;
+M.util.js_pending('core/page_global'); require(['core/page_global'], function(amd) {amd.init(); M.util.js_complete('core/page_global');});M.util.js_complete("core/first");
+});
+//]]>
+</script>
+<script>
+//<![CDATA[
+M.str = {"moodle":{"lastmodified":"\u00daltima modificaci\u00f3n","name":"Nombre","error":"Error","info":"Informaci\u00f3n","yes":"S\u00ed","no":"No","cancel":"Cancelar","confirm":"Confirmar","areyousure":"\u00bfEst\u00e1 seguro?","closebuttontitle":"Cerrar","unknownerror":"Error desconocido","file":"Archivo","url":"URL"},"repository":{"type":"Tipo","size":"Tama\u00f1o","invalidjson":"Cadena JSON no v\u00e1lida","nofilesattached":"No se han adjuntado archivos","filepicker":"Selector de archivos","logout":"Salir","nofilesavailable":"No hay archivos disponibles","norepositoriesavailable":"Lo sentimos, ninguno de sus repositorios actuales puede devolver archivos en el formato solicitado.","fileexistsdialogheader":"El archivo existe","fileexistsdialog_editor":"Un archivo con ese nombre ha sido anexado al texto que Usted est\u00e1 editando","fileexistsdialog_filemanager":"Ya ha sido anexado un archivo con ese nombre","renameto":"Cambiar el nombre a \"{$a}\"","referencesexist":"Existen {$a} archivos de alias\/atajos que emplean este archivo como su or\u00edgen","select":"Seleccionar"},"admin":{"confirmdeletecomments":"Est\u00e1 a punto de eliminar comentarios, \u00bfest\u00e1 seguro?","confirmation":"Confirmaci\u00f3n"},"debug":{"debuginfo":"Informaci\u00f3n de depuraci\u00f3n","line":"L\u00ednea","stacktrace":"Trazado de la pila (stack)"},"langconfig":{"labelsep":":"}};
+//]]>
+</script>
+<script>
+//<![CDATA[
+(function() {Y.use("moodle-filter_mathjaxloader-loader",function() {M.filter_mathjaxloader.configure({"mathjaxconfig":"\nMathJax.Hub.Config({\n    config: [\"Accessible.js\", \"Safe.js\"],\n    errorSettings: { message: [\"!\"] },\n    skipStartupTypeset: true,\n    messageStyle: \"none\",\n    jax: [\"input\/TeX\",\"output\/HTML-CSS\"],\n    displayAlign: \"left\",\n    styles: {\n      \"body .MathJax_Display, body .MathJax_SVG_Display\": {\n        display: \"inline !important\",\n        align: \"left\"\n       }\n    }\n});","lang":"es"});
+});
+M.util.help_popups.setup(Y);
+ M.util.js_pending('random607840e4ca04c2'); Y.on('domready', function() { M.util.js_complete("init");  M.util.js_complete('random607840e4ca04c2'); });
+})();
+//]]>
+</script>
+
+      </div>
+  </footer>
+  <div id="GlobalSurveyModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" style='color:#5c068c;text-align:center;display:block;width: 450px;'> <i class='fa fa-check-square-o' style='font-size:30px;color:#5c068c;'></i> Tu opinión es importante <br/> ¡Ayúdanos a mejorar!</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p style='text-align:justify;'>Te invitamos a participar en la encuesta de satisfacción de estudiantes ULL. Valora diferentes aspectos de tus estudios en la universidad (título, centro, recursos, ...). </p>
+          <p style='text-align:center;'>
+            <button id="surveyButton" type="button" class="btn btn-default" data-dismiss="modal">Accede a la Encuesta</button>
+          </p>
+          <p style='text-align:center;font-weight: bold;'>¡Gracias!</p>
+          <p style='text-align:center;font-weight: lighter;font-size:10px'>Unidad Técnica de Calidad (UTC)<br/>Unidad de Evaluación y Mejora de la Calidad (UEMC)<br/>(encuestas@ull.es)</p>
+        </div>
+        <div class="modal-footer" style='background-color:#5c068c;'> <img src='/static/images/vicerrectorado-docencia-positivo.png' alt='Logo Vicerrectorado' style='max-width:80%'>
+          <h4 class="modal-title" style='color:#5c068c;text-align:center;'></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span data-flexitour="container" class="orphan" id="Survey" role="dialog" tabindex="0"></span>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(["_setAccount", "UA-7936780-2"]);
+    _gaq.push(["_trackPageview"]);
+    (function() {
+      var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+      ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+      var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  <script type="text/javascript">
+     function checkInsecureEmbeds() {
+       setTimeout(function() {
+          if ($(".breadcrumb-button .singlebutton").length || $("li.type_setting.contains_branch").length) {
+              $.each($("iframe"), function() {
+                      if (!this.src.indexOf("http://")) {
+                          $(this).replaceWith("<div class=\"alert alert-warning\"><i class=\"fa fa-warning\"></i> El siguiente contenido inseguro ha sido bloqueado: <ul style=\"margin: 4px 20px 8px; font-size: 12px\"><li><a href=\""+this.src+"\" target=\"_blank\">"+this.src +"</a></li></ul> <div style=\"text-align: center;\"><a class=\"btn btn-xs btn-default\" href=\"http:\/\/udv.ull.es\/portal\/contacto\" target=\"_blank\">Contacte con la UDV</a></div></div>");
+                      }
+              });
+              $.each($("embed"), function() {
+                      if (!this.src.indexOf("http://")) {
+                          $(this).replaceWith("<div class=\"alert alert-warning\"><i class=\"fa fa-warning\"></i> El siguiente contenido inseguro ha sido bloqueado: <ul style=\"margin: 4px 20px 8px; font-size: 12px\"><li><a href=\""+this.src+"\" target=\"_blank\">"+this.src +"</a></li></ul> <div style=\"text-align: center\"><a class=\"btn btn-xs btn-default\" href=\"http:\/\/udv.ull.es\/portal\/contacto\" target=\"_blank\">Contacte con la UDV</a></div></div>");
+                      }
+              });
+          } else {
+              $.each($("iframe"), function() {
+                      if (!this.src.indexOf("http://")) {
+                          $(this).replaceWith("<div><ul style=\"margin: 4px 0;\"><li><a href=\""+this.src+"\" target=\"_blank\">"+this.src +"</a></li></ul></div>");
+                      }
+              });
+              $.each($("embed"), function() {
+                      if (!this.src.indexOf("http://")) {
+                          $(this).replaceWith("<div><ul style=\"margin: 4px 0;\"><li><a href=\""+this.src+"\" target=\"_blank\">"+this.src +"</a></li></ul></div>");
+                      }
+              });
+          }
+       }, 500);
+     }
+     window.addEventListener('load', checkInsecureEmbeds);
+  </script>
+  
+  
+</div>
+
+</body>
+</html>
