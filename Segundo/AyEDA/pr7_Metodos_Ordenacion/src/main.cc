@@ -12,12 +12,14 @@ $ make run
 $ make clean
 */
 
-
-#include "../include/keys.h"
-
+#include <vector>
 #include <iostream>
+#include "../include/keys.h"
+#include "../include/sort_vector.h"
+
 
 int main(void) {
+  /*
   int vectorsize;
   int valueinsert;
   int iterator = 0;
@@ -32,5 +34,23 @@ int main(void) {
     std::cin >> type;
 
   } while (nextstep);
+  */
+  std::vector<Keys> vector;
+  Insertion_Sort<Keys> vector_sort;
+  Keys Clave1(5);
+  Keys Clave2(1);
+  Keys Clave3(10);
+  Keys Clave4(3);
+  vector.push_back(Clave1);
+  vector.push_back(Clave2);
+  vector.push_back(Clave3);
+  vector.push_back(Clave4);
+  std::cout << "Desordenado: \n";
+  vector_sort.Display(vector);
+
+  std::cout << "Ordenado: \n";
+  
+  vector_sort.Sort_Vector(vector,4);
+  vector_sort.Display(vector);
   return 0;
 }

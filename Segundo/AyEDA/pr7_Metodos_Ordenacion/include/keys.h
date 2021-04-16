@@ -12,7 +12,8 @@ $ make run
 $ make clean
 */
 
-#include <string>
+#include <iostream>
+
 #ifndef KEYS
 #define KEYS
 class Keys {
@@ -20,14 +21,18 @@ private:
   int value_;
   
 public:
-  Keys(int, std::string);
+  Keys(int);
   ~Keys();
 
   // Getters
   int get_value(void); 
+
+  // Overloads
+  //friend std::
+  //int& operator=(Keys &keys);
 };
 
-Keys::Keys(int value, std::string letters) {
+Keys::Keys(int value) {
   value_ = value;
 }
 
@@ -39,4 +44,10 @@ int Keys::get_value(void) {
   return value_;
 }
 
+/*
+int& Keys::operator=(Keys &keys) {
+  int value = keys.get_value();
+  return value_;
+}
+*/
 #endif

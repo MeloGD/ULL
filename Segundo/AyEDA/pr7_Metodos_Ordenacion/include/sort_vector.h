@@ -12,6 +12,9 @@ $ make run
 $ make clean
 */
 #include <vector>
+#include <iostream>
+
+class Keys;
 
 #ifndef SORT
 #define SORT
@@ -24,22 +27,39 @@ public:
   //~Sort();
   
   // Functions
-  virtual void Sort(std::vector<T> v, unsigned size) = 0;
-  virtual void Display(void) = 0;
+  virtual void Sort_Vector(std::vector<T>& v, unsigned size) = 0;
+  virtual void Display(std::vector<T>& v) = 0;
 };
 
 template<class T>
-class Insertion_Sort : public Sort {
+class Insertion_Sort : public Sort<T> {
 private:
   /* data */
 public:
-  Insertion_Sort();
-  ~Insertion_Sort();
+  //Insertion_Sort();
+  //~Insertion_Sort();
   
   // Functions
-  void Sort(std::vector<T> v, unsigned size);
-  void Display(void);
+  void Sort_Vector(std::vector<T>& v, unsigned size) {
+    int key, j;
+    for (unsigned i = 1; i < size; i++) {
+      key = v[i].get_value();
+      j = i;
+      while (j > 0 && v[j - 1].get_value() > key) {
+        v[j] = v[j - 1];
+        j--;
+      }
+      v[j] = key;
+    }
+    
+  }
 
+  void Display(std::vector<T>& v) {
+    for (unsigned i = 0; i < v.size(); i++) {
+      std::cout << v[i].get_value() << "\n";
+    }
+  }
+  
 };
 
 
