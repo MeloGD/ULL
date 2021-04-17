@@ -16,31 +16,42 @@ $ make clean
 
 #ifndef KEYS
 #define KEYS
+
+template<class T>
 class Keys {
 private:
-  int value_;
+  T value_;
   
 public:
+  Keys();
   Keys(int);
   ~Keys();
 
   // Getters
-  int get_value(void); 
+  T& get_value(void); 
 
   // Overloads
   //friend std::
   //int& operator=(Keys &keys);
 };
 
-Keys::Keys(int value) {
+template<class T>
+Keys<T>::Keys() {
+  
+}
+
+template<class T>
+Keys<T>::Keys(int value) {
   value_ = value;
 }
 
-Keys::~Keys() {
+template<class T>
+Keys<T>::~Keys() {
 
 }
 
-int Keys::get_value(void) {
+template<class T>
+T& Keys<T>::get_value(void) {
   return value_;
 }
 

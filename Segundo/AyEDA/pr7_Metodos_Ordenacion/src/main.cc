@@ -35,12 +35,12 @@ int main(void) {
 
   } while (nextstep);
   */
-  std::vector<Keys> vector;
-  Insertion_Sort<Keys> vector_sort;
-  Keys Clave1(5);
-  Keys Clave2(1);
-  Keys Clave3(10);
-  Keys Clave4(3);
+  std::vector<Keys<int>> vector;
+  Shell_Sort<Keys<int>> vector_sort;
+  Keys<int> Clave1(12);
+  Keys<int> Clave2(213);
+  Keys<int> Clave3(1);
+  Keys<int> Clave4(34);
   vector.push_back(Clave1);
   vector.push_back(Clave2);
   vector.push_back(Clave3);
