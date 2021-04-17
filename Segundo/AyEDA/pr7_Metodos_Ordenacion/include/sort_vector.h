@@ -93,29 +93,29 @@ public:
   
   // Functions
   void Sort_Vector(std::vector<T>& v, int size) {
-    int alpha,j;
+    int alpha, i,j;
     T x;
-    std::cout << "Introduzca la constante de reducción: \n";
-    std::cin >> alpha;
-    while (alpha > 1) {
-      alpha = alpha / 2;
-      for (int i = alpha; i < size; i++) {
-        x = v[i];
-        j = i;
-        while ((j >= alpha) && (x.get_value() < v[j - alpha].get_value())) {
-          v[j] = v[j - alpha];
-          j = j - alpha;
+    alpha = size;
+    //std::cout << "Introduzca la constante de reducción: \n";
+    //std::cin >> alpha;
+    for (alpha = size / 2 ; alpha > 0; alpha = alpha / 2) {
+      for (i = alpha; i < size; i++) {
+        for (j = i - alpha; j >= 0; j -= alpha) {
+          if (v[j + alpha].get_value() >= v[j].get_value()) {
+            break;
+          } else {
+            Swap(v[j + alpha], v[j]);
+          }
         }
       }
-      v[j] = x;
     }
   }
-  /*
+  
   void Swap(T &value1, T &value2) {
     T temp(value1);
     value1 = value2;
     value2 = temp;
-  }*/
+  }
 };
 
 
