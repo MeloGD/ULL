@@ -1,4 +1,4 @@
-module cd(input wire clk, reset, s_inc, we3, wez, popsignal, pushsignal, s_stack, we4, we_out, s_intr1, s_intr2, timer_e,
+module cd(input wire clk, reset, s_inc, we3, wez, popsignal, pushsignal, s_stack, we4, we_out, s_intr1, s_intr2, timer_e, s_mem,
           input wire [1:0] s_inm, s_in, s_out,
           input wire [2:0] op_alu, 
           input wire [7:0] in1, in2,
@@ -7,6 +7,7 @@ module cd(input wire clk, reset, s_inc, we3, wez, popsignal, pushsignal, s_stack
 
 // Camino de datos de instrucciones de un solo ciclo
 wire [15:0] salida_memoria_programa;
+wire [11:0] salida_mux_mem;
 wire [9:0] salida_sumador, salida_mux_inc, entrada_sumador_a, salida_contador_programa, salida_mux_pc, salida_mux_intr, salida_int1_reg, salida_int2_reg;
 wire [7:0] rd1, rd2, salida_alu, salida_mux_inm, salida_memoria_datos, entrada_io, salida_mux_out;
 wire [6:0] base_umbral;
@@ -53,7 +54,9 @@ mux2 #(10) mux_stack(salida_mux_inc, salida_pila, s_stack, salida_mux_stack);
 stack pila(clk, reset, popsignal, or_push, salida_pila, salida_mux_stack);
 
 // Memoria datos
-memory_data memoria_datos(clk, we4, salida_memoria_programa[11:0], rd1, salida_memoria_datos);           
+mux2 #(12) mux_mem (salida_memoria_programa[11:0], {4'b0000,rd2}, s_mem, salida_mux_mem);
+
+memory_data memoria_datos(clk, we4, salida_mux_mem, rd1, salida_memoria_datos);      
 
 // Entrada datos
 mux4 in(in1, in2, , , s_in, entrada_io);
