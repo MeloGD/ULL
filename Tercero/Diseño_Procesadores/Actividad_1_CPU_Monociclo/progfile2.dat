@@ -12,10 +12,8 @@
 0000_0000_0000_0000 // Me llega la interrupccion 2
 0000_0000_0000_0000
 1010_1000_0000_0001 // Cargo en el banco de registros desde Input (R1 es el valor, R2 mi indice)
-1000_0000_0001_0011 // Fijo un R3 a 1, como iterador
-1110_0001_0000_0000 // Store de banco de registros a memoria datos con el valor en R2
-0010_0010_0011_0010 // Sumo R2 + R3 y lo guardo en R2
-1010_1100_0001_0001 // banco de registros a out
+1110_0001_0000_0000 // Store de banco de registros a memoria datos 
+1010_1100_0001_0001 //  
 1010_0000_0000_0000 // pop
 0000_0000_0000_0000
 0000_0000_0000_0000
@@ -1022,3 +1020,6 @@
 0000_0000_0000_0000
 0000_0000_0000_0000
 0000_0000_0000_0000
+0000_0000_0000_0000
+0000_0000_0000_0000
+

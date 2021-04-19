@@ -18,6 +18,7 @@ casez (opcode)
         s_stack = 0;
         we4 = 0;
         s_inm = 2'b00; 
+        s_mem = 1'b0;
         // necesito estos 3 bits del opcode para poder elegir que tipo de operacion
         op_alu = opcode[4:2]; 
         //timer_e = 0;
@@ -35,6 +36,7 @@ casez (opcode)
         we4 = 0;
         s_inm = 2'b01;
         op_alu = 3'b000; 
+        s_mem = 1'b0;
     end
     
     // Salto
@@ -49,6 +51,7 @@ casez (opcode)
         we4 = 0;
         s_inm = 2'b00;
         op_alu = 3'b000;
+        s_mem = 1'b0;
       end
     // Salto Z
     6'b100101: 
@@ -61,6 +64,7 @@ casez (opcode)
         we4 = 0;
         s_inm = 2'b00;
         op_alu = 3'b000;
+        s_mem = 1'b0;
         if (z == 1) begin
           s_inc = 0;
         end else begin
@@ -78,6 +82,7 @@ casez (opcode)
         we4 = 0;
         s_inm = 2'b00;
         op_alu = 3'b000;
+        s_mem = 1'b0;
         if (z == 0) begin
           s_inc = 0;
         end else begin
@@ -94,6 +99,7 @@ casez (opcode)
         s_stack = 1;
         we3 = 0;
         wez = 0;
+        s_mem = 1'b0;
       end     
     // push
     6'b101001:
@@ -107,6 +113,7 @@ casez (opcode)
         we4 = 0;
         s_inm = 2'b00;
         op_alu = 3'b000;
+        s_mem = 1'b0;
       end
     // IN IO
     6'b101010:
@@ -122,6 +129,7 @@ casez (opcode)
         op_alu = 3'b000;
         s_in = opcode[9:8];
         we_out = 0;
+        s_mem = 1'b0;
       end
     // OUT IO REG
     6'b101011:
@@ -138,6 +146,7 @@ casez (opcode)
         s_in = 2'b00;
         we_out = 1;
         s_out = 2'b00;
+        s_mem = 1'b0;
         //s_out = opcode[1:0];
       end
     // OUT IO INM1
@@ -155,6 +164,7 @@ casez (opcode)
         s_in = 2'b00;
         we_out = 1;
         s_out = 2'b01;
+        s_mem = 1'b0;
         //s_out = opcode[1:0];
       end
     // store mem_data (usando como direccionamiento la memoria de programa)
@@ -199,6 +209,7 @@ casez (opcode)
         s_inm = 2'b10;
         op_alu = 3'b000;
         timer_e = 0;
+        s_mem = 1'b0;
       end
     // Timer (solo usamos este opcode para dejar el resto de señales a 0)
     6'b101111:
@@ -213,6 +224,7 @@ casez (opcode)
         s_inm = 2'b00;
         op_alu = 3'b000;
         timer_e = 1;
+        s_mem = 1'b0;
       end   
     default:; 
   endcase
