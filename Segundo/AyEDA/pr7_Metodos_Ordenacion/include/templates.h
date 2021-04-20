@@ -22,6 +22,21 @@ $ make clean
 #define TEMPLATES
 
 template<class T>
+void Swap(T &value1, T &value2) {
+    T temp(value1);
+    value1 = value2;
+    value2 = temp;
+}
+
+template<class T>
+void Display(std::vector<T>& v) {  
+  for (unsigned i = 0; i < v.size(); i++) {
+    std::cout << "Pos: " << i << " = " << v[i] << "   ";
+  }
+  std::cout << "\n";
+} 
+
+template<class T>
 void Sort_Vector_Insertion(std::vector<T>& v, int size) {
     int  j;
     int key = 0;
@@ -32,8 +47,33 @@ void Sort_Vector_Insertion(std::vector<T>& v, int size) {
         v[j] = v[j - 1];
         j--;
       }
-      // Insertion
       v[j] = key;
+    }
+}
+
+template<class T>
+void Sort_Vector_Insertion_Trace(std::vector<T>& v, int size) {
+    int  j;
+    int key = 0;
+    for (int i = 1; i < size; i++) {
+      std::cout << "\nPara la iteración, " << i << " guardamos el valor de v[" << i << "] = "<< v[i] <<", en una variable 'key' para no perder su valor.\n";
+      key = v[i];
+      j = i;
+      while (j > 0 && v[j - 1] > key) {
+        std::cout << "Examinamos el nuevo segmento dado que se cumple que:\n";
+        std::cout << "  - v[" << j-1 << "] = " << v[j-1] << " > " << " v[" << i << "]" << " = " << key << "\n";
+        std::cout << "A v[" << j << "] le asignamos entonces el valor de v[" << j-1 << "] : " << v[j] << " <- " << v[j-1] << "\n";
+        v[j] = v[j - 1];
+        j--;
+      }
+      std::cout << "Ahora, no se cumple la condición para examinar el segmento, porque:\n";
+      std::cout << "  - v[" << j - 1 << "] = " <<  v[j-1] << " < v[" << i << "] = " << v[i]  << "\n";
+      v[j] = key;
+      std::cout << "A v[" << j << "] le asignamos entonces el valor de de 'key' para completar el intercambio:  v[" << j << "] " << " -> " << key << "\n";
+      
+      std::cout << "El vector queda así: \n";
+      Display(v);
+      std::cout << "\n";
     }
 } 
 
@@ -53,10 +93,10 @@ void Sort_Vector_Selection(std::vector<T>& v, int size) {
 }
 
 template<class T>
-void Sort_Vector(std::vector<T>& v, int size) {
+void Sort_Vector_ShellSort(std::vector<T>& v, int size) {
   int delta, i,j;
   float alpha;
-  T x;
+  //T x;
   delta = size;
   std::cout << "Introduzca la constante de reducción: \n";
   std::cin >> alpha;
@@ -72,21 +112,6 @@ void Sort_Vector(std::vector<T>& v, int size) {
     }
   }
 }
-
-template<class T>
-void Swap(T &value1, T &value2) {
-    T temp(value1);
-    value1 = value2;
-    value2 = temp;
-}
-
-template<class T>
-void Display(std::vector<T>& v) {  
-  for (unsigned i = 0; i < v.size(); i++) {
-    std::cout << v[i] << "\n";
-  }
-} 
-
 
 /*
     string test = "AB433AB";

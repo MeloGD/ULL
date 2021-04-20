@@ -9,7 +9,7 @@
             "name": "g++ - Build and debug active file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/melo/GitHub/ULL/Tercero/Arquitectura_de_Computadores/Simulador_ILP/main",
+            "program": "/home/melo/GitHub/ULL/Segundo/AyEDA/pr7_Metodos_Ordenacion/src/main",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
