@@ -14,6 +14,8 @@ $ make clean
 #include <vector>
 #include <iostream>
 #include "../include/templates.h"
+#include "../include/keys.h"
+#include <string>
 #include <time.h>
 
 
@@ -23,8 +25,9 @@ int main(void) {
   bool trace;
   int type;
   int iterator = 0;
-  int value = 0;
-  std::vector<int> vector;
+  std::string value;
+  
+  std::vector<Keys<std::string>> vector;
   srand(time(NULL));
 
   std::cout << "Es programa ordena vectores.\n";
@@ -36,13 +39,16 @@ int main(void) {
   std::cin >> random;
   if (random) {
     do {
-      vector.push_back(rand() % 1000);
+      //vector.push_back(rand() % 1000);
+      Keys<std::string> key(Build_String());
+      vector.push_back(key);
       iterator++;
-    } while (iterator != size);
+    } while (iterator != size); 
   } else {
     do {
-      std::cout << "Introduzca el valor nº "<< iterator << "en el vector\n";
+      std::cout << "Introduzca el valor nº "<< iterator << " en el vector\n";
       std::cin >> value;
+      Keys<std::string> key(value);
       vector.push_back(value);
       iterator++;
     } while (iterator != size);
@@ -62,16 +68,20 @@ int main(void) {
     if (trace) {
       std::cout << "\nOriginal: \n";
       Display(vector);
+      Display_Values(vector);
       std::cout << "\nLa traza: \n";
-      Sort_Vector_Insertion_Trace(vector,size);
+      //Sort_Vector_Insertion_Trace(vector,size);
       std::cout << "\nOrdenado: \n";
-      Display(vector);      
+      Display(vector);
+      Display_Values(vector);      
     } else {
       std::cout << "\nOriginal: \n";
       Display(vector);
+      Display_Values(vector);
       Sort_Vector_Insertion(vector,size);
       std::cout << "\nOrdenado: \n";
       Display(vector);
+      Display_Values(vector);
     }
     break;
   case 2:
@@ -79,13 +89,13 @@ int main(void) {
       std::cout << "\nOriginal: \n";
       Display(vector);
       std::cout << "\nLa traza: \n";
-      Sort_Vector_Selection_Trace(vector,size);
+      //Sort_Vector_Selection_Trace(vector,size);
       std::cout << "\nOrdenado: \n";
       Display(vector);        
     } else {
       std::cout << "\nOriginal: \n";
       Display(vector);
-      Sort_Vector_Insertion(vector,size);
+      //Sort_Vector_Insertion(vector,size);
       std::cout << "\nOrdenado: \n";
       Display(vector);
     }
@@ -95,13 +105,13 @@ int main(void) {
       std::cout << "\nOriginal: \n";
       Display(vector);
       std::cout << "\nLa traza: \n";
-      Sort_Vector_ShellSort_Trace(vector,size);
+      //Sort_Vector_ShellSort_Trace(vector,size);
       std::cout << "\nOrdenado: \n";
       Display(vector);          
     } else {
       std::cout << "\nOriginal: \n";
       Display(vector);
-      Sort_Vector_ShellSort(vector,size);
+     // Sort_Vector_ShellSort(vector,size);
       std::cout << "\nOrdenado: \n";
       Display(vector);
     }    

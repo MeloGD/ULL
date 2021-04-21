@@ -24,7 +24,7 @@ private:
   
 public:
   Keys();
-  Keys(int);
+  Keys(T);
   ~Keys();
 
   // Getters
@@ -41,7 +41,7 @@ Keys<T>::Keys() {
 }
 
 template<class T>
-Keys<T>::Keys(int value) {
+Keys<T>::Keys(T value) {
   value_ = value;
 }
 
