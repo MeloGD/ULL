@@ -8,10 +8,9 @@ Autor: Jesús Carmelo González Domínguez
 email: alu0101267760@ull.edu.es
 Uso en terminal:
 $ make run 
-(una vez compilado, se mosntrará un menu de configuracion del tablero, nº de hormigas y su posición)
+(una vez compilado, se mosntrará un menú de configuracion para generar el vector y el metodo de ordenación a usar.)
 $ make clean
 */
-
 #include <vector>
 #include <iostream>
 #include "../include/templates.h"
@@ -77,7 +76,12 @@ int main(void) {
     break;
   case 2:
     if (trace) {
-      
+      std::cout << "\nOriginal: \n";
+      Display(vector);
+      std::cout << "\nLa traza: \n";
+      Sort_Vector_Selection_Trace(vector,size);
+      std::cout << "\nOrdenado: \n";
+      Display(vector);        
     } else {
       std::cout << "\nOriginal: \n";
       Display(vector);
@@ -88,7 +92,12 @@ int main(void) {
     break;
   case 3:
     if (trace) {
-      
+      std::cout << "\nOriginal: \n";
+      Display(vector);
+      std::cout << "\nLa traza: \n";
+      Sort_Vector_ShellSort_Trace(vector,size);
+      std::cout << "\nOrdenado: \n";
+      Display(vector);          
     } else {
       std::cout << "\nOriginal: \n";
       Display(vector);
@@ -102,21 +111,5 @@ int main(void) {
     break;
   }
 
-
- /* 
-  //Shell_Sort<Keys<int>> vector_sort;
-  vector.push_back(12);
-  vector.push_back(213);
-  vector.push_back(1);
-  vector.push_back(1);
-  vector.push_back(34);
-  std::cout << "Desordenado: \n";
-  Display(vector);
-
-  std::cout << "Ordenado: \n";
-  
-  Sort_Vector_Insertion(vector,5);
-  Display(vector);
-  */
   return 0;
 }
