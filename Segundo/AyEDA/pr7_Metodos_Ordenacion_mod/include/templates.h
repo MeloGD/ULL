@@ -18,6 +18,7 @@ $ make clean
 #include <algorithm>
 #include <random>
 #include <typeinfo>
+#include "keys.h"
 
 #ifndef TEMPLATES
 #define TEMPLATES
@@ -32,67 +33,40 @@ void Swap(T &value1, T &value2) {
 template<class T>
 void Display(std::vector<T>& v) {  
   for (unsigned i = 0; i < v.size(); i++) {
-    std::cout << "Pos: " << i << " = " << v[i].get_value() << "   ";
+    std::cout << "Pos: " << i << " = " << v[i].get_str1() << v[i].get_value() << v[i].get_str2() << "   ";
   }
   std::cout << "\n";
 } 
 
 
-template<class T>
-long String_Value(T data) { 
-  std::string integerpart = "";
-  long intergervalue = 0;
-  long alphavalue = 0;
-  long finalvalue = 0;
-  long auxiliar = 0;
-  for (unsigned i = 0; i < data.size(); i++) {
-      if(isdigit(data[i])) {
-          integerpart += data[i];
-      } else {
-          int power = (data.size() - 1) - i;
-          alphavalue += int(data[i]) * (pow(10, power));
-      } 
-  }
-  intergervalue = stoi(integerpart);
-  finalvalue = intergervalue + alphavalue;
+
+long String_Value(Keys& key) { 
+  char str1 = key.get_str1();
+  int value = key.get_value();
+  char str2 = key.get_str2();
+  long finalvalue = (int(str1) * (pow(10, 9) )) + value + int(str2);
+
+
   return finalvalue;
 } 
 
 template<class T>
 void Display_Values(std::vector<T>& v) {  
   for (unsigned i = 0; i < v.size(); i++) {
-    std::cout << "Pos: " << i << " = " << String_Value(v[i].get_value()) << "   ";
+    std::cout << "Pos: " << i << " = " << String_Value(v[i]) << "   ";
   }
   std::cout << "\n";
 } 
 
-std::string Build_String() {
-  std::string key = "";
-  std::string str1 = "";
-  std::string str2 = "";
-  std::string str3 = "";
-  std::string alphab("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-  std::string num("0123456789");
-  std::random_device rd;
-  std::mt19937 generator(rd());
-  shuffle(alphab.begin(), alphab.end(), generator);
-  shuffle(num.begin(), num.end(), generator);
-  str1 = "DNI";
-  str2 = num.substr(0,8);
-  shuffle(alphab.begin(), alphab.end(), generator);
-  str3 = alphab.substr(0,1);
-  key = str1 + str2 + str3;
-  return key;  
-}
 
 template<class T>
 void Sort_Vector_Insertion(std::vector<T>& v, int size) {
   int  j;
-  T key;
+  Keys key;
   for (int i = 1; i < size; i++) {
     key = v[i];
     j = i;
-    while (j > 0 && String_Value(v[j - 1].get_value()) > String_Value(key.get_value())) {
+    while (j > 0 && String_Value(v[j - 1]) > String_Value(key)) {
       v[j] = v[j - 1];
       j--;
     }
@@ -210,5 +184,7 @@ void Sort_Vector_ShellSort_Trace(std::vector<T>& v, int size) {
   }
 }
 */
+
+
 
 #endif

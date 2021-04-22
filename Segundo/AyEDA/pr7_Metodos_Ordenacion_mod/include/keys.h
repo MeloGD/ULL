@@ -14,45 +14,79 @@ $ make clean
 
 #include <iostream>
 
+
 #ifndef KEYS
 #define KEYS
 
-template<class T>
+
 class Keys {
 private:
-  T value_;
+  char str1_;
+  int value_;
+  char str2_;
   
 public:
   Keys();
-  Keys(T);
+  Keys(char str1, int value, char str2);
   ~Keys();
 
   // Getters
-  T& get_value(void); 
+  char& get_str1(void); 
+  int& get_value(void); 
+  char& get_str2(void);
+
+
+  // Setters
+  void set_str1(char str); 
+  void set_value(int value); 
+  void set_str2(char str);
 
   // Overloads
   //friend std::
   //int& operator=(Keys &keys);
 };
 
-template<class T>
-Keys<T>::Keys() {
+
+Keys::Keys() {
   
 }
 
-template<class T>
-Keys<T>::Keys(T value) {
+Keys::Keys(char str1, int value, char str2) {
+  str1_ = str1;
+  value_ = value;
+  str2_ = str2;
+}
+
+Keys::~Keys() {
+
+}
+
+
+char& Keys::get_str1(void) {
+  return str1_;
+}
+
+
+int& Keys::get_value(void) {
+  return value_;
+}
+
+char& Keys::get_str2(void) {
+  return str2_;
+}
+
+
+void Keys::set_str1(char str) {
+  str1_ = str;
+}
+
+
+void Keys::set_value(int value) {
   value_ = value;
 }
 
-template<class T>
-Keys<T>::~Keys() {
-
-}
-
-template<class T>
-T& Keys<T>::get_value(void) {
-  return value_;
+void Keys::set_str2(char str) {
+  str2_ = str;
 }
 
 /*

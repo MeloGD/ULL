@@ -25,9 +25,11 @@ int main(void) {
   bool trace;
   int type;
   int iterator = 0;
-  std::string value;
+  char str1;
+  char str2;
+  int value;
   
-  std::vector<Keys<std::string>> vector;
+  std::vector<Keys> vector;
   srand(time(NULL));
 
   std::cout << "Es programa ordena vectores.\n";
@@ -40,16 +42,20 @@ int main(void) {
   if (random) {
     do {
       //vector.push_back(rand() % 1000);
-      Keys<std::string> key(Build_String());
-      vector.push_back(key);
+      //Keys key(Build_String());
+      //vector.push_back(key);
       iterator++;
     } while (iterator != size); 
   } else {
     do {
+      std::cout << "Introduzca el la letra del tipo de documento "<< iterator << " en el vector\n";
+      std::cin >> str1;
       std::cout << "Introduzca el valor nº "<< iterator << " en el vector\n";
       std::cin >> value;
-      Keys<std::string> key(value);
-      vector.push_back(value);
+      std::cout << "Introduzca la ultima letra del documento "<< iterator << " en el vector\n";
+      std::cin >> str2;
+      Keys key(str1,value,str2);
+      vector.push_back(key);
       iterator++;
     } while (iterator != size);
   }
