@@ -31,6 +31,7 @@ public:
 
   // Functions
   void Insert(Node<T>* root, T data);
+  bool Search(Node<T>* root, T data);
   void Print_Tree(Node<T>* root);
 };
 
@@ -79,8 +80,25 @@ void BinaryTree<T>::Insert(Node<T>* root, T data) {
 }
 
 template<class T>
+bool BinaryTree<T>::Search(Node<T>* root, T data) { 
+  if (root == NULL) {
+    return false;
+  } 
+  if (root->data_ == data) {
+    return true;
+  }
+  bool left = Search(root->left_, data);
+  if (left) {
+    return true;
+  }
+  bool right = Search(root->right_ , data);
+  if (right) {
+    return true;
+  }
+}
+
+template<class T>
 void BinaryTree<T>::Print_Tree(Node<T>* root) {
-  
   if (root == NULL) {
     return;
   }
@@ -105,6 +123,5 @@ void BinaryTree<T>::Print_Tree(Node<T>* root) {
     std::cout << "\n";
     level++;
   }
-    
 };
 #endif

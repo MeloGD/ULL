@@ -22,7 +22,14 @@ int main() {
   Tree.Insert(root, 21);
   Tree.Insert(root, 33);
   Tree.Print_Tree(root);
+
+  if (Tree.Search(root, 5)) {
+    std::cout << "Se ha encontrado el valor.\n";
+  } else {
+    std::cout << "No se ha encontrado el valor.\n";
+  }
   
+
   /*
   Node<int>* root = new Node<int>(5);
   root->left_ = new Node<int>(4);
