@@ -15,21 +15,44 @@ $ make clean
 
 int main() {
   BinaryTree<int> Tree;
+  bool menu = true;
+  int value = 0;
+  int option = 0;
+  std::cout << "Práctica 9: Árboles Binarios Equilibrados\n"; 
   Node<int>* root = new Node<int>;
-  Tree.Print_Tree(root);
-  Tree.Insert(root, 10);
-  Tree.Insert(root, 15);
-  Tree.Insert(root, 21);
-  Tree.Insert(root, 33);
-  Tree.Print_Tree(root);
-
-  if (Tree.Search(root, 5)) {
-    std::cout << "Se ha encontrado el valor.\n";
-  } else {
-    std::cout << "No se ha encontrado el valor.\n";
-  }
+  do {
+    std::cout << "¿Qué operación desea realizar?\n"; 
+    std::cout << "  - Búsqueda.   (1)\n"; 
+    std::cout << "  - Inserción.  (2)\n"; 
+    std::cout << "  - Salir.      (3)\n"; 
+    std::cin >> option;
+    switch (option) {
+    case 1:
+      std::cout << "Inserte el valor a introducir en el árbol\n"; 
+      std::cin >> value;
+      if (Tree.Search(root, value)) {
+        std::cout << "Se ha encontrado el valor.\n";
+      } else {
+        std::cout << "No se ha encontrado el valor.\n";
+      }
+      break;
+    case 2:
+      std::cout << "Inserte el valor a introducir en el árbol\n"; 
+      std::cin >> value;
+      Tree.Insert(root, value);
+      Tree.Print_Tree(root);
+      break;
+    case 3:
+      std::cout << "Ha escogido salir, saludos.\n"; 
+      menu = false;
+      break;  
+    
+    default:
+      break;
+    }
+    value = 0;
+  } while (menu);
   
-
   /*
   Node<int>* root = new Node<int>(5);
   root->left_ = new Node<int>(4);

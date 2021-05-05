@@ -40,7 +40,6 @@ template<class T>
 BinaryTree<T>::BinaryTree() {
   root_ = new Node<T>;
   counter_ = 0;
-  //Print_Tree(root_);
 }
 
 // Destructor
@@ -54,7 +53,6 @@ void BinaryTree<T>::Insert(Node<T>* root, T data) {
   if (root_->data_ == NULL) {
     root_ = root;
     root_->data_ = data; 
-    //std::cout << "entre aqui";
     return;
   } else {
     Node<T>* auxiliarnode;
