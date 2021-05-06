@@ -9,7 +9,7 @@
             "name": "g++ - Build and debug active file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/melo/GitHub/ULL/Segundo/AyEDA/pr7_Metodos_Ordenacion/src/main",
+            "program": "/home/melo/Github/ULL/Segundo/AyEDA/pr9_Arboles_Binarios_mod/bin/main",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
