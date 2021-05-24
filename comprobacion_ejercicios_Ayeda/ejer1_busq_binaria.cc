@@ -24,7 +24,7 @@ int bus_binaria2(int x, std::vector<int>& v, int ini, int fin, int primero, int 
 }
 
 int main(void) {
-  std::vector<int> v{0,1,4,4,4,4,4,6};
-  std::cout << bus_binaria2(4,v,0,9,1,6) << std::endl; 
+  std::vector<int> v{0,1,1,2,2,4,4,4};
+  bus_binaria2(4,v,0,7,0,7);
   return 0;
 }
